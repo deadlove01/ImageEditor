@@ -71,17 +71,6 @@
             this.toolStripLabel2 = new System.Windows.Forms.ToolStripLabel();
             this.cbbTextShadow = new System.Windows.Forms.ToolStripComboBox();
             this.toolStripButton6 = new System.Windows.Forms.ToolStripButton();
-            this.toolStrip3 = new System.Windows.Forms.ToolStrip();
-            this.toolStripLabel3 = new System.Windows.Forms.ToolStripLabel();
-            this.tbText = new System.Windows.Forms.ToolStripTextBox();
-            this.toolStripButton7 = new System.Windows.Forms.ToolStripButton();
-            this.toolStripLabel4 = new System.Windows.Forms.ToolStripLabel();
-            this.cbbFontName = new System.Windows.Forms.ToolStripComboBox();
-            this.toolStripLabel5 = new System.Windows.Forms.ToolStripLabel();
-            this.cbbFontSize = new System.Windows.Forms.ToolStripComboBox();
-            this.toolStripLabel6 = new System.Windows.Forms.ToolStripLabel();
-            this.cbbFontStyle = new System.Windows.Forms.ToolStripComboBox();
-            this.toolStripButton8 = new System.Windows.Forms.ToolStripButton();
             this.toolStrip5 = new System.Windows.Forms.ToolStrip();
             this.toolStripLabel7 = new System.Windows.Forms.ToolStripLabel();
             this.tbPosX = new System.Windows.Forms.ToolStripTextBox();
@@ -101,7 +90,19 @@
             this.tbHeight = new System.Windows.Forms.ToolStripTextBox();
             this.btnAddText = new System.Windows.Forms.ToolStripButton();
             this.btnUpdateText = new System.Windows.Forms.ToolStripButton();
+            this.toolStrip3 = new System.Windows.Forms.ToolStrip();
+            this.toolStripLabel3 = new System.Windows.Forms.ToolStripLabel();
+            this.tbText = new System.Windows.Forms.ToolStripTextBox();
+            this.toolStripButton7 = new System.Windows.Forms.ToolStripButton();
+            this.toolStripLabel4 = new System.Windows.Forms.ToolStripLabel();
+            this.cbbFontName = new System.Windows.Forms.ToolStripComboBox();
+            this.toolStripLabel5 = new System.Windows.Forms.ToolStripLabel();
+            this.cbbFontSize = new System.Windows.Forms.ToolStripComboBox();
+            this.toolStripLabel6 = new System.Windows.Forms.ToolStripLabel();
+            this.cbbFontStyle = new System.Windows.Forms.ToolStripComboBox();
+            this.toolStripButton8 = new System.Windows.Forms.ToolStripButton();
             this.toolStripContainer2 = new System.Windows.Forms.ToolStripContainer();
+            this.toolStripContainer3 = new System.Windows.Forms.ToolStripContainer();
             this.toolStripContainer1.ContentPanel.SuspendLayout();
             this.toolStripContainer1.LeftToolStripPanel.SuspendLayout();
             this.toolStripContainer1.TopToolStripPanel.SuspendLayout();
@@ -120,11 +121,13 @@
             this.toolStrip4.SuspendLayout();
             this.toolStrip1.SuspendLayout();
             this.toolStrip2.SuspendLayout();
-            this.toolStrip3.SuspendLayout();
             this.toolStrip5.SuspendLayout();
+            this.toolStrip3.SuspendLayout();
             this.toolStripContainer2.ContentPanel.SuspendLayout();
-            this.toolStripContainer2.TopToolStripPanel.SuspendLayout();
             this.toolStripContainer2.SuspendLayout();
+            this.toolStripContainer3.ContentPanel.SuspendLayout();
+            this.toolStripContainer3.TopToolStripPanel.SuspendLayout();
+            this.toolStripContainer3.SuspendLayout();
             this.SuspendLayout();
             // 
             // toolStripContainer1
@@ -134,7 +137,7 @@
             // 
             this.toolStripContainer1.ContentPanel.Controls.Add(this.tabControl1);
             this.toolStripContainer1.ContentPanel.Controls.Add(this.pictureBox1);
-            this.toolStripContainer1.ContentPanel.Size = new System.Drawing.Size(1042, 519);
+            this.toolStripContainer1.ContentPanel.Size = new System.Drawing.Size(1042, 521);
             this.toolStripContainer1.Dock = System.Windows.Forms.DockStyle.Fill;
             // 
             // toolStripContainer1.LeftToolStripPanel
@@ -142,14 +145,13 @@
             this.toolStripContainer1.LeftToolStripPanel.Controls.Add(this.toolStrip4);
             this.toolStripContainer1.Location = new System.Drawing.Point(0, 0);
             this.toolStripContainer1.Name = "toolStripContainer1";
-            this.toolStripContainer1.Size = new System.Drawing.Size(1066, 569);
+            this.toolStripContainer1.Size = new System.Drawing.Size(1066, 571);
             this.toolStripContainer1.TabIndex = 0;
             this.toolStripContainer1.Text = "toolStripContainer1";
             // 
             // toolStripContainer1.TopToolStripPanel
             // 
-            this.toolStripContainer1.TopToolStripPanel.Controls.Add(this.toolStrip1);
-            this.toolStripContainer1.TopToolStripPanel.Controls.Add(this.toolStrip2);
+            this.toolStripContainer1.TopToolStripPanel.Controls.Add(this.toolStrip3);
             this.toolStripContainer1.TopToolStripPanel.Controls.Add(this.toolStrip5);
             // 
             // tabControl1
@@ -530,7 +532,7 @@
             this.toolStripLabel2,
             this.cbbTextShadow,
             this.toolStripButton6});
-            this.toolStrip2.Location = new System.Drawing.Point(84, 0);
+            this.toolStrip2.Location = new System.Drawing.Point(86, 0);
             this.toolStrip2.Name = "toolStrip2";
             this.toolStrip2.Size = new System.Drawing.Size(443, 25);
             this.toolStrip2.TabIndex = 1;
@@ -596,113 +598,6 @@
             this.toolStripButton6.Size = new System.Drawing.Size(23, 22);
             this.toolStripButton6.Text = "Apply";
             // 
-            // toolStrip3
-            // 
-            this.toolStrip3.Dock = System.Windows.Forms.DockStyle.None;
-            this.toolStrip3.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.toolStripLabel3,
-            this.tbText,
-            this.toolStripButton7,
-            this.toolStripLabel4,
-            this.cbbFontName,
-            this.toolStripLabel5,
-            this.cbbFontSize,
-            this.toolStripLabel6,
-            this.cbbFontStyle,
-            this.toolStripButton8});
-            this.toolStrip3.Location = new System.Drawing.Point(3, 0);
-            this.toolStrip3.Name = "toolStrip3";
-            this.toolStrip3.Size = new System.Drawing.Size(793, 27);
-            this.toolStrip3.TabIndex = 2;
-            // 
-            // toolStripLabel3
-            // 
-            this.toolStripLabel3.Name = "toolStripLabel3";
-            this.toolStripLabel3.Size = new System.Drawing.Size(74, 24);
-            this.toolStripLabel3.Text = "Text to draw:";
-            // 
-            // tbText
-            // 
-            this.tbText.Name = "tbText";
-            this.tbText.Size = new System.Drawing.Size(100, 27);
-            // 
-            // toolStripButton7
-            // 
-            this.toolStripButton7.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
-            this.toolStripButton7.Image = global::imageeditor.Properties.Resources.text;
-            this.toolStripButton7.ImageTransparentColor = System.Drawing.Color.Magenta;
-            this.toolStripButton7.Name = "toolStripButton7";
-            this.toolStripButton7.Size = new System.Drawing.Size(23, 24);
-            this.toolStripButton7.Text = "Draw";
-            this.toolStripButton7.Click += new System.EventHandler(this.toolStripButton7_Click);
-            // 
-            // toolStripLabel4
-            // 
-            this.toolStripLabel4.Name = "toolStripLabel4";
-            this.toolStripLabel4.Size = new System.Drawing.Size(67, 15);
-            this.toolStripLabel4.Text = "Font name:";
-            // 
-            // cbbFontName
-            // 
-            this.cbbFontName.Name = "cbbFontName";
-            this.cbbFontName.Size = new System.Drawing.Size(121, 23);
-            this.cbbFontName.Click += new System.EventHandler(this.toolStripComboBox2_Click);
-            // 
-            // toolStripLabel5
-            // 
-            this.toolStripLabel5.Name = "toolStripLabel5";
-            this.toolStripLabel5.Size = new System.Drawing.Size(56, 15);
-            this.toolStripLabel5.Text = "Font size:";
-            // 
-            // cbbFontSize
-            // 
-            this.cbbFontSize.Items.AddRange(new object[] {
-            "8",
-            "9",
-            "10",
-            "11",
-            "12",
-            "14",
-            "16",
-            "18",
-            "20",
-            "22",
-            "24",
-            "28",
-            "36",
-            "48",
-            "72"});
-            this.cbbFontSize.Name = "cbbFontSize";
-            this.cbbFontSize.Size = new System.Drawing.Size(121, 23);
-            this.cbbFontSize.Text = "12";
-            // 
-            // toolStripLabel6
-            // 
-            this.toolStripLabel6.Name = "toolStripLabel6";
-            this.toolStripLabel6.Size = new System.Drawing.Size(61, 15);
-            this.toolStripLabel6.Text = "Font style:";
-            // 
-            // cbbFontStyle
-            // 
-            this.cbbFontStyle.Items.AddRange(new object[] {
-            "Bold",
-            "Italic",
-            "Underline",
-            "Regular",
-            "Strikeout"});
-            this.cbbFontStyle.Name = "cbbFontStyle";
-            this.cbbFontStyle.Size = new System.Drawing.Size(121, 23);
-            this.cbbFontStyle.Text = "Regular";
-            // 
-            // toolStripButton8
-            // 
-            this.toolStripButton8.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
-            this.toolStripButton8.Image = global::imageeditor.Properties.Resources.apply;
-            this.toolStripButton8.ImageTransparentColor = System.Drawing.Color.Magenta;
-            this.toolStripButton8.Name = "toolStripButton8";
-            this.toolStripButton8.Size = new System.Drawing.Size(23, 20);
-            this.toolStripButton8.Text = "Apply";
-            // 
             // toolStrip5
             // 
             this.toolStrip5.Dock = System.Windows.Forms.DockStyle.None;
@@ -725,7 +620,7 @@
             this.tbHeight,
             this.btnAddText,
             this.btnUpdateText});
-            this.toolStrip5.Location = new System.Drawing.Point(3, 25);
+            this.toolStrip5.Location = new System.Drawing.Point(7, 25);
             this.toolStrip5.Name = "toolStrip5";
             this.toolStrip5.Size = new System.Drawing.Size(808, 25);
             this.toolStrip5.TabIndex = 3;
@@ -838,6 +733,113 @@
             this.btnUpdateText.Text = "Update text";
             this.btnUpdateText.Click += new System.EventHandler(this.btnUpdateText_Click);
             // 
+            // toolStrip3
+            // 
+            this.toolStrip3.Dock = System.Windows.Forms.DockStyle.None;
+            this.toolStrip3.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.toolStripLabel3,
+            this.tbText,
+            this.toolStripButton7,
+            this.toolStripLabel4,
+            this.cbbFontName,
+            this.toolStripLabel5,
+            this.cbbFontSize,
+            this.toolStripLabel6,
+            this.cbbFontStyle,
+            this.toolStripButton8});
+            this.toolStrip3.Location = new System.Drawing.Point(3, 0);
+            this.toolStrip3.Name = "toolStrip3";
+            this.toolStrip3.Size = new System.Drawing.Size(787, 25);
+            this.toolStrip3.TabIndex = 2;
+            // 
+            // toolStripLabel3
+            // 
+            this.toolStripLabel3.Name = "toolStripLabel3";
+            this.toolStripLabel3.Size = new System.Drawing.Size(74, 22);
+            this.toolStripLabel3.Text = "Text to draw:";
+            // 
+            // tbText
+            // 
+            this.tbText.Name = "tbText";
+            this.tbText.Size = new System.Drawing.Size(100, 25);
+            // 
+            // toolStripButton7
+            // 
+            this.toolStripButton7.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
+            this.toolStripButton7.Image = global::imageeditor.Properties.Resources.text;
+            this.toolStripButton7.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.toolStripButton7.Name = "toolStripButton7";
+            this.toolStripButton7.Size = new System.Drawing.Size(23, 22);
+            this.toolStripButton7.Text = "Draw";
+            this.toolStripButton7.Click += new System.EventHandler(this.toolStripButton7_Click);
+            // 
+            // toolStripLabel4
+            // 
+            this.toolStripLabel4.Name = "toolStripLabel4";
+            this.toolStripLabel4.Size = new System.Drawing.Size(67, 22);
+            this.toolStripLabel4.Text = "Font name:";
+            // 
+            // cbbFontName
+            // 
+            this.cbbFontName.Name = "cbbFontName";
+            this.cbbFontName.Size = new System.Drawing.Size(121, 25);
+            this.cbbFontName.Click += new System.EventHandler(this.toolStripComboBox2_Click);
+            // 
+            // toolStripLabel5
+            // 
+            this.toolStripLabel5.Name = "toolStripLabel5";
+            this.toolStripLabel5.Size = new System.Drawing.Size(56, 22);
+            this.toolStripLabel5.Text = "Font size:";
+            // 
+            // cbbFontSize
+            // 
+            this.cbbFontSize.Items.AddRange(new object[] {
+            "8",
+            "9",
+            "10",
+            "11",
+            "12",
+            "14",
+            "16",
+            "18",
+            "20",
+            "22",
+            "24",
+            "28",
+            "36",
+            "48",
+            "72"});
+            this.cbbFontSize.Name = "cbbFontSize";
+            this.cbbFontSize.Size = new System.Drawing.Size(121, 25);
+            this.cbbFontSize.Text = "12";
+            // 
+            // toolStripLabel6
+            // 
+            this.toolStripLabel6.Name = "toolStripLabel6";
+            this.toolStripLabel6.Size = new System.Drawing.Size(61, 22);
+            this.toolStripLabel6.Text = "Font style:";
+            // 
+            // cbbFontStyle
+            // 
+            this.cbbFontStyle.Items.AddRange(new object[] {
+            "Bold",
+            "Italic",
+            "Underline",
+            "Regular",
+            "Strikeout"});
+            this.cbbFontStyle.Name = "cbbFontStyle";
+            this.cbbFontStyle.Size = new System.Drawing.Size(121, 25);
+            this.cbbFontStyle.Text = "Regular";
+            // 
+            // toolStripButton8
+            // 
+            this.toolStripButton8.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
+            this.toolStripButton8.Image = global::imageeditor.Properties.Resources.apply;
+            this.toolStripButton8.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.toolStripButton8.Name = "toolStripButton8";
+            this.toolStripButton8.Size = new System.Drawing.Size(23, 22);
+            this.toolStripButton8.Text = "Apply";
+            // 
             // toolStripContainer2
             // 
             // 
@@ -845,24 +847,40 @@
             // 
             this.toolStripContainer2.ContentPanel.AutoScroll = true;
             this.toolStripContainer2.ContentPanel.Controls.Add(this.toolStripContainer1);
-            this.toolStripContainer2.ContentPanel.Size = new System.Drawing.Size(1066, 569);
+            this.toolStripContainer2.ContentPanel.Size = new System.Drawing.Size(1066, 571);
             this.toolStripContainer2.Dock = System.Windows.Forms.DockStyle.Fill;
             this.toolStripContainer2.Location = new System.Drawing.Point(0, 0);
             this.toolStripContainer2.Name = "toolStripContainer2";
-            this.toolStripContainer2.Size = new System.Drawing.Size(1066, 596);
+            this.toolStripContainer2.Size = new System.Drawing.Size(1066, 571);
             this.toolStripContainer2.TabIndex = 1;
             this.toolStripContainer2.Text = "toolStripContainer2";
             // 
-            // toolStripContainer2.TopToolStripPanel
+            // toolStripContainer3
             // 
-            this.toolStripContainer2.TopToolStripPanel.Controls.Add(this.toolStrip3);
+            // 
+            // toolStripContainer3.ContentPanel
+            // 
+            this.toolStripContainer3.ContentPanel.AutoScroll = true;
+            this.toolStripContainer3.ContentPanel.Controls.Add(this.toolStripContainer2);
+            this.toolStripContainer3.ContentPanel.Size = new System.Drawing.Size(1066, 571);
+            this.toolStripContainer3.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.toolStripContainer3.Location = new System.Drawing.Point(0, 0);
+            this.toolStripContainer3.Name = "toolStripContainer3";
+            this.toolStripContainer3.Size = new System.Drawing.Size(1066, 596);
+            this.toolStripContainer3.TabIndex = 2;
+            this.toolStripContainer3.Text = "toolStripContainer3";
+            // 
+            // toolStripContainer3.TopToolStripPanel
+            // 
+            this.toolStripContainer3.TopToolStripPanel.Controls.Add(this.toolStrip2);
+            this.toolStripContainer3.TopToolStripPanel.Controls.Add(this.toolStrip1);
             // 
             // SunfrogToolkit
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1066, 596);
-            this.Controls.Add(this.toolStripContainer2);
+            this.Controls.Add(this.toolStripContainer3);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
             this.MaximizeBox = false;
             this.MinimizeBox = false;
@@ -896,15 +914,18 @@
             this.toolStrip1.PerformLayout();
             this.toolStrip2.ResumeLayout(false);
             this.toolStrip2.PerformLayout();
-            this.toolStrip3.ResumeLayout(false);
-            this.toolStrip3.PerformLayout();
             this.toolStrip5.ResumeLayout(false);
             this.toolStrip5.PerformLayout();
+            this.toolStrip3.ResumeLayout(false);
+            this.toolStrip3.PerformLayout();
             this.toolStripContainer2.ContentPanel.ResumeLayout(false);
-            this.toolStripContainer2.TopToolStripPanel.ResumeLayout(false);
-            this.toolStripContainer2.TopToolStripPanel.PerformLayout();
             this.toolStripContainer2.ResumeLayout(false);
             this.toolStripContainer2.PerformLayout();
+            this.toolStripContainer3.ContentPanel.ResumeLayout(false);
+            this.toolStripContainer3.TopToolStripPanel.ResumeLayout(false);
+            this.toolStripContainer3.TopToolStripPanel.PerformLayout();
+            this.toolStripContainer3.ResumeLayout(false);
+            this.toolStripContainer3.PerformLayout();
             this.ResumeLayout(false);
 
         }
@@ -985,6 +1006,7 @@
         private System.Windows.Forms.ToolStripButton btnAddText;
         private System.Windows.Forms.ToolStripButton btnUpdateText;
         private System.Windows.Forms.ToolStripContainer toolStripContainer2;
+        private System.Windows.Forms.ToolStripContainer toolStripContainer3;
     }
 }
 
