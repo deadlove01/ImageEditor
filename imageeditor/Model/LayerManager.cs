@@ -1,0 +1,124 @@
+﻿using System;
+using System.Collections.Generic;
+using System.Drawing;
+using System.Drawing.Drawing2D;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+
+namespace imageeditor.Model
+{
+    public class LayerManager
+    {
+        public int SelectedIndex { get; set; }
+        public float ZoomPercent { get; set; }
+
+        public List<Layer> Layers { get; set; }
+        public LayerManager()
+        {
+            SelectedIndex = -1;
+            Layers = new List<Layer>();
+            ZoomPercent = 1;
+        }
+
+
+        public void AddLayer(string imgPath)
+        {
+            Layers.Add(new Layer(Layers.Count, imgPath));
+            this.SelectedIndex = Layers.Count - 1;
+        }
+        public void AddLayer(Image img)
+        {
+
+        }
+
+        public void AddTextLayer(Layer textlayer)
+        {
+            Layers.Add(textlayer);
+            textlayer.LayerName = "Layer_" + Layers.Count;
+
+            this.SelectedIndex = Layers.Count - 1;
+        }
+
+        public void MoveLayer(int curIndex, int nextIndex)
+        {
+
+        }
+
+
+        public void RemoveAllLayer()
+        {
+            if(Layers.Count > 0)
+            {
+                for (int i = 0; i < Layers.Count; i++)
+                {
+                    Layer img = Layers[i];
+                    img.Dispose();
+                    Layers.RemoveAt(i);
+                    i--;
+                }
+            }
+        }
+        public void RemoveLayer()
+        {
+            if (SelectedIndex >= 0 && Layers.Count > 0 && SelectedIndex < Layers.Count)
+            {
+                Layer img = Layers[SelectedIndex];
+                img.Dispose();
+                Layers.RemoveAt(SelectedIndex);
+                if (Layers.Count > 0)
+                    SelectedIndex = Layers.Count - 1;
+                else
+                    SelectedIndex = -1;
+            }
+        }
+
+
+        public void UpdatePosition(int x, int y)
+        {
+            if(Layers.Count > 0 && SelectedIndex != -1)
+            {
+                Layers[SelectedIndex].Transform.Position = new Vector3(x, y, 0);
+            }
+        }
+        public void DrawLayers(Graphics e)
+        {
+            if (Layers.Count > 0)
+            {
+                e.SmoothingMode = SmoothingMode.AntiAlias;
+                e.InterpolationMode = InterpolationMode.HighQualityBicubic;
+                e.TextRenderingHint = System.Drawing.Text.TextRenderingHint.AntiAlias;
+                e.PixelOffsetMode = PixelOffsetMode.HighQuality;
+                for (int i = 0; i < Layers.Count; i++)
+                {
+                    Layers[i].Draw(e, ZoomPercent);
+                }
+            }
+        }
+
+        public void ExportImage(string path, Size exportSize)
+        {
+            if (Layers.Count > 0)
+            {
+                Bitmap bm = new Bitmap(exportSize.Width, exportSize.Height);
+                using (Graphics g = Graphics.FromImage(bm))
+                {
+                    g.SmoothingMode = SmoothingMode.AntiAlias;
+                    g.InterpolationMode = InterpolationMode.HighQualityBicubic;
+                    g.TextRenderingHint = System.Drawing.Text.TextRenderingHint.AntiAlias;
+                    g.PixelOffsetMode = PixelOffsetMode.HighQuality;
+
+                    g.Clear(Color.Transparent);
+                    for (int i = 0; i < Layers.Count; i++)
+                    {
+                        Layers[i].Draw(g, 1.0f);
+                    }
+                }
+                bm.Save(path);
+                bm.Dispose();
+
+            }
+        }
+
+    }
+}
