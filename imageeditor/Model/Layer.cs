@@ -47,7 +47,7 @@ namespace imageeditor.Model
             var rot = Transform.Rotation;
             var size = Transform.Size;
             //int offsetX = Transform.Size.X - (int)(scale.X * layers[i].Size.Width);
-            Rectangle rect = new Rectangle((int)pos.X, (int)pos.Y,
+            Rectangle rect = new Rectangle((int)(pos.X), (int)(pos.Y),
               (int)Math.Round(size.X * scale.X * zoomPercent), (int)Math.Round(size.Y * scale.Y * zoomPercent));
             if(Img != null)
             {
@@ -59,6 +59,26 @@ namespace imageeditor.Model
                 LayerText.Draw(e);
             }
             
+        }
+        public void DrawToExport(Graphics e, float zoomPercent)
+        {
+            var pos = Transform.Position;
+            var scale = Transform.Scale;
+            var rot = Transform.Rotation;
+            var size = Transform.Size;
+            //int offsetX = Transform.Size.X - (int)(scale.X * layers[i].Size.Width);
+            Rectangle rect = new Rectangle((int)(pos.X / zoomPercent), (int)(pos.Y / zoomPercent),
+              (int)Math.Round(size.X * scale.X), (int)Math.Round(size.Y * scale.Y));
+            if (Img != null)
+            {
+                e.DrawImage(Img, rect);
+            }
+
+            if (LayerText != null)
+            {
+                LayerText.Draw(e);
+            }
+
         }
 
         public void Dispose()

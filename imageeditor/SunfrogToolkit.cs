@@ -33,7 +33,12 @@ namespace imageeditor
         public SunfrogToolkit()
         {
             InitializeComponent();
-
+            this.SetStyle(ControlStyles.AllPaintingInWmPaint |
+                 ControlStyles.OptimizedDoubleBuffer |
+                 ControlStyles.ResizeRedraw |
+                 ControlStyles.UserPaint |
+                 ControlStyles.ResizeRedraw,
+                 true);
            
         }
 
@@ -96,10 +101,22 @@ namespace imageeditor
         {
             if (draw)
             {
-                layerManager.UpdatePosition(x, y);
+                //layerManager.UpdateCenterPosition(x, y);
+                x = e.Location.X;
+                y = e.Location.Y;
+
                 pictureBox1.Invalidate();
-                tbPosX.Text = x.ToString();
-                tbPosY.Text = y.ToString();
+                var trans = layerManager.GetCurrentLayer();
+                if(trans != null)
+                {
+                    tbPosX.Text = x.ToString();
+                    tbPosY.Text = y.ToString();
+                }else
+                {
+                    tbPosX.Text = "";
+                    tbPosY.Text = "";
+                }
+                
                 //Graphics g = pictureBox1.CreateGraphics();
                 //switch (currItem)
                 //{
@@ -569,6 +586,11 @@ namespace imageeditor
         #region events
         private void pictureBox1_Paint(object sender, PaintEventArgs e)
         {
+            if(draw)
+            {
+                layerManager.UpdateCenterPosition(x, y);    
+            }
+             
             layerManager.DrawLayers(e.Graphics);
         }
 
@@ -610,7 +632,7 @@ namespace imageeditor
         {
             int posX = int.Parse(tbPosX.Text.Trim());
             int posY = int.Parse(tbPosY.Text.Trim());
-            layerManager.UpdatePosition(posX, posY);
+            layerManager.UpdateCenterPosition(posX, posY);
             pictureBox1.Invalidate();
         }
 

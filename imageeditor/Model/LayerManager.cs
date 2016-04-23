@@ -72,7 +72,14 @@ namespace imageeditor.Model
                     SelectedIndex = -1;
             }
         }
-
+        public Transform GetCurrentLayer()
+        {
+            if (Layers.Count > 0 && SelectedIndex != -1)
+            {
+                return Layers[SelectedIndex].Transform;
+            }
+            return null;
+        }
 
         public void UpdatePosition(int x, int y)
         {
@@ -81,6 +88,23 @@ namespace imageeditor.Model
                 Layers[SelectedIndex].Transform.Position = new Vector3(x, y, 0);
             }
         }
+
+        public void UpdateCenterPosition(int x, int y)
+        {
+            if (Layers.Count > 0 && SelectedIndex != -1)
+            {
+                var pos = Layers[SelectedIndex].Transform.Position;
+                var size = Layers[SelectedIndex].Transform.Size;
+                var scale = Layers[SelectedIndex].Transform.Scale;
+                pos.X = x - size.X / 2 * scale.X * ZoomPercent;
+                pos.Y = y - size.Y / 2 * scale.Y * ZoomPercent;
+
+
+                Layers[SelectedIndex].Transform.Position = pos;
+            }
+        }
+       
+
         public void DrawLayers(Graphics e)
         {
             if (Layers.Count > 0)
@@ -111,7 +135,7 @@ namespace imageeditor.Model
                     g.Clear(Color.Transparent);
                     for (int i = 0; i < Layers.Count; i++)
                     {
-                        Layers[i].Draw(g, 1.0f);
+                        Layers[i].DrawToExport(g, ZoomPercent);
                     }
                 }
                 bm.Save(path);
