@@ -1,7 +1,10 @@
-﻿using System;
+﻿using imageeditor.Util;
+using imageEditor.Model;
+using System;
 using System.Collections.Generic;
 using System.Drawing;
 using System.Drawing.Drawing2D;
+using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -26,6 +29,7 @@ namespace imageeditor.Model
         {
             Layers.Add(new Layer(Layers.Count, imgPath));
             this.SelectedIndex = Layers.Count - 1;
+
         }
         public void AddLayer(Image img)
         {
@@ -35,14 +39,16 @@ namespace imageeditor.Model
         public void AddTextLayer(Layer textlayer)
         {
             Layers.Add(textlayer);
-            textlayer.LayerName = "Layer_" + Layers.Count;
-
+            textlayer.LayerName = "TextLayer_" + Layers.Count;
+            textlayer.Order = Layers.Count;
             this.SelectedIndex = Layers.Count - 1;
         }
 
         public void MoveLayer(int curIndex, int nextIndex)
         {
-
+            Layer temp = Layers[curIndex];
+            Layers[curIndex] = Layers[nextIndex];
+            Layers[nextIndex] = temp;            
         }
 
 
@@ -90,6 +96,7 @@ namespace imageeditor.Model
             return null;
         }
 
+
         public void UpdatePosition(int x, int y)
         {
             if(Layers.Count > 0 && SelectedIndex != -1)
@@ -98,7 +105,7 @@ namespace imageeditor.Model
             }
         }
 
-        public void UpdateCenterPosition(int x, int y)
+        public void UpdateCenterPosition(float x, float y)
         {
             if (Layers.Count > 0 && SelectedIndex != -1)
             {
@@ -122,6 +129,7 @@ namespace imageeditor.Model
                 e.InterpolationMode = InterpolationMode.HighQualityBicubic;
                 e.TextRenderingHint = System.Drawing.Text.TextRenderingHint.AntiAlias;
                 e.PixelOffsetMode = PixelOffsetMode.HighQuality;
+                Layers = Layers.OrderBy(p=> p.Order).ToList();
                 for (int i = 0; i < Layers.Count; i++)
                 {
                     Layers[i].Draw(e, ZoomPercent);
@@ -150,6 +158,35 @@ namespace imageeditor.Model
                 bm.Save(path);
                 bm.Dispose();
 
+            }
+        }
+
+        public void ConvertToScriptConfig()
+        {
+            if(Layers.Count > 0)
+            {
+                ScriptConfig config = new ScriptConfig();
+                for (int i = 0; i < Layers.Count; i++)
+                {
+                    Layer layer = Layers[i];
+                    if(layer.LayerName.ToLower().StartsWith("textlayer"))
+                    {
+                        ScriptObject obj = new ScriptObject();
+                        obj.LineJoin = (int)layer.LayerText.OutlineStyle;
+                        obj.LogoContainer = layer.Transform.Size;
+                        obj.LogoPosition = layer.Transform.Position;
+                        obj.LogoRotation = layer.Transform.Rotation;
+                        obj.LogoScale = layer.Transform.Scale;
+                        obj.Order = layer.Order;
+                        obj.OutlineColorHex = LogoUtil.ColorToHex(layer.LayerText.OutlineColor);
+                        obj.OutlineSize = layer.LayerText.OutlineSize;
+                        obj.TextColor = LogoUtil.ColorToHex(layer.LayerText.TextColor);
+                        obj.FontSize = layer.LayerText.FontSize;
+                        obj.FontName = "font.ttf";
+                        config.LogoList.Add(obj);
+                    }
+                }
+                FileUtil.WriteConfig<ScriptConfig>(config, Directory.GetCurrentDirectory() + "\\script_create.xml");
             }
         }
 

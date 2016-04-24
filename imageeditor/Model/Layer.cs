@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 using System.Drawing;
 using imageeditor.Util;
 using System.Drawing.Drawing2D;
+using System.IO;
 
 namespace imageeditor.Model
 {
@@ -26,7 +27,9 @@ namespace imageeditor.Model
 
         public Layer(int index, string imgPath)
         {
+            //FileStream bitmapFile = new FileStream(imgPath, FileMode.Open, FileAccess.Read, FileShare.ReadWrite);
             Img = Image.FromFile(imgPath);
+            //Img = (Image)new Bitmap(bitmapFile);
             Transform = new Transform();
             Transform.Size.X = Img.Width;
             Transform.Size.Y = Img.Height;
@@ -40,7 +43,13 @@ namespace imageeditor.Model
             Transform = new Transform();
         }
 
-
+        public void UpdateLayer(Vector3 pos, Vector3 scale, Vector3 rot, Vector3 size)
+        {
+            this.Transform.Position = pos;
+            this.Transform.Scale = scale;
+            this.Transform.Rotation = rot;
+            this.Transform.Size = size;
+        }
 
         public void Draw(Graphics e, float zoomPercent)
         {
@@ -66,7 +75,7 @@ namespace imageeditor.Model
                     g.TextRenderingHint = System.Drawing.Text.TextRenderingHint.AntiAlias;
                     g.PixelOffsetMode = PixelOffsetMode.HighQuality;
 
-                    LayerText.Draw(g, pos);
+                    LayerText.Draw(g, this.Transform);
                     //Rectangle textRect = new Rectangle(0, 0, 2400, 3200);
                     //SizeF f = g.MeasureString(LayerText.Content, LayerText.Font);
                     //Bitmap bm = new Bitmap((int)f.Width + 10, (int)f.Height + 10);
@@ -114,7 +123,6 @@ namespace imageeditor.Model
             {
                 e.DrawImage(Img, rect);
             }
-
             if (LayerText != null)
             {
                 Bitmap bitmap = new Bitmap(2400, 3200);
@@ -124,44 +132,17 @@ namespace imageeditor.Model
                     g.InterpolationMode = InterpolationMode.HighQualityBicubic;
                     g.TextRenderingHint = System.Drawing.Text.TextRenderingHint.AntiAlias;
                     g.PixelOffsetMode = PixelOffsetMode.HighQuality;
-                    Rectangle textRect = new Rectangle(0, 0, 2400, 3200);
-                    SizeF f = g.MeasureString(LayerText.Content, LayerText.Font);
-                    Bitmap bm = new Bitmap((int)f.Width + 10, (int)f.Height + 10);
-                    using (Graphics gg = Graphics.FromImage(bm))
-                    {
-                        gg.SmoothingMode = SmoothingMode.AntiAlias;
-                        gg.InterpolationMode = InterpolationMode.HighQualityBicubic;
-                        gg.TextRenderingHint = System.Drawing.Text.TextRenderingHint.AntiAlias;
-                        gg.PixelOffsetMode = PixelOffsetMode.HighQuality;
-                        Rectangle newRect = new Rectangle(0, 0, bm.Width, bm.Height);
-                        //gg.DrawString(LayerText.Content, LayerText.Font, new SolidBrush(LayerText.Color),
-                        //         newRect, LayerText.StringFormat);
-                        //LayerText.Draw(gg, newRect);
-                    }
 
-                    //int w, h;
-                    //w = textRect.Width;
-                    //h = textRect.Height;
-                    //if (bm.Width < w)
-                    //    w = bm.Width;
-                    //if (bm.Height < h)
-                    //    h = bm.Height;
-                    //var img = ImageUtil.ResizeImage(w, h, bm);
-
-                    //g.ResetTransform();
-                    float posX = pos.X;
-                    float posY = pos.Y;
-                    //posX += (textRect.Width - img.Width) / 2;
-                    g.DrawImage(bm, posX, posY);
-                    //e.DrawImage(img, posX, posY);
-                    bm.Dispose();
+                    LayerText.Draw(g, this.Transform);
                 }
 
                 rect = new Rectangle((int)(pos.X / zoomPercent), (int)(pos.Y / zoomPercent),
-                (int)Math.Round(bitmap.Width * scale.X ), (int)Math.Round(bitmap.Height * scale.Y));
+                 (int)Math.Round(bitmap.Width * scale.X), (int)Math.Round(bitmap.Height * scale.Y));
+
                 e.DrawImage(bitmap, rect);
                 bitmap.Dispose();
             }
+          
         }
 
         public void Dispose()

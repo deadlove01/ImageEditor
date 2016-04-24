@@ -1,4 +1,5 @@
-﻿using System;
+﻿using imageeditor.Util;
+using System;
 using System.Collections.Generic;
 using System.Drawing;
 using System.Drawing.Drawing2D;
@@ -27,7 +28,7 @@ namespace imageeditor.Model
             StringFormat.FormatFlags = StringFormatFlags.FitBlackBox | StringFormatFlags.NoWrap;
             StringFormat.Trimming = StringTrimming.Character;
         }
-        public LayerText(string content, Font font, Color textColor, int OutlineSize, Color OutlineColor, LineJoin OutlineStyle)
+        public LayerText(string content, Font font, int FontSize, Color textColor, int OutlineSize, Color OutlineColor, LineJoin OutlineStyle)
         {
             this.Content = content;
             this.Font = font;
@@ -35,6 +36,7 @@ namespace imageeditor.Model
             this.OutlineColor = OutlineColor;
             this.OutlineSize = OutlineSize;
             this.OutlineStyle = OutlineStyle;
+            this.FontSize = FontSize;
             StringFormat = new StringFormat();
             StringFormat.Alignment = StringAlignment.Center;
             StringFormat.LineAlignment = StringAlignment.Center;
@@ -78,9 +80,10 @@ namespace imageeditor.Model
             pen.Dispose();
         }
 
-        public void Draw(Graphics e, Vector3 pos)
+        public void Draw(Graphics e, Transform trans)
         {
-            Rectangle textRect = new Rectangle(0, 0, 2400, 3200);
+            var size = trans.Size;
+            Rectangle textRect = new Rectangle(0, 0, (int)size.X, (int)size.Y);
             SizeF f = e.MeasureString(Content, Font);
             Bitmap bm = new Bitmap((int)f.Width + 10, (int)f.Height + 10);
             using (Graphics gg = Graphics.FromImage(bm))
@@ -101,9 +104,22 @@ namespace imageeditor.Model
              
             }
 
+            // resize image
+            int w, h;
+            w = textRect.Width;
+            h = textRect.Height;
+            if (bm.Width < w || w == 0)
+                w = bm.Width;
+            if (bm.Height < h || h == 0)
+                h = bm.Height;
+            var img = ImageUtil.ResizeImage(bm, w, h);
+            if(size.X == 0 || size.Y == 0)
+                trans.Size = new Vector3(w, h, 0);
+            var pos = trans.Position;
             float posX = pos.X;
             float posY = pos.Y;
-            e.DrawImage(bm, posX, posY);
+            e.DrawImage(img, posX, posY);
+            img.Dispose();
             bm.Dispose();
         }
     }
