@@ -22,5 +22,53 @@ namespace imageeditor.Properties {
                 return defaultInstance;
             }
         }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("\\Resources\\Logo\\")]
+        public string LogoPath {
+            get {
+                return ((string)(this["LogoPath"]));
+            }
+            set {
+                this["LogoPath"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("-_-")]
+        public string SplitString {
+            get {
+                return ((string)(this["SplitString"]));
+            }
+            set {
+                this["SplitString"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("\\Resources\\Autologo\\")]
+        public string LogoExportPath {
+            get {
+                return ((string)(this["LogoExportPath"]));
+            }
+            set {
+                this["LogoExportPath"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("Logo 95")]
+        public string RunLogoName {
+            get {
+                return ((string)(this["RunLogoName"]));
+            }
+            set {
+                this["RunLogoName"] = value;
+            }
+        }
     }
 }

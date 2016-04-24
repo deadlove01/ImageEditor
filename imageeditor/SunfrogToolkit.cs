@@ -11,6 +11,8 @@ using System.Drawing.Imaging;
 using System.IO;
 using imageeditor.Model;
 using System.Drawing.Drawing2D;
+using imageeditor.Controller;
+using imageeditor.Properties;
 
 namespace imageeditor
 {
@@ -44,6 +46,7 @@ namespace imageeditor
                  true);
             selectedColor = Color.Blue;
             outlineColor = Color.Yellow;
+           
         }
 
         public enum Item
@@ -109,21 +112,12 @@ namespace imageeditor
                 x = e.Location.X;
                 y = e.Location.Y;
 
-                
-                var trans = layerManager.GetCurrentLayer();
-                if(trans != null)
-                {
-                    tbPosX.Text = x.ToString();
-                    tbPosY.Text = y.ToString();
-                }else
-                {
-                    tbPosX.Text = "";
-                    tbPosY.Text = "";
-                }
                 if (pictureBox1.Image != null)
                     pictureBox1.Image.Dispose();
 
                 pictureBox1.Invalidate();
+
+                UpdateUI();
                 //Graphics g = pictureBox1.CreateGraphics();
                 //switch (currItem)
                 //{
@@ -218,255 +212,255 @@ namespace imageeditor
 
         private void toolStripButton7_Click(object sender, EventArgs e)
         {
-            Graphics g = pictureBox1.CreateGraphics();
-            if (currItem == Item.Text)
-            {
-                if (cbbFontStyle.Text == "Regular")
-                {
-                    g.DrawString(tbText.Text, new Font(cbbFontName.Text, Convert.ToInt32(cbbFontSize.Text), FontStyle.Regular), new SolidBrush(paintcolor), new PointF(x, y));
-                }
-                else if (cbbFontStyle.Text == "Bold")
-                {
-                    g.DrawString(tbText.Text, new Font(cbbFontName.Text, Convert.ToInt32(cbbFontSize.Text), FontStyle.Bold), new SolidBrush(paintcolor), new PointF(x, y));
-                }
-                else if (cbbFontStyle.Text == "Underline")
-                {
-                    g.DrawString(tbText.Text, new Font(cbbFontName.Text, Convert.ToInt32(cbbFontSize.Text), FontStyle.Underline), new SolidBrush(paintcolor), new PointF(x, y));
-                }
-                else if (cbbFontStyle.Text == "Strikeout")
-                {
-                    g.DrawString(tbText.Text, new Font(cbbFontName.Text, Convert.ToInt32(cbbFontSize.Text), FontStyle.Strikeout), new SolidBrush(paintcolor), new PointF(x, y));
-                }
-                else if (cbbFontStyle.Text == "Italic")
-                {
-                    g.DrawString(tbText.Text, new Font(cbbFontName.Text, Convert.ToInt32(cbbFontSize.Text), FontStyle.Italic), new SolidBrush(paintcolor), new PointF(x, y));
-                }
-                if(cbbTextShadow.Text == "SE")
-                {
-                    if (cbbFontStyle.Text == "Regular")
-                    {
-                        g.DrawString(tbText.Text, new Font(cbbFontName.Text, Convert.ToInt32(cbbFontSize.Text), FontStyle.Regular), new SolidBrush(Color.Gray), new PointF(x + 5, y + 5));
-                        g.DrawString(tbText.Text, new Font(cbbFontName.Text, Convert.ToInt32(cbbFontSize.Text), FontStyle.Regular), new SolidBrush(paintcolor), new PointF(x, y));
-                    }
-                    else if (cbbFontStyle.Text == "Bold")
-                    {
-                        g.DrawString(tbText.Text, new Font(cbbFontName.Text, Convert.ToInt32(cbbFontSize.Text), FontStyle.Bold), new SolidBrush(Color.Gray), new PointF(x + 5, y + 5));
-                        g.DrawString(tbText.Text, new Font(cbbFontName.Text, Convert.ToInt32(cbbFontSize.Text), FontStyle.Bold), new SolidBrush(paintcolor), new PointF(x, y));
-                    }
-                    else if (cbbFontStyle.Text == "Underline")
-                    {
-                        g.DrawString(tbText.Text, new Font(cbbFontName.Text, Convert.ToInt32(cbbFontSize.Text), FontStyle.Underline), new SolidBrush(Color.Gray), new PointF(x + 5, y + 5));
-                        g.DrawString(tbText.Text, new Font(cbbFontName.Text, Convert.ToInt32(cbbFontSize.Text), FontStyle.Underline), new SolidBrush(paintcolor), new PointF(x, y));
-                    }
-                    else if (cbbFontStyle.Text == "Strikeout")
-                    {
-                        g.DrawString(tbText.Text, new Font(cbbFontName.Text, Convert.ToInt32(cbbFontSize.Text), FontStyle.Strikeout), new SolidBrush(Color.Gray), new PointF(x + 5, y + 5));
-                        g.DrawString(tbText.Text, new Font(cbbFontName.Text, Convert.ToInt32(cbbFontSize.Text), FontStyle.Strikeout), new SolidBrush(paintcolor), new PointF(x, y));
-                    }
-                    else if (cbbFontStyle.Text == "Italic")
-                    {
-                        g.DrawString(tbText.Text, new Font(cbbFontName.Text, Convert.ToInt32(cbbFontSize.Text), FontStyle.Italic), new SolidBrush(Color.Gray), new PointF(x + 5, y + 5));
-                        g.DrawString(tbText.Text, new Font(cbbFontName.Text, Convert.ToInt32(cbbFontSize.Text), FontStyle.Italic), new SolidBrush(paintcolor), new PointF(x, y));
-                    }
-                }
-                else if (cbbTextShadow.Text == "SW")
-                {
-                    if (cbbFontStyle.Text == "Regular")
-                    {
-                        g.DrawString(tbText.Text, new Font(cbbFontName.Text, Convert.ToInt32(cbbFontSize.Text), FontStyle.Regular), new SolidBrush(Color.Gray), new PointF(x - 5, y + 5));
-                        g.DrawString(tbText.Text, new Font(cbbFontName.Text, Convert.ToInt32(cbbFontSize.Text), FontStyle.Regular), new SolidBrush(paintcolor), new PointF(x, y));
-                    }
-                    else if (cbbFontStyle.Text == "Bold")
-                    {
-                        g.DrawString(tbText.Text, new Font(cbbFontName.Text, Convert.ToInt32(cbbFontSize.Text), FontStyle.Bold), new SolidBrush(Color.Gray), new PointF(x - 5, y + 5));
-                        g.DrawString(tbText.Text, new Font(cbbFontName.Text, Convert.ToInt32(cbbFontSize.Text), FontStyle.Bold), new SolidBrush(paintcolor), new PointF(x, y));
-                    }
-                    else if (cbbFontStyle.Text == "Underline")
-                    {
-                        g.DrawString(tbText.Text, new Font(cbbFontName.Text, Convert.ToInt32(cbbFontSize.Text), FontStyle.Underline), new SolidBrush(Color.Gray), new PointF(x - 5, y + 5));
-                        g.DrawString(tbText.Text, new Font(cbbFontName.Text, Convert.ToInt32(cbbFontSize.Text), FontStyle.Underline), new SolidBrush(paintcolor), new PointF(x, y));
-                    }
-                    else if (cbbFontStyle.Text == "Strikeout")
-                    {
-                        g.DrawString(tbText.Text, new Font(cbbFontName.Text, Convert.ToInt32(cbbFontSize.Text), FontStyle.Strikeout), new SolidBrush(Color.Gray), new PointF(x - 5, y + 5));
-                        g.DrawString(tbText.Text, new Font(cbbFontName.Text, Convert.ToInt32(cbbFontSize.Text), FontStyle.Strikeout), new SolidBrush(paintcolor), new PointF(x, y));
-                    }
-                    else if (cbbFontStyle.Text == "Italic")
-                    {
-                        g.DrawString(tbText.Text, new Font(cbbFontName.Text, Convert.ToInt32(cbbFontSize.Text), FontStyle.Italic), new SolidBrush(Color.Gray), new PointF(x - 5, y + 5));
-                        g.DrawString(tbText.Text, new Font(cbbFontName.Text, Convert.ToInt32(cbbFontSize.Text), FontStyle.Italic), new SolidBrush(paintcolor), new PointF(x, y));
-                    }
-                }
-                else if (cbbTextShadow.Text == "NE")
-                {
-                    if (cbbFontStyle.Text == "Regular")
-                    {
-                        g.DrawString(tbText.Text, new Font(cbbFontName.Text, Convert.ToInt32(cbbFontSize.Text), FontStyle.Regular), new SolidBrush(Color.Gray), new PointF(x + 5, y - 5));
-                        g.DrawString(tbText.Text, new Font(cbbFontName.Text, Convert.ToInt32(cbbFontSize.Text), FontStyle.Regular), new SolidBrush(paintcolor), new PointF(x, y));
-                    }
-                    else if (cbbFontStyle.Text == "Bold")
-                    {
-                        g.DrawString(tbText.Text, new Font(cbbFontName.Text, Convert.ToInt32(cbbFontSize.Text), FontStyle.Bold), new SolidBrush(Color.Gray), new PointF(x + 5, y - 5));
-                        g.DrawString(tbText.Text, new Font(cbbFontName.Text, Convert.ToInt32(cbbFontSize.Text), FontStyle.Bold), new SolidBrush(paintcolor), new PointF(x, y));
-                    }
-                    else if (cbbFontStyle.Text == "Underline")
-                    {
-                        g.DrawString(tbText.Text, new Font(cbbFontName.Text, Convert.ToInt32(cbbFontSize.Text), FontStyle.Underline), new SolidBrush(Color.Gray), new PointF(x + 5, y - 5));
-                        g.DrawString(tbText.Text, new Font(cbbFontName.Text, Convert.ToInt32(cbbFontSize.Text), FontStyle.Underline), new SolidBrush(paintcolor), new PointF(x, y));
-                    }
-                    else if (cbbFontStyle.Text == "Strikeout")
-                    {
-                        g.DrawString(tbText.Text, new Font(cbbFontName.Text, Convert.ToInt32(cbbFontSize.Text), FontStyle.Strikeout), new SolidBrush(Color.Gray), new PointF(x + 5, y - 5));
-                        g.DrawString(tbText.Text, new Font(cbbFontName.Text, Convert.ToInt32(cbbFontSize.Text), FontStyle.Strikeout), new SolidBrush(paintcolor), new PointF(x, y));
-                    }
-                    else if (cbbFontStyle.Text == "Italic")
-                    {
-                        g.DrawString(tbText.Text, new Font(cbbFontName.Text, Convert.ToInt32(cbbFontSize.Text), FontStyle.Italic), new SolidBrush(Color.Gray), new PointF(x + 5, y - 5));
-                        g.DrawString(tbText.Text, new Font(cbbFontName.Text, Convert.ToInt32(cbbFontSize.Text), FontStyle.Italic), new SolidBrush(paintcolor), new PointF(x, y));
-                    }
-                }
-                else if (cbbTextShadow.Text == "NW")
-                {
-                    if (cbbFontStyle.Text == "Regular")
-                    {
-                        g.DrawString(tbText.Text, new Font(cbbFontName.Text, Convert.ToInt32(cbbFontSize.Text), FontStyle.Regular), new SolidBrush(Color.Gray), new PointF(x - 5, y - 5));
-                        g.DrawString(tbText.Text, new Font(cbbFontName.Text, Convert.ToInt32(cbbFontSize.Text), FontStyle.Regular), new SolidBrush(paintcolor), new PointF(x, y));
-                    }
-                    else if (cbbFontStyle.Text == "Bold")
-                    {
-                        g.DrawString(tbText.Text, new Font(cbbFontName.Text, Convert.ToInt32(cbbFontSize.Text), FontStyle.Bold), new SolidBrush(Color.Gray), new PointF(x - 5, y - 5));
-                        g.DrawString(tbText.Text, new Font(cbbFontName.Text, Convert.ToInt32(cbbFontSize.Text), FontStyle.Bold), new SolidBrush(paintcolor), new PointF(x, y));
-                    }
-                    else if (cbbFontStyle.Text == "Underline")
-                    {
-                        g.DrawString(tbText.Text, new Font(cbbFontName.Text, Convert.ToInt32(cbbFontSize.Text), FontStyle.Underline), new SolidBrush(Color.Gray), new PointF(x - 5, y - 5));
-                        g.DrawString(tbText.Text, new Font(cbbFontName.Text, Convert.ToInt32(cbbFontSize.Text), FontStyle.Underline), new SolidBrush(paintcolor), new PointF(x, y));
-                    }
-                    else if (cbbFontStyle.Text == "Strikeout")
-                    {
-                        g.DrawString(tbText.Text, new Font(cbbFontName.Text, Convert.ToInt32(cbbFontSize.Text), FontStyle.Strikeout), new SolidBrush(Color.Gray), new PointF(x - 5, y - 5));
-                        g.DrawString(tbText.Text, new Font(cbbFontName.Text, Convert.ToInt32(cbbFontSize.Text), FontStyle.Strikeout), new SolidBrush(paintcolor), new PointF(x, y));
-                    }
-                    else if (cbbFontStyle.Text == "Italic")
-                    {
-                        g.DrawString(tbText.Text, new Font(cbbFontName.Text, Convert.ToInt32(cbbFontSize.Text), FontStyle.Italic), new SolidBrush(Color.Gray), new PointF(x - 5, y - 5));
-                        g.DrawString(tbText.Text, new Font(cbbFontName.Text, Convert.ToInt32(cbbFontSize.Text), FontStyle.Italic), new SolidBrush(paintcolor), new PointF(x, y));
-                    }
-                }
-                 else if (cbbTextShadow.Text == "S")
-                {
-                    if (cbbFontStyle.Text == "Regular")
-                    {
-                        g.DrawString(tbText.Text, new Font(cbbFontName.Text, Convert.ToInt32(cbbFontSize.Text), FontStyle.Regular), new SolidBrush(Color.Gray), new PointF(x, y + 5));
-                        g.DrawString(tbText.Text, new Font(cbbFontName.Text, Convert.ToInt32(cbbFontSize.Text), FontStyle.Regular), new SolidBrush(paintcolor), new PointF(x, y));
-                    }
-                    else if (cbbFontStyle.Text == "Bold")
-                    {
-                        g.DrawString(tbText.Text, new Font(cbbFontName.Text, Convert.ToInt32(cbbFontSize.Text), FontStyle.Bold), new SolidBrush(Color.Gray), new PointF(x, y + 5));
-                        g.DrawString(tbText.Text, new Font(cbbFontName.Text, Convert.ToInt32(cbbFontSize.Text), FontStyle.Bold), new SolidBrush(paintcolor), new PointF(x, y));
-                    }
-                    else if (cbbFontStyle.Text == "Underline")
-                    {
-                        g.DrawString(tbText.Text, new Font(cbbFontName.Text, Convert.ToInt32(cbbFontSize.Text), FontStyle.Underline), new SolidBrush(Color.Gray), new PointF(x, y + 5));
-                        g.DrawString(tbText.Text, new Font(cbbFontName.Text, Convert.ToInt32(cbbFontSize.Text), FontStyle.Underline), new SolidBrush(paintcolor), new PointF(x, y));
-                    }
-                    else if (cbbFontStyle.Text == "Strikeout")
-                    {
-                        g.DrawString(tbText.Text, new Font(cbbFontName.Text, Convert.ToInt32(cbbFontSize.Text), FontStyle.Strikeout), new SolidBrush(Color.Gray), new PointF(x, y + 5));
-                        g.DrawString(tbText.Text, new Font(cbbFontName.Text, Convert.ToInt32(cbbFontSize.Text), FontStyle.Strikeout), new SolidBrush(paintcolor), new PointF(x, y));
-                    }
-                    else if (cbbFontStyle.Text == "Italic")
-                    {
-                        g.DrawString(tbText.Text, new Font(cbbFontName.Text, Convert.ToInt32(cbbFontSize.Text), FontStyle.Italic), new SolidBrush(Color.Gray), new PointF(x, y + 5));
-                        g.DrawString(tbText.Text, new Font(cbbFontName.Text, Convert.ToInt32(cbbFontSize.Text), FontStyle.Italic), new SolidBrush(paintcolor), new PointF(x, y));
-                    }
-                }
-                else if (cbbTextShadow.Text == "N")
-                {
-                    if (cbbFontStyle.Text == "Regular")
-                    {
-                        g.DrawString(tbText.Text, new Font(cbbFontName.Text, Convert.ToInt32(cbbFontSize.Text), FontStyle.Regular), new SolidBrush(Color.Gray), new PointF(x, y - 5));
-                        g.DrawString(tbText.Text, new Font(cbbFontName.Text, Convert.ToInt32(cbbFontSize.Text), FontStyle.Regular), new SolidBrush(paintcolor), new PointF(x, y));
-                    }
-                    else if (cbbFontStyle.Text == "Bold")
-                    {
-                        g.DrawString(tbText.Text, new Font(cbbFontName.Text, Convert.ToInt32(cbbFontSize.Text), FontStyle.Bold), new SolidBrush(Color.Gray), new PointF(x, y - 5));
-                        g.DrawString(tbText.Text, new Font(cbbFontName.Text, Convert.ToInt32(cbbFontSize.Text), FontStyle.Bold), new SolidBrush(paintcolor), new PointF(x, y));
-                    }
-                    else if (cbbFontStyle.Text == "Underline")
-                    {
-                        g.DrawString(tbText.Text, new Font(cbbFontName.Text, Convert.ToInt32(cbbFontSize.Text), FontStyle.Underline), new SolidBrush(Color.Gray), new PointF(x, y - 5));
-                        g.DrawString(tbText.Text, new Font(cbbFontName.Text, Convert.ToInt32(cbbFontSize.Text), FontStyle.Underline), new SolidBrush(paintcolor), new PointF(x, y));
-                    }
-                    else if (cbbFontStyle.Text == "Strikeout")
-                    {
-                        g.DrawString(tbText.Text, new Font(cbbFontName.Text, Convert.ToInt32(cbbFontSize.Text), FontStyle.Strikeout), new SolidBrush(Color.Gray), new PointF(x, y - 5));
-                        g.DrawString(tbText.Text, new Font(cbbFontName.Text, Convert.ToInt32(cbbFontSize.Text), FontStyle.Strikeout), new SolidBrush(paintcolor), new PointF(x, y));
-                    }
-                    else if (cbbFontStyle.Text == "Italic")
-                    {
-                        g.DrawString(tbText.Text, new Font(cbbFontName.Text, Convert.ToInt32(cbbFontSize.Text), FontStyle.Italic), new SolidBrush(Color.Gray), new PointF(x, y - 5));
-                        g.DrawString(tbText.Text, new Font(cbbFontName.Text, Convert.ToInt32(cbbFontSize.Text), FontStyle.Italic), new SolidBrush(paintcolor), new PointF(x, y));
-                    }
-                }
-                else if (cbbTextShadow.Text == "W")
-                {
-                    if (cbbFontStyle.Text == "Regular")
-                    {
-                        g.DrawString(tbText.Text, new Font(cbbFontName.Text, Convert.ToInt32(cbbFontSize.Text), FontStyle.Regular), new SolidBrush(Color.Gray), new PointF(x - 5, y));
-                        g.DrawString(tbText.Text, new Font(cbbFontName.Text, Convert.ToInt32(cbbFontSize.Text), FontStyle.Regular), new SolidBrush(paintcolor), new PointF(x, y));
-                    }
-                    else if (cbbFontStyle.Text == "Bold")
-                    {
-                        g.DrawString(tbText.Text, new Font(cbbFontName.Text, Convert.ToInt32(cbbFontSize.Text), FontStyle.Bold), new SolidBrush(Color.Gray), new PointF(x - 5, y));
-                        g.DrawString(tbText.Text, new Font(cbbFontName.Text, Convert.ToInt32(cbbFontSize.Text), FontStyle.Bold), new SolidBrush(paintcolor), new PointF(x, y));
-                    }
-                    else if (cbbFontStyle.Text == "Underline")
-                    {
-                        g.DrawString(tbText.Text, new Font(cbbFontName.Text, Convert.ToInt32(cbbFontSize.Text), FontStyle.Underline), new SolidBrush(Color.Gray), new PointF(x - 5, y));
-                        g.DrawString(tbText.Text, new Font(cbbFontName.Text, Convert.ToInt32(cbbFontSize.Text), FontStyle.Underline), new SolidBrush(paintcolor), new PointF(x, y));
-                    }
-                    else if (cbbFontStyle.Text == "Strikeout")
-                    {
-                        g.DrawString(tbText.Text, new Font(cbbFontName.Text, Convert.ToInt32(cbbFontSize.Text), FontStyle.Strikeout), new SolidBrush(Color.Gray), new PointF(x - 5, y));
-                        g.DrawString(tbText.Text, new Font(cbbFontName.Text, Convert.ToInt32(cbbFontSize.Text), FontStyle.Strikeout), new SolidBrush(paintcolor), new PointF(x, y));
-                    }
-                    else if (cbbFontStyle.Text == "Italic")
-                    {
-                        g.DrawString(tbText.Text, new Font(cbbFontName.Text, Convert.ToInt32(cbbFontSize.Text), FontStyle.Italic), new SolidBrush(Color.Gray), new PointF(x - 5, y));
-                        g.DrawString(tbText.Text, new Font(cbbFontName.Text, Convert.ToInt32(cbbFontSize.Text), FontStyle.Italic), new SolidBrush(paintcolor), new PointF(x, y));
-                    }
-                }
-                else if (cbbTextShadow.Text == "E")
-                {
-                    if (cbbFontStyle.Text == "Regular")
-                    {
-                        g.DrawString(tbText.Text, new Font(cbbFontName.Text, Convert.ToInt32(cbbFontSize.Text), FontStyle.Regular), new SolidBrush(Color.Gray), new PointF(x + 5, y));
-                        g.DrawString(tbText.Text, new Font(cbbFontName.Text, Convert.ToInt32(cbbFontSize.Text), FontStyle.Regular), new SolidBrush(paintcolor), new PointF(x, y));
-                    }
-                    else if (cbbFontStyle.Text == "Bold")
-                    {
-                        g.DrawString(tbText.Text, new Font(cbbFontName.Text, Convert.ToInt32(cbbFontSize.Text), FontStyle.Bold), new SolidBrush(Color.Gray), new PointF(x + 5, y));
-                        g.DrawString(tbText.Text, new Font(cbbFontName.Text, Convert.ToInt32(cbbFontSize.Text), FontStyle.Bold), new SolidBrush(paintcolor), new PointF(x, y));
-                    }
-                    else if (cbbFontStyle.Text == "Underline")
-                    {
-                        g.DrawString(tbText.Text, new Font(cbbFontName.Text, Convert.ToInt32(cbbFontSize.Text), FontStyle.Underline), new SolidBrush(Color.Gray), new PointF(x + 5, y));
-                        g.DrawString(tbText.Text, new Font(cbbFontName.Text, Convert.ToInt32(cbbFontSize.Text), FontStyle.Underline), new SolidBrush(paintcolor), new PointF(x, y));
-                    }
-                    else if (cbbFontStyle.Text == "Strikeout")
-                    {
-                        g.DrawString(tbText.Text, new Font(cbbFontName.Text, Convert.ToInt32(cbbFontSize.Text), FontStyle.Strikeout), new SolidBrush(Color.Gray), new PointF(x + 5, y));
-                        g.DrawString(tbText.Text, new Font(cbbFontName.Text, Convert.ToInt32(cbbFontSize.Text), FontStyle.Strikeout), new SolidBrush(paintcolor), new PointF(x, y));
-                    }
-                    else if (cbbFontStyle.Text == "Italic")
-                    {
-                        g.DrawString(tbText.Text, new Font(cbbFontName.Text, Convert.ToInt32(cbbFontSize.Text), FontStyle.Italic), new SolidBrush(Color.Gray), new PointF(x + 5, y));
-                        g.DrawString(tbText.Text, new Font(cbbFontName.Text, Convert.ToInt32(cbbFontSize.Text), FontStyle.Italic), new SolidBrush(paintcolor), new PointF(x, y));
-                    }
-                }
-                g.Dispose();
-            }
+            //Graphics g = pictureBox1.CreateGraphics();
+            //if (currItem == Item.Text)
+            //{
+            //    if (cbbFontStyle.Text == "Regular")
+            //    {
+            //        g.DrawString(tbText.Text, new Font(cbbFontName.Text, Convert.ToInt32(cbbFontSize.Text), FontStyle.Regular), new SolidBrush(paintcolor), new PointF(x, y));
+            //    }
+            //    else if (cbbFontStyle.Text == "Bold")
+            //    {
+            //        g.DrawString(tbText.Text, new Font(cbbFontName.Text, Convert.ToInt32(cbbFontSize.Text), FontStyle.Bold), new SolidBrush(paintcolor), new PointF(x, y));
+            //    }
+            //    else if (cbbFontStyle.Text == "Underline")
+            //    {
+            //        g.DrawString(tbText.Text, new Font(cbbFontName.Text, Convert.ToInt32(cbbFontSize.Text), FontStyle.Underline), new SolidBrush(paintcolor), new PointF(x, y));
+            //    }
+            //    else if (cbbFontStyle.Text == "Strikeout")
+            //    {
+            //        g.DrawString(tbText.Text, new Font(cbbFontName.Text, Convert.ToInt32(cbbFontSize.Text), FontStyle.Strikeout), new SolidBrush(paintcolor), new PointF(x, y));
+            //    }
+            //    else if (cbbFontStyle.Text == "Italic")
+            //    {
+            //        g.DrawString(tbText.Text, new Font(cbbFontName.Text, Convert.ToInt32(cbbFontSize.Text), FontStyle.Italic), new SolidBrush(paintcolor), new PointF(x, y));
+            //    }
+            //    if(cbbTextShadow.Text == "SE")
+            //    {
+            //        if (cbbFontStyle.Text == "Regular")
+            //        {
+            //            g.DrawString(tbText.Text, new Font(cbbFontName.Text, Convert.ToInt32(cbbFontSize.Text), FontStyle.Regular), new SolidBrush(Color.Gray), new PointF(x + 5, y + 5));
+            //            g.DrawString(tbText.Text, new Font(cbbFontName.Text, Convert.ToInt32(cbbFontSize.Text), FontStyle.Regular), new SolidBrush(paintcolor), new PointF(x, y));
+            //        }
+            //        else if (cbbFontStyle.Text == "Bold")
+            //        {
+            //            g.DrawString(tbText.Text, new Font(cbbFontName.Text, Convert.ToInt32(cbbFontSize.Text), FontStyle.Bold), new SolidBrush(Color.Gray), new PointF(x + 5, y + 5));
+            //            g.DrawString(tbText.Text, new Font(cbbFontName.Text, Convert.ToInt32(cbbFontSize.Text), FontStyle.Bold), new SolidBrush(paintcolor), new PointF(x, y));
+            //        }
+            //        else if (cbbFontStyle.Text == "Underline")
+            //        {
+            //            g.DrawString(tbText.Text, new Font(cbbFontName.Text, Convert.ToInt32(cbbFontSize.Text), FontStyle.Underline), new SolidBrush(Color.Gray), new PointF(x + 5, y + 5));
+            //            g.DrawString(tbText.Text, new Font(cbbFontName.Text, Convert.ToInt32(cbbFontSize.Text), FontStyle.Underline), new SolidBrush(paintcolor), new PointF(x, y));
+            //        }
+            //        else if (cbbFontStyle.Text == "Strikeout")
+            //        {
+            //            g.DrawString(tbText.Text, new Font(cbbFontName.Text, Convert.ToInt32(cbbFontSize.Text), FontStyle.Strikeout), new SolidBrush(Color.Gray), new PointF(x + 5, y + 5));
+            //            g.DrawString(tbText.Text, new Font(cbbFontName.Text, Convert.ToInt32(cbbFontSize.Text), FontStyle.Strikeout), new SolidBrush(paintcolor), new PointF(x, y));
+            //        }
+            //        else if (cbbFontStyle.Text == "Italic")
+            //        {
+            //            g.DrawString(tbText.Text, new Font(cbbFontName.Text, Convert.ToInt32(cbbFontSize.Text), FontStyle.Italic), new SolidBrush(Color.Gray), new PointF(x + 5, y + 5));
+            //            g.DrawString(tbText.Text, new Font(cbbFontName.Text, Convert.ToInt32(cbbFontSize.Text), FontStyle.Italic), new SolidBrush(paintcolor), new PointF(x, y));
+            //        }
+            //    }
+            //    else if (cbbTextShadow.Text == "SW")
+            //    {
+            //        if (cbbFontStyle.Text == "Regular")
+            //        {
+            //            g.DrawString(tbText.Text, new Font(cbbFontName.Text, Convert.ToInt32(cbbFontSize.Text), FontStyle.Regular), new SolidBrush(Color.Gray), new PointF(x - 5, y + 5));
+            //            g.DrawString(tbText.Text, new Font(cbbFontName.Text, Convert.ToInt32(cbbFontSize.Text), FontStyle.Regular), new SolidBrush(paintcolor), new PointF(x, y));
+            //        }
+            //        else if (cbbFontStyle.Text == "Bold")
+            //        {
+            //            g.DrawString(tbText.Text, new Font(cbbFontName.Text, Convert.ToInt32(cbbFontSize.Text), FontStyle.Bold), new SolidBrush(Color.Gray), new PointF(x - 5, y + 5));
+            //            g.DrawString(tbText.Text, new Font(cbbFontName.Text, Convert.ToInt32(cbbFontSize.Text), FontStyle.Bold), new SolidBrush(paintcolor), new PointF(x, y));
+            //        }
+            //        else if (cbbFontStyle.Text == "Underline")
+            //        {
+            //            g.DrawString(tbText.Text, new Font(cbbFontName.Text, Convert.ToInt32(cbbFontSize.Text), FontStyle.Underline), new SolidBrush(Color.Gray), new PointF(x - 5, y + 5));
+            //            g.DrawString(tbText.Text, new Font(cbbFontName.Text, Convert.ToInt32(cbbFontSize.Text), FontStyle.Underline), new SolidBrush(paintcolor), new PointF(x, y));
+            //        }
+            //        else if (cbbFontStyle.Text == "Strikeout")
+            //        {
+            //            g.DrawString(tbText.Text, new Font(cbbFontName.Text, Convert.ToInt32(cbbFontSize.Text), FontStyle.Strikeout), new SolidBrush(Color.Gray), new PointF(x - 5, y + 5));
+            //            g.DrawString(tbText.Text, new Font(cbbFontName.Text, Convert.ToInt32(cbbFontSize.Text), FontStyle.Strikeout), new SolidBrush(paintcolor), new PointF(x, y));
+            //        }
+            //        else if (cbbFontStyle.Text == "Italic")
+            //        {
+            //            g.DrawString(tbText.Text, new Font(cbbFontName.Text, Convert.ToInt32(cbbFontSize.Text), FontStyle.Italic), new SolidBrush(Color.Gray), new PointF(x - 5, y + 5));
+            //            g.DrawString(tbText.Text, new Font(cbbFontName.Text, Convert.ToInt32(cbbFontSize.Text), FontStyle.Italic), new SolidBrush(paintcolor), new PointF(x, y));
+            //        }
+            //    }
+            //    else if (cbbTextShadow.Text == "NE")
+            //    {
+            //        if (cbbFontStyle.Text == "Regular")
+            //        {
+            //            g.DrawString(tbText.Text, new Font(cbbFontName.Text, Convert.ToInt32(cbbFontSize.Text), FontStyle.Regular), new SolidBrush(Color.Gray), new PointF(x + 5, y - 5));
+            //            g.DrawString(tbText.Text, new Font(cbbFontName.Text, Convert.ToInt32(cbbFontSize.Text), FontStyle.Regular), new SolidBrush(paintcolor), new PointF(x, y));
+            //        }
+            //        else if (cbbFontStyle.Text == "Bold")
+            //        {
+            //            g.DrawString(tbText.Text, new Font(cbbFontName.Text, Convert.ToInt32(cbbFontSize.Text), FontStyle.Bold), new SolidBrush(Color.Gray), new PointF(x + 5, y - 5));
+            //            g.DrawString(tbText.Text, new Font(cbbFontName.Text, Convert.ToInt32(cbbFontSize.Text), FontStyle.Bold), new SolidBrush(paintcolor), new PointF(x, y));
+            //        }
+            //        else if (cbbFontStyle.Text == "Underline")
+            //        {
+            //            g.DrawString(tbText.Text, new Font(cbbFontName.Text, Convert.ToInt32(cbbFontSize.Text), FontStyle.Underline), new SolidBrush(Color.Gray), new PointF(x + 5, y - 5));
+            //            g.DrawString(tbText.Text, new Font(cbbFontName.Text, Convert.ToInt32(cbbFontSize.Text), FontStyle.Underline), new SolidBrush(paintcolor), new PointF(x, y));
+            //        }
+            //        else if (cbbFontStyle.Text == "Strikeout")
+            //        {
+            //            g.DrawString(tbText.Text, new Font(cbbFontName.Text, Convert.ToInt32(cbbFontSize.Text), FontStyle.Strikeout), new SolidBrush(Color.Gray), new PointF(x + 5, y - 5));
+            //            g.DrawString(tbText.Text, new Font(cbbFontName.Text, Convert.ToInt32(cbbFontSize.Text), FontStyle.Strikeout), new SolidBrush(paintcolor), new PointF(x, y));
+            //        }
+            //        else if (cbbFontStyle.Text == "Italic")
+            //        {
+            //            g.DrawString(tbText.Text, new Font(cbbFontName.Text, Convert.ToInt32(cbbFontSize.Text), FontStyle.Italic), new SolidBrush(Color.Gray), new PointF(x + 5, y - 5));
+            //            g.DrawString(tbText.Text, new Font(cbbFontName.Text, Convert.ToInt32(cbbFontSize.Text), FontStyle.Italic), new SolidBrush(paintcolor), new PointF(x, y));
+            //        }
+            //    }
+            //    else if (cbbTextShadow.Text == "NW")
+            //    {
+            //        if (cbbFontStyle.Text == "Regular")
+            //        {
+            //            g.DrawString(tbText.Text, new Font(cbbFontName.Text, Convert.ToInt32(cbbFontSize.Text), FontStyle.Regular), new SolidBrush(Color.Gray), new PointF(x - 5, y - 5));
+            //            g.DrawString(tbText.Text, new Font(cbbFontName.Text, Convert.ToInt32(cbbFontSize.Text), FontStyle.Regular), new SolidBrush(paintcolor), new PointF(x, y));
+            //        }
+            //        else if (cbbFontStyle.Text == "Bold")
+            //        {
+            //            g.DrawString(tbText.Text, new Font(cbbFontName.Text, Convert.ToInt32(cbbFontSize.Text), FontStyle.Bold), new SolidBrush(Color.Gray), new PointF(x - 5, y - 5));
+            //            g.DrawString(tbText.Text, new Font(cbbFontName.Text, Convert.ToInt32(cbbFontSize.Text), FontStyle.Bold), new SolidBrush(paintcolor), new PointF(x, y));
+            //        }
+            //        else if (cbbFontStyle.Text == "Underline")
+            //        {
+            //            g.DrawString(tbText.Text, new Font(cbbFontName.Text, Convert.ToInt32(cbbFontSize.Text), FontStyle.Underline), new SolidBrush(Color.Gray), new PointF(x - 5, y - 5));
+            //            g.DrawString(tbText.Text, new Font(cbbFontName.Text, Convert.ToInt32(cbbFontSize.Text), FontStyle.Underline), new SolidBrush(paintcolor), new PointF(x, y));
+            //        }
+            //        else if (cbbFontStyle.Text == "Strikeout")
+            //        {
+            //            g.DrawString(tbText.Text, new Font(cbbFontName.Text, Convert.ToInt32(cbbFontSize.Text), FontStyle.Strikeout), new SolidBrush(Color.Gray), new PointF(x - 5, y - 5));
+            //            g.DrawString(tbText.Text, new Font(cbbFontName.Text, Convert.ToInt32(cbbFontSize.Text), FontStyle.Strikeout), new SolidBrush(paintcolor), new PointF(x, y));
+            //        }
+            //        else if (cbbFontStyle.Text == "Italic")
+            //        {
+            //            g.DrawString(tbText.Text, new Font(cbbFontName.Text, Convert.ToInt32(cbbFontSize.Text), FontStyle.Italic), new SolidBrush(Color.Gray), new PointF(x - 5, y - 5));
+            //            g.DrawString(tbText.Text, new Font(cbbFontName.Text, Convert.ToInt32(cbbFontSize.Text), FontStyle.Italic), new SolidBrush(paintcolor), new PointF(x, y));
+            //        }
+            //    }
+            //     else if (cbbTextShadow.Text == "S")
+            //    {
+            //        if (cbbFontStyle.Text == "Regular")
+            //        {
+            //            g.DrawString(tbText.Text, new Font(cbbFontName.Text, Convert.ToInt32(cbbFontSize.Text), FontStyle.Regular), new SolidBrush(Color.Gray), new PointF(x, y + 5));
+            //            g.DrawString(tbText.Text, new Font(cbbFontName.Text, Convert.ToInt32(cbbFontSize.Text), FontStyle.Regular), new SolidBrush(paintcolor), new PointF(x, y));
+            //        }
+            //        else if (cbbFontStyle.Text == "Bold")
+            //        {
+            //            g.DrawString(tbText.Text, new Font(cbbFontName.Text, Convert.ToInt32(cbbFontSize.Text), FontStyle.Bold), new SolidBrush(Color.Gray), new PointF(x, y + 5));
+            //            g.DrawString(tbText.Text, new Font(cbbFontName.Text, Convert.ToInt32(cbbFontSize.Text), FontStyle.Bold), new SolidBrush(paintcolor), new PointF(x, y));
+            //        }
+            //        else if (cbbFontStyle.Text == "Underline")
+            //        {
+            //            g.DrawString(tbText.Text, new Font(cbbFontName.Text, Convert.ToInt32(cbbFontSize.Text), FontStyle.Underline), new SolidBrush(Color.Gray), new PointF(x, y + 5));
+            //            g.DrawString(tbText.Text, new Font(cbbFontName.Text, Convert.ToInt32(cbbFontSize.Text), FontStyle.Underline), new SolidBrush(paintcolor), new PointF(x, y));
+            //        }
+            //        else if (cbbFontStyle.Text == "Strikeout")
+            //        {
+            //            g.DrawString(tbText.Text, new Font(cbbFontName.Text, Convert.ToInt32(cbbFontSize.Text), FontStyle.Strikeout), new SolidBrush(Color.Gray), new PointF(x, y + 5));
+            //            g.DrawString(tbText.Text, new Font(cbbFontName.Text, Convert.ToInt32(cbbFontSize.Text), FontStyle.Strikeout), new SolidBrush(paintcolor), new PointF(x, y));
+            //        }
+            //        else if (cbbFontStyle.Text == "Italic")
+            //        {
+            //            g.DrawString(tbText.Text, new Font(cbbFontName.Text, Convert.ToInt32(cbbFontSize.Text), FontStyle.Italic), new SolidBrush(Color.Gray), new PointF(x, y + 5));
+            //            g.DrawString(tbText.Text, new Font(cbbFontName.Text, Convert.ToInt32(cbbFontSize.Text), FontStyle.Italic), new SolidBrush(paintcolor), new PointF(x, y));
+            //        }
+            //    }
+            //    else if (cbbTextShadow.Text == "N")
+            //    {
+            //        if (cbbFontStyle.Text == "Regular")
+            //        {
+            //            g.DrawString(tbText.Text, new Font(cbbFontName.Text, Convert.ToInt32(cbbFontSize.Text), FontStyle.Regular), new SolidBrush(Color.Gray), new PointF(x, y - 5));
+            //            g.DrawString(tbText.Text, new Font(cbbFontName.Text, Convert.ToInt32(cbbFontSize.Text), FontStyle.Regular), new SolidBrush(paintcolor), new PointF(x, y));
+            //        }
+            //        else if (cbbFontStyle.Text == "Bold")
+            //        {
+            //            g.DrawString(tbText.Text, new Font(cbbFontName.Text, Convert.ToInt32(cbbFontSize.Text), FontStyle.Bold), new SolidBrush(Color.Gray), new PointF(x, y - 5));
+            //            g.DrawString(tbText.Text, new Font(cbbFontName.Text, Convert.ToInt32(cbbFontSize.Text), FontStyle.Bold), new SolidBrush(paintcolor), new PointF(x, y));
+            //        }
+            //        else if (cbbFontStyle.Text == "Underline")
+            //        {
+            //            g.DrawString(tbText.Text, new Font(cbbFontName.Text, Convert.ToInt32(cbbFontSize.Text), FontStyle.Underline), new SolidBrush(Color.Gray), new PointF(x, y - 5));
+            //            g.DrawString(tbText.Text, new Font(cbbFontName.Text, Convert.ToInt32(cbbFontSize.Text), FontStyle.Underline), new SolidBrush(paintcolor), new PointF(x, y));
+            //        }
+            //        else if (cbbFontStyle.Text == "Strikeout")
+            //        {
+            //            g.DrawString(tbText.Text, new Font(cbbFontName.Text, Convert.ToInt32(cbbFontSize.Text), FontStyle.Strikeout), new SolidBrush(Color.Gray), new PointF(x, y - 5));
+            //            g.DrawString(tbText.Text, new Font(cbbFontName.Text, Convert.ToInt32(cbbFontSize.Text), FontStyle.Strikeout), new SolidBrush(paintcolor), new PointF(x, y));
+            //        }
+            //        else if (cbbFontStyle.Text == "Italic")
+            //        {
+            //            g.DrawString(tbText.Text, new Font(cbbFontName.Text, Convert.ToInt32(cbbFontSize.Text), FontStyle.Italic), new SolidBrush(Color.Gray), new PointF(x, y - 5));
+            //            g.DrawString(tbText.Text, new Font(cbbFontName.Text, Convert.ToInt32(cbbFontSize.Text), FontStyle.Italic), new SolidBrush(paintcolor), new PointF(x, y));
+            //        }
+            //    }
+            //    else if (cbbTextShadow.Text == "W")
+            //    {
+            //        if (cbbFontStyle.Text == "Regular")
+            //        {
+            //            g.DrawString(tbText.Text, new Font(cbbFontName.Text, Convert.ToInt32(cbbFontSize.Text), FontStyle.Regular), new SolidBrush(Color.Gray), new PointF(x - 5, y));
+            //            g.DrawString(tbText.Text, new Font(cbbFontName.Text, Convert.ToInt32(cbbFontSize.Text), FontStyle.Regular), new SolidBrush(paintcolor), new PointF(x, y));
+            //        }
+            //        else if (cbbFontStyle.Text == "Bold")
+            //        {
+            //            g.DrawString(tbText.Text, new Font(cbbFontName.Text, Convert.ToInt32(cbbFontSize.Text), FontStyle.Bold), new SolidBrush(Color.Gray), new PointF(x - 5, y));
+            //            g.DrawString(tbText.Text, new Font(cbbFontName.Text, Convert.ToInt32(cbbFontSize.Text), FontStyle.Bold), new SolidBrush(paintcolor), new PointF(x, y));
+            //        }
+            //        else if (cbbFontStyle.Text == "Underline")
+            //        {
+            //            g.DrawString(tbText.Text, new Font(cbbFontName.Text, Convert.ToInt32(cbbFontSize.Text), FontStyle.Underline), new SolidBrush(Color.Gray), new PointF(x - 5, y));
+            //            g.DrawString(tbText.Text, new Font(cbbFontName.Text, Convert.ToInt32(cbbFontSize.Text), FontStyle.Underline), new SolidBrush(paintcolor), new PointF(x, y));
+            //        }
+            //        else if (cbbFontStyle.Text == "Strikeout")
+            //        {
+            //            g.DrawString(tbText.Text, new Font(cbbFontName.Text, Convert.ToInt32(cbbFontSize.Text), FontStyle.Strikeout), new SolidBrush(Color.Gray), new PointF(x - 5, y));
+            //            g.DrawString(tbText.Text, new Font(cbbFontName.Text, Convert.ToInt32(cbbFontSize.Text), FontStyle.Strikeout), new SolidBrush(paintcolor), new PointF(x, y));
+            //        }
+            //        else if (cbbFontStyle.Text == "Italic")
+            //        {
+            //            g.DrawString(tbText.Text, new Font(cbbFontName.Text, Convert.ToInt32(cbbFontSize.Text), FontStyle.Italic), new SolidBrush(Color.Gray), new PointF(x - 5, y));
+            //            g.DrawString(tbText.Text, new Font(cbbFontName.Text, Convert.ToInt32(cbbFontSize.Text), FontStyle.Italic), new SolidBrush(paintcolor), new PointF(x, y));
+            //        }
+            //    }
+            //    else if (cbbTextShadow.Text == "E")
+            //    {
+            //        if (cbbFontStyle.Text == "Regular")
+            //        {
+            //            g.DrawString(tbText.Text, new Font(cbbFontName.Text, Convert.ToInt32(cbbFontSize.Text), FontStyle.Regular), new SolidBrush(Color.Gray), new PointF(x + 5, y));
+            //            g.DrawString(tbText.Text, new Font(cbbFontName.Text, Convert.ToInt32(cbbFontSize.Text), FontStyle.Regular), new SolidBrush(paintcolor), new PointF(x, y));
+            //        }
+            //        else if (cbbFontStyle.Text == "Bold")
+            //        {
+            //            g.DrawString(tbText.Text, new Font(cbbFontName.Text, Convert.ToInt32(cbbFontSize.Text), FontStyle.Bold), new SolidBrush(Color.Gray), new PointF(x + 5, y));
+            //            g.DrawString(tbText.Text, new Font(cbbFontName.Text, Convert.ToInt32(cbbFontSize.Text), FontStyle.Bold), new SolidBrush(paintcolor), new PointF(x, y));
+            //        }
+            //        else if (cbbFontStyle.Text == "Underline")
+            //        {
+            //            g.DrawString(tbText.Text, new Font(cbbFontName.Text, Convert.ToInt32(cbbFontSize.Text), FontStyle.Underline), new SolidBrush(Color.Gray), new PointF(x + 5, y));
+            //            g.DrawString(tbText.Text, new Font(cbbFontName.Text, Convert.ToInt32(cbbFontSize.Text), FontStyle.Underline), new SolidBrush(paintcolor), new PointF(x, y));
+            //        }
+            //        else if (cbbFontStyle.Text == "Strikeout")
+            //        {
+            //            g.DrawString(tbText.Text, new Font(cbbFontName.Text, Convert.ToInt32(cbbFontSize.Text), FontStyle.Strikeout), new SolidBrush(Color.Gray), new PointF(x + 5, y));
+            //            g.DrawString(tbText.Text, new Font(cbbFontName.Text, Convert.ToInt32(cbbFontSize.Text), FontStyle.Strikeout), new SolidBrush(paintcolor), new PointF(x, y));
+            //        }
+            //        else if (cbbFontStyle.Text == "Italic")
+            //        {
+            //            g.DrawString(tbText.Text, new Font(cbbFontName.Text, Convert.ToInt32(cbbFontSize.Text), FontStyle.Italic), new SolidBrush(Color.Gray), new PointF(x + 5, y));
+            //            g.DrawString(tbText.Text, new Font(cbbFontName.Text, Convert.ToInt32(cbbFontSize.Text), FontStyle.Italic), new SolidBrush(paintcolor), new PointF(x, y));
+            //        }
+            //    }
+            //    g.Dispose();
+            //}
         }
 
         private void toolStripButton1_Click(object sender, EventArgs e)
@@ -475,6 +469,7 @@ namespace imageeditor
             UpdateInfo();
             pictureBox1.Refresh();
             pictureBox1.Invalidate();
+           
         }
 
         private void toolStripButton4_Click(object sender, EventArgs e)
@@ -495,7 +490,7 @@ namespace imageeditor
                 layerManager.AddLayer(o.FileName);
                 UpdateInfo();
                 pictureBox1.Invalidate();
-               
+                UpdateUI();
             }
         }
 
@@ -543,6 +538,9 @@ namespace imageeditor
             }
             if (cbbOutlineStyle.Items.Count > 0)
                 cbbOutlineStyle.SelectedIndex = 0;
+
+            if (cbbFontStyle.Items.Count >= 3)
+                cbbFontStyle.SelectedIndex = 3;
         }
 
         private void red_Scroll(object sender, EventArgs e)
@@ -577,6 +575,22 @@ namespace imageeditor
 
       
         #region new logic
+
+        private void UpdateUI()
+        {
+            var currentLayer = layerManager.GetCurrentLayer();
+            if(currentLayer != null)
+            {
+                tbPosX.Text = ((currentLayer.Transform.Position.X)).ToString();
+                tbPosY.Text = ((currentLayer.Transform.Position.Y)).ToString();
+                tbScaleX.Text = currentLayer.Transform.Scale.X.ToString();
+                tbScaleY.Text = currentLayer.Transform.Scale.Y.ToString();
+                tbRotX.Text = currentLayer.Transform.Rotation.X.ToString();
+                tbRotY.Text = currentLayer.Transform.Rotation.Y.ToString();
+                tbWidth.Text = currentLayer.Transform.Size.X.ToString();
+                tbHeight.Text = currentLayer.Transform.Size.Y.ToString();
+            }
+        }
         private void UpdateInfo()
         {
             if(layerManager != null)
@@ -609,6 +623,41 @@ namespace imageeditor
             return null;
         }
 
+        #endregion
+
+        #region bg worker
+
+
+        private void bgWorker_DoWork(object sender, DoWorkEventArgs e)
+        {
+            if(e.Argument.ToString().Equals("AutoPng"))
+            {
+                toolStrip6.Invoke(new Action(() => {
+                    tsProgress.Value = tsProgress.Minimum;
+                }));
+                string exportLogoPath = Directory.GetCurrentDirectory() + Settings.Default.LogoExportPath;
+                for (int i = 0; i < dataList.Count; i++)
+                {
+                    ArtistController.Instance.ExportLogo(dataList[i], exportLogoPath, Settings.Default.RunLogoName);
+                    bgWorker.ReportProgress((i + 1) * 100 / dataList.Count);
+                }
+                e.Result = "AutoPng";
+            }
+        }
+
+        private void bgWorker_ProgressChanged(object sender, ProgressChangedEventArgs e)
+        {
+            tsProgress.Value = e.ProgressPercentage;
+        }
+
+        private void bgWorker_RunWorkerCompleted(object sender, RunWorkerCompletedEventArgs e)
+        {
+            if(e.Result.ToString().Equals("AutoPng"))
+            {
+                MessageBox.Show("Auto Png successful!");
+                btnRunScript.Enabled = true;
+            }
+        }
         #endregion
 
 
@@ -647,9 +696,10 @@ namespace imageeditor
             {
                 int outlineSize = int.Parse(tbOutlineSize.Text.Trim());
                 LineJoin lineJoin = (LineJoin)(cbbOutlineStyle.SelectedIndex);
+                FontStyle fontStyle = (FontStyle)Enum.Parse(typeof(FontStyle), cbbFontStyle.Text.ToString());
 
-                Font ff = new Font(font, int.Parse(cbbFontSize.Text.ToString()), FontStyle.Regular, GraphicsUnit.Pixel);
-                Layer layer = new Layer(new LayerText(strText, ff, selectedColor, outlineSize, outlineColor, lineJoin));
+                Font ff = new Font(font, int.Parse(cbbFontSize.Text.ToString()), fontStyle, GraphicsUnit.Pixel);
+                Layer layer = new Layer(new LayerText(strText, ff, int.Parse(cbbFontSize.Text.ToString()), selectedColor, outlineSize, outlineColor, lineJoin));
                 layerManager.AddTextLayer(layer);
                 UpdateInfo();
                 pictureBox1.Invalidate();
@@ -662,40 +712,82 @@ namespace imageeditor
         private void btnUpdateText_Click(object sender, EventArgs e)
         {
             string strText = tbText.Text.Trim();
-            if(strText.Length == 0)
-            {
-                MessageBox.Show("Please input text!");
-                return;
-            }
+            float posX = float.Parse(tbPosX.Text.Trim());
+            float posY = float.Parse(tbPosY.Text.Trim());
 
-            int posX = int.Parse(tbPosX.Text.Trim());
-            int posY = int.Parse(tbPosY.Text.Trim());
-
-            // UPDATE LAYER TEXT
-            FontFamily font = GetFontByName(cbbFontName.SelectedItem.ToString());
-            if (font != null)
+            var currentLayer = layerManager.GetCurrentLayer();
+            if(currentLayer != null)
             {
-                int outlineSize = int.Parse(tbOutlineSize.Text.Trim());
-                LineJoin lineJoin = (LineJoin)(cbbOutlineStyle.SelectedIndex);
+                if(currentLayer.Img != null)
+                {
+                    // UPDATE IMAGE LAYER
+                    try
+                    {
+                        float scaleX = float.Parse(tbScaleX.Text.Trim());
+                        float scaleY = float.Parse(tbScaleY.Text.Trim());
+                        float rotX = float.Parse(tbRotX.Text.Trim());
+                        float rotY = float.Parse(tbRotY.Text.Trim());
+                        int sizeX = int.Parse(tbWidth.Text.Trim());
+                        int sizeY = int.Parse(tbHeight.Text.Trim());
+                        currentLayer.UpdateLayer(new Vector3(posX, posY, 0), new Vector3(scaleX, scaleY, 1),
+                            new Vector3(rotX, rotY, 0), new Vector3(sizeX, sizeY, 0));
+                    }
+                    catch (Exception ex)
+                    {
+                        MessageBox.Show("Error: "+ ex.Message);
+                    }
+              
 
-                Layer currentLayer = layerManager.GetCurrentLayer();
-                currentLayer.LayerText.Content = strText;
-                currentLayer.LayerText.Font.Dispose();
-                currentLayer.LayerText.Font = new Font(font, int.Parse(cbbFontSize.Text.ToString()), FontStyle.Regular, GraphicsUnit.Pixel);
-                currentLayer.LayerText.TextColor = selectedColor;
-                currentLayer.LayerText.OutlineSize = outlineSize;
-                currentLayer.LayerText.OutlineColor = outlineColor;
-                currentLayer.LayerText.OutlineStyle = lineJoin;
-                //Layer layer = new Layer(new LayerText(strText, ff, selectedColor, outlineSize, outlineColor, lineJoin));
-                //layerManager.AddTextLayer(layer);
-                UpdateInfo();
-            }
-            else
-            {
-                MessageBox.Show("Cannot found font " + cbbFontName.SelectedItem.ToString());
-            }
+                }else if(currentLayer.LayerText != null)
+                {
+                    if (strText.Length == 0)
+                    {
+                        MessageBox.Show("Please input text!");
+                        return;
+                    }               
+
+                    // UPDATE LAYER TEXT
+                    FontFamily font = GetFontByName(cbbFontName.SelectedItem.ToString());
+                    if (font != null)
+                    {
+                        int outlineSize = int.Parse(tbOutlineSize.Text.Trim());
+                        LineJoin lineJoin = (LineJoin)(cbbOutlineStyle.SelectedIndex);
+                        FontStyle fontStyle = (FontStyle)Enum.Parse(typeof(FontStyle), cbbFontStyle.Text.ToString());
+
+                        currentLayer.LayerText.Content = strText;
+                        currentLayer.LayerText.Font.Dispose();
+                        currentLayer.LayerText.Font = new Font(font, int.Parse(cbbFontSize.Text.ToString()), fontStyle, GraphicsUnit.Pixel);
+                        currentLayer.LayerText.TextColor = selectedColor;
+                        currentLayer.LayerText.OutlineSize = outlineSize;
+                        currentLayer.LayerText.OutlineColor = outlineColor;
+                        currentLayer.LayerText.OutlineStyle = lineJoin;
+                        currentLayer.LayerText.FontSize = int.Parse(cbbFontSize.Text.ToString());
+                        try
+                        {
+                            float scaleX = float.Parse(tbScaleX.Text.Trim());
+                            float scaleY = float.Parse(tbScaleY.Text.Trim());
+                            float rotX = float.Parse(tbRotX.Text.Trim());
+                            float rotY = float.Parse(tbRotY.Text.Trim());
+                            int sizeX = int.Parse(tbWidth.Text.Trim());
+                            int sizeY = int.Parse(tbHeight.Text.Trim());
+                            currentLayer.UpdateLayer(new Vector3(posX, posY, 0), new Vector3(scaleX, scaleY, 1),
+                                new Vector3(rotX, rotY, 0), new Vector3(sizeX, sizeY, 0));
+                        }
+                        catch (Exception ex)
+                        {
+                            MessageBox.Show("Error: " + ex.Message);
+                        }
+                        UpdateInfo();
+                        //layerManager.UpdateCenterPosition(posX, posY);
+                    }
+                    else
+                    {
+                        MessageBox.Show("Cannot found font " + cbbFontName.SelectedItem.ToString());
+                    }
+                }
+            }       
            
-            layerManager.UpdateCenterPosition(posX, posY);
+          
             pictureBox1.Invalidate();
         }
 
@@ -718,18 +810,47 @@ namespace imageeditor
                 btnOutlineColor.BackColor = outlineColor;
             }
         }
+
+        private void btnAddScript_Click(object sender, EventArgs e)
+        {
+            if(layerManager.Layers.Count == 0)
+            {
+                MessageBox.Show("Need one layer at least!");
+                return;
+            }
+            layerManager.ConvertToScriptConfig();
+        }
         #endregion
 
- 
+        private List<string> dataList = new List<string>();
+        private void btnRunScript_Click(object sender, EventArgs e)
+        {
+            string filePath = Directory.GetCurrentDirectory() + "\\list.txt";
+            if(!File.Exists(filePath))
+            {
+                MessageBox.Show("Cannot found file path: "+filePath);
+                return;
+            }
+            dataList = File.ReadAllLines(filePath).ToList();
+            if(dataList.Count == 0)
+            {
+                MessageBox.Show("Data list is empty!");
+                return;
+            }
+            btnRunScript.Enabled = false;
+            bgWorker.RunWorkerAsync("AutoPng");
 
-  
+        }
 
 
-     
 
-    
 
-       
+
+
+
+
+
+
 
     }
 }

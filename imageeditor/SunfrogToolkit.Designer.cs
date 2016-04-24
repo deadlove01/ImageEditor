@@ -81,13 +81,13 @@
             this.toolStrip3 = new System.Windows.Forms.ToolStrip();
             this.toolStripLabel3 = new System.Windows.Forms.ToolStripLabel();
             this.tbText = new System.Windows.Forms.ToolStripTextBox();
-            this.toolStripButton7 = new System.Windows.Forms.ToolStripButton();
             this.toolStripLabel4 = new System.Windows.Forms.ToolStripLabel();
             this.cbbFontName = new System.Windows.Forms.ToolStripComboBox();
             this.toolStripLabel5 = new System.Windows.Forms.ToolStripLabel();
             this.cbbFontSize = new System.Windows.Forms.ToolStripComboBox();
             this.toolStripLabel6 = new System.Windows.Forms.ToolStripLabel();
             this.cbbFontStyle = new System.Windows.Forms.ToolStripComboBox();
+            this.btnTextColor = new System.Windows.Forms.ToolStripButton();
             this.toolStrip1 = new System.Windows.Forms.ToolStrip();
             this.toolStripButton1 = new System.Windows.Forms.ToolStripButton();
             this.toolStripButton2 = new System.Windows.Forms.ToolStripButton();
@@ -97,15 +97,17 @@
             this.toolStripLabel1 = new System.Windows.Forms.ToolStripLabel();
             this.tbOutlineSize = new System.Windows.Forms.ToolStripTextBox();
             this.btnOutlineColor = new System.Windows.Forms.ToolStripButton();
-            this.toolStripLabel2 = new System.Windows.Forms.ToolStripLabel();
-            this.cbbTextShadow = new System.Windows.Forms.ToolStripComboBox();
-            this.toolStripButton6 = new System.Windows.Forms.ToolStripButton();
-            this.toolStripContainer2 = new System.Windows.Forms.ToolStripContainer();
-            this.toolStripContainer3 = new System.Windows.Forms.ToolStripContainer();
-            this.btnTextColor = new System.Windows.Forms.ToolStripButton();
-            this.colorDialog1 = new System.Windows.Forms.ColorDialog();
             this.toolStripLabel15 = new System.Windows.Forms.ToolStripLabel();
             this.cbbOutlineStyle = new System.Windows.Forms.ToolStripComboBox();
+            this.toolStripContainer2 = new System.Windows.Forms.ToolStripContainer();
+            this.toolStripContainer3 = new System.Windows.Forms.ToolStripContainer();
+            this.colorDialog1 = new System.Windows.Forms.ColorDialog();
+            this.btnAddScript = new System.Windows.Forms.ToolStripButton();
+            this.toolStripContainer4 = new System.Windows.Forms.ToolStripContainer();
+            this.btnRunScript = new System.Windows.Forms.ToolStripButton();
+            this.bgWorker = new System.ComponentModel.BackgroundWorker();
+            this.toolStrip6 = new System.Windows.Forms.ToolStrip();
+            this.tsProgress = new System.Windows.Forms.ToolStripProgressBar();
             this.toolStripContainer1.ContentPanel.SuspendLayout();
             this.toolStripContainer1.LeftToolStripPanel.SuspendLayout();
             this.toolStripContainer1.TopToolStripPanel.SuspendLayout();
@@ -132,6 +134,8 @@
             this.toolStripContainer3.ContentPanel.SuspendLayout();
             this.toolStripContainer3.TopToolStripPanel.SuspendLayout();
             this.toolStripContainer3.SuspendLayout();
+            this.toolStripContainer4.SuspendLayout();
+            this.toolStrip6.SuspendLayout();
             this.SuspendLayout();
             // 
             // toolStripContainer1
@@ -139,6 +143,8 @@
             // 
             // toolStripContainer1.ContentPanel
             // 
+            this.toolStripContainer1.ContentPanel.Controls.Add(this.toolStrip6);
+            this.toolStripContainer1.ContentPanel.Controls.Add(this.toolStripContainer4);
             this.toolStripContainer1.ContentPanel.Controls.Add(this.tabControl1);
             this.toolStripContainer1.ContentPanel.Controls.Add(this.pictureBox1);
             this.toolStripContainer1.ContentPanel.Size = new System.Drawing.Size(1042, 521);
@@ -620,7 +626,7 @@
             this.btnUpdateText.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.btnUpdateText.Name = "btnUpdateText";
             this.btnUpdateText.Size = new System.Drawing.Size(23, 22);
-            this.btnUpdateText.Text = "Update text";
+            this.btnUpdateText.Text = "Update Layer";
             this.btnUpdateText.Click += new System.EventHandler(this.btnUpdateText_Click);
             // 
             // toolStrip3
@@ -629,7 +635,6 @@
             this.toolStrip3.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.toolStripLabel3,
             this.tbText,
-            this.toolStripButton7,
             this.toolStripLabel4,
             this.cbbFontName,
             this.toolStripLabel5,
@@ -639,7 +644,7 @@
             this.btnTextColor});
             this.toolStrip3.Location = new System.Drawing.Point(3, 0);
             this.toolStrip3.Name = "toolStrip3";
-            this.toolStrip3.Size = new System.Drawing.Size(787, 25);
+            this.toolStrip3.Size = new System.Drawing.Size(764, 25);
             this.toolStrip3.TabIndex = 2;
             // 
             // toolStripLabel3
@@ -652,16 +657,6 @@
             // 
             this.tbText.Name = "tbText";
             this.tbText.Size = new System.Drawing.Size(100, 25);
-            // 
-            // toolStripButton7
-            // 
-            this.toolStripButton7.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
-            this.toolStripButton7.Image = global::imageeditor.Properties.Resources.text;
-            this.toolStripButton7.ImageTransparentColor = System.Drawing.Color.Magenta;
-            this.toolStripButton7.Name = "toolStripButton7";
-            this.toolStripButton7.Size = new System.Drawing.Size(23, 22);
-            this.toolStripButton7.Text = "Draw";
-            this.toolStripButton7.Click += new System.EventHandler(this.toolStripButton7_Click);
             // 
             // toolStripLabel4
             // 
@@ -711,6 +706,7 @@
             // 
             // cbbFontStyle
             // 
+            this.cbbFontStyle.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cbbFontStyle.Items.AddRange(new object[] {
             "Bold",
             "Italic",
@@ -719,7 +715,17 @@
             "Strikeout"});
             this.cbbFontStyle.Name = "cbbFontStyle";
             this.cbbFontStyle.Size = new System.Drawing.Size(121, 25);
-            this.cbbFontStyle.Text = "Regular";
+            // 
+            // btnTextColor
+            // 
+            this.btnTextColor.BackColor = System.Drawing.Color.Blue;
+            this.btnTextColor.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Text;
+            this.btnTextColor.ForeColor = System.Drawing.Color.Red;
+            this.btnTextColor.ImageTransparentColor = System.Drawing.Color.Blue;
+            this.btnTextColor.Name = "btnTextColor";
+            this.btnTextColor.Size = new System.Drawing.Size(23, 22);
+            this.btnTextColor.ToolTipText = "Select Text Color";
+            this.btnTextColor.Click += new System.EventHandler(this.btnTextColor_Click);
             // 
             // toolStrip1
             // 
@@ -727,10 +733,12 @@
             this.toolStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.toolStripButton1,
             this.toolStripButton2,
-            this.toolStripButton3});
+            this.toolStripButton3,
+            this.btnAddScript,
+            this.btnRunScript});
             this.toolStrip1.Location = new System.Drawing.Point(3, 0);
             this.toolStrip1.Name = "toolStrip1";
-            this.toolStrip1.Size = new System.Drawing.Size(81, 25);
+            this.toolStrip1.Size = new System.Drawing.Size(234, 25);
             this.toolStrip1.TabIndex = 0;
             // 
             // toolStripButton1
@@ -772,13 +780,10 @@
             this.tbOutlineSize,
             this.btnOutlineColor,
             this.toolStripLabel15,
-            this.cbbOutlineStyle,
-            this.toolStripLabel2,
-            this.cbbTextShadow,
-            this.toolStripButton6});
-            this.toolStrip2.Location = new System.Drawing.Point(84, 0);
+            this.cbbOutlineStyle});
+            this.toolStrip2.Location = new System.Drawing.Point(237, 0);
             this.toolStrip2.Name = "toolStrip2";
-            this.toolStrip2.Size = new System.Drawing.Size(661, 25);
+            this.toolStrip2.Size = new System.Drawing.Size(409, 25);
             this.toolStrip2.TabIndex = 1;
             // 
             // toolStripButton4
@@ -813,36 +818,17 @@
             this.btnOutlineColor.ToolTipText = "Select outline color";
             this.btnOutlineColor.Click += new System.EventHandler(this.btnOutlineColor_Click);
             // 
-            // toolStripLabel2
+            // toolStripLabel15
             // 
-            this.toolStripLabel2.Name = "toolStripLabel2";
-            this.toolStripLabel2.Size = new System.Drawing.Size(75, 22);
-            this.toolStripLabel2.Text = "Text shadow:";
+            this.toolStripLabel15.Name = "toolStripLabel15";
+            this.toolStripLabel15.Size = new System.Drawing.Size(76, 22);
+            this.toolStripLabel15.Text = "Outline style:";
             // 
-            // cbbTextShadow
+            // cbbOutlineStyle
             // 
-            this.cbbTextShadow.Items.AddRange(new object[] {
-            "NW",
-            "NE",
-            "N",
-            "S",
-            "E",
-            "W",
-            "SE",
-            "SW",
-            "None"});
-            this.cbbTextShadow.Name = "cbbTextShadow";
-            this.cbbTextShadow.Size = new System.Drawing.Size(121, 25);
-            this.cbbTextShadow.Text = "SE";
-            // 
-            // toolStripButton6
-            // 
-            this.toolStripButton6.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
-            this.toolStripButton6.Image = global::imageeditor.Properties.Resources.shad;
-            this.toolStripButton6.ImageTransparentColor = System.Drawing.Color.Magenta;
-            this.toolStripButton6.Name = "toolStripButton6";
-            this.toolStripButton6.Size = new System.Drawing.Size(23, 22);
-            this.toolStripButton6.Text = "Apply";
+            this.cbbOutlineStyle.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.cbbOutlineStyle.Name = "cbbOutlineStyle";
+            this.cbbOutlineStyle.Size = new System.Drawing.Size(100, 25);
             // 
             // toolStripContainer2
             // 
@@ -883,28 +869,58 @@
             this.toolStripContainer3.TopToolStripPanel.Controls.Add(this.toolStrip1);
             this.toolStripContainer3.TopToolStripPanel.Controls.Add(this.toolStrip2);
             // 
-            // btnTextColor
+            // btnAddScript
             // 
-            this.btnTextColor.BackColor = System.Drawing.Color.Blue;
-            this.btnTextColor.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Text;
-            this.btnTextColor.ForeColor = System.Drawing.Color.Red;
-            this.btnTextColor.ImageTransparentColor = System.Drawing.Color.Blue;
-            this.btnTextColor.Name = "btnTextColor";
-            this.btnTextColor.Size = new System.Drawing.Size(23, 22);
-            this.btnTextColor.ToolTipText = "Select Text Color";
-            this.btnTextColor.Click += new System.EventHandler(this.btnTextColor_Click);
+            this.btnAddScript.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.btnAddScript.Name = "btnAddScript";
+            this.btnAddScript.Size = new System.Drawing.Size(68, 22);
+            this.btnAddScript.Text = "Save Script";
+            this.btnAddScript.TextImageRelation = System.Windows.Forms.TextImageRelation.TextBeforeImage;
+            this.btnAddScript.Click += new System.EventHandler(this.btnAddScript_Click);
             // 
-            // toolStripLabel15
+            // toolStripContainer4
             // 
-            this.toolStripLabel15.Name = "toolStripLabel15";
-            this.toolStripLabel15.Size = new System.Drawing.Size(76, 22);
-            this.toolStripLabel15.Text = "Outline style:";
             // 
-            // cbbOutlineStyle
+            // toolStripContainer4.ContentPanel
             // 
-            this.cbbOutlineStyle.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.cbbOutlineStyle.Name = "cbbOutlineStyle";
-            this.cbbOutlineStyle.Size = new System.Drawing.Size(100, 25);
+            this.toolStripContainer4.ContentPanel.Size = new System.Drawing.Size(150, 150);
+            this.toolStripContainer4.Location = new System.Drawing.Point(470, 38);
+            this.toolStripContainer4.Name = "toolStripContainer4";
+            this.toolStripContainer4.Size = new System.Drawing.Size(150, 175);
+            this.toolStripContainer4.TabIndex = 3;
+            this.toolStripContainer4.Text = "toolStripContainer4";
+            // 
+            // btnRunScript
+            // 
+            this.btnRunScript.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.btnRunScript.Name = "btnRunScript";
+            this.btnRunScript.Size = new System.Drawing.Size(85, 22);
+            this.btnRunScript.Text = "Run Auto Png";
+            this.btnRunScript.Click += new System.EventHandler(this.btnRunScript_Click);
+            // 
+            // bgWorker
+            // 
+            this.bgWorker.WorkerReportsProgress = true;
+            this.bgWorker.DoWork += new System.ComponentModel.DoWorkEventHandler(this.bgWorker_DoWork);
+            this.bgWorker.ProgressChanged += new System.ComponentModel.ProgressChangedEventHandler(this.bgWorker_ProgressChanged);
+            this.bgWorker.RunWorkerCompleted += new System.ComponentModel.RunWorkerCompletedEventHandler(this.bgWorker_RunWorkerCompleted);
+            // 
+            // toolStrip6
+            // 
+            this.toolStrip6.Dock = System.Windows.Forms.DockStyle.Bottom;
+            this.toolStrip6.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.tsProgress});
+            this.toolStrip6.Location = new System.Drawing.Point(0, 496);
+            this.toolStrip6.Name = "toolStrip6";
+            this.toolStrip6.RenderMode = System.Windows.Forms.ToolStripRenderMode.Professional;
+            this.toolStrip6.Size = new System.Drawing.Size(1042, 25);
+            this.toolStrip6.TabIndex = 4;
+            this.toolStrip6.Text = "toolStrip6";
+            // 
+            // tsProgress
+            // 
+            this.tsProgress.Name = "tsProgress";
+            this.tsProgress.Size = new System.Drawing.Size(300, 22);
             // 
             // SunfrogToolkit
             // 
@@ -921,6 +937,7 @@
             this.Text = "Sunfrog Toolkit";
             this.Load += new System.EventHandler(this.Form1_Load);
             this.toolStripContainer1.ContentPanel.ResumeLayout(false);
+            this.toolStripContainer1.ContentPanel.PerformLayout();
             this.toolStripContainer1.LeftToolStripPanel.ResumeLayout(false);
             this.toolStripContainer1.LeftToolStripPanel.PerformLayout();
             this.toolStripContainer1.TopToolStripPanel.ResumeLayout(false);
@@ -959,6 +976,10 @@
             this.toolStripContainer3.TopToolStripPanel.PerformLayout();
             this.toolStripContainer3.ResumeLayout(false);
             this.toolStripContainer3.PerformLayout();
+            this.toolStripContainer4.ResumeLayout(false);
+            this.toolStripContainer4.PerformLayout();
+            this.toolStrip6.ResumeLayout(false);
+            this.toolStrip6.PerformLayout();
             this.ResumeLayout(false);
 
         }
@@ -984,13 +1005,9 @@
         private System.Windows.Forms.ToolStripLabel toolStripLabel1;
         private System.Windows.Forms.ToolStripTextBox tbOutlineSize;
         private System.Windows.Forms.ToolStripButton btnOutlineColor;
-        private System.Windows.Forms.ToolStripLabel toolStripLabel2;
-        private System.Windows.Forms.ToolStripComboBox cbbTextShadow;
-        private System.Windows.Forms.ToolStripButton toolStripButton6;
         private System.Windows.Forms.ToolStrip toolStrip3;
         private System.Windows.Forms.ToolStripLabel toolStripLabel3;
         private System.Windows.Forms.ToolStripTextBox tbText;
-        private System.Windows.Forms.ToolStripButton toolStripButton7;
         private System.Windows.Forms.ToolStripLabel toolStripLabel4;
         private System.Windows.Forms.ToolStripComboBox cbbFontName;
         private System.Windows.Forms.ToolStripLabel toolStripLabel5;
@@ -1043,6 +1060,12 @@
         private System.Windows.Forms.ColorDialog colorDialog1;
         private System.Windows.Forms.ToolStripLabel toolStripLabel15;
         private System.Windows.Forms.ToolStripComboBox cbbOutlineStyle;
+        private System.Windows.Forms.ToolStripButton btnAddScript;
+        private System.Windows.Forms.ToolStripContainer toolStripContainer4;
+        private System.Windows.Forms.ToolStripButton btnRunScript;
+        private System.ComponentModel.BackgroundWorker bgWorker;
+        private System.Windows.Forms.ToolStrip toolStrip6;
+        private System.Windows.Forms.ToolStripProgressBar tsProgress;
     }
 }
 
