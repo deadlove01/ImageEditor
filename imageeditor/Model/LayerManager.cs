@@ -72,11 +72,20 @@ namespace imageeditor.Model
                     SelectedIndex = -1;
             }
         }
-        public Transform GetCurrentLayer()
+        public Transform GetCurrentLayerTransform()
         {
             if (Layers.Count > 0 && SelectedIndex != -1)
             {
                 return Layers[SelectedIndex].Transform;
+            }
+            return null;
+        }
+
+        public Layer GetCurrentLayer()
+        {
+            if (Layers.Count > 0 && SelectedIndex != -1)
+            {
+                return Layers[SelectedIndex];
             }
             return null;
         }

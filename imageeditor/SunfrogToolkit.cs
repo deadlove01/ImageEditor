@@ -10,6 +10,7 @@ using System.Runtime.InteropServices;
 using System.Drawing.Imaging;
 using System.IO;
 using imageeditor.Model;
+using System.Drawing.Drawing2D;
 
 namespace imageeditor
 {
@@ -18,6 +19,8 @@ namespace imageeditor
 
         #region new props
         private LayerManager layerManager;
+        private Color selectedColor;
+        private Color outlineColor;
         #endregion
 
         #region old props
@@ -39,7 +42,8 @@ namespace imageeditor
                  ControlStyles.UserPaint |
                  ControlStyles.ResizeRedraw,
                  true);
-           
+            selectedColor = Color.Blue;
+            outlineColor = Color.Yellow;
         }
 
         public enum Item
@@ -105,7 +109,7 @@ namespace imageeditor
                 x = e.Location.X;
                 y = e.Location.Y;
 
-                pictureBox1.Invalidate();
+                
                 var trans = layerManager.GetCurrentLayer();
                 if(trans != null)
                 {
@@ -116,7 +120,10 @@ namespace imageeditor
                     tbPosX.Text = "";
                     tbPosY.Text = "";
                 }
-                
+                if (pictureBox1.Image != null)
+                    pictureBox1.Image.Dispose();
+
+                pictureBox1.Invalidate();
                 //Graphics g = pictureBox1.CreateGraphics();
                 //switch (currItem)
                 //{
@@ -527,6 +534,15 @@ namespace imageeditor
 
             layerManager = new LayerManager();
             layerManager.ZoomPercent = 0.15f;
+
+            var LineJoinvalues = Enum.GetValues(typeof(LineJoin));
+            cbbOutlineStyle.Items.Clear();
+            foreach (var style in LineJoinvalues)
+            {
+                cbbOutlineStyle.Items.Add(style.ToString());
+            }
+            if (cbbOutlineStyle.Items.Count > 0)
+                cbbOutlineStyle.SelectedIndex = 0;
         }
 
         private void red_Scroll(object sender, EventArgs e)
@@ -580,17 +596,30 @@ namespace imageeditor
             }
         }
 
+        private FontFamily GetFontByName(string fontName)
+        {
+            FontFamily[] family = FontFamily.Families;
+            foreach (FontFamily font in family)
+            {
+                if (fontName == font.GetName(1).ToString())
+                {
+                    return font;
+                }
+            }
+            return null;
+        }
+
         #endregion
 
 
         #region events
         private void pictureBox1_Paint(object sender, PaintEventArgs e)
         {
-            if(draw)
+            if (draw)
             {
-                layerManager.UpdateCenterPosition(x, y);    
+                layerManager.UpdateCenterPosition(x, y);
             }
-             
+
             layerManager.DrawLayers(e.Graphics);
         }
 
@@ -613,30 +642,88 @@ namespace imageeditor
                 MessageBox.Show("Please input text!");
                 return;
             }
-            FontFamily[] family = FontFamily.Families;
-            foreach (FontFamily font in family)
+            FontFamily font = GetFontByName(cbbFontName.SelectedItem.ToString());
+            if(font != null)
             {
-                if(cbbFontName.SelectedItem.ToString() == font.GetName(1).ToString())
-                {
-                    Font ff = new Font(font, int.Parse(cbbFontSize.Text.ToString()), FontStyle.Regular, GraphicsUnit.Pixel);
-                    Layer layer = new Layer(new LayerText(strText, ff));
-                    layerManager.AddTextLayer(layer);
-                    UpdateInfo();
-                    pictureBox1.Invalidate();
-                    break;
-                }
+                int outlineSize = int.Parse(tbOutlineSize.Text.Trim());
+                LineJoin lineJoin = (LineJoin)(cbbOutlineStyle.SelectedIndex);
+
+                Font ff = new Font(font, int.Parse(cbbFontSize.Text.ToString()), FontStyle.Regular, GraphicsUnit.Pixel);
+                Layer layer = new Layer(new LayerText(strText, ff, selectedColor, outlineSize, outlineColor, lineJoin));
+                layerManager.AddTextLayer(layer);
+                UpdateInfo();
+                pictureBox1.Invalidate();
+            }else
+            {
+                MessageBox.Show("Cannot found font "+cbbFontName.SelectedItem.ToString());
             }
         }
 
         private void btnUpdateText_Click(object sender, EventArgs e)
         {
+            string strText = tbText.Text.Trim();
+            if(strText.Length == 0)
+            {
+                MessageBox.Show("Please input text!");
+                return;
+            }
+
             int posX = int.Parse(tbPosX.Text.Trim());
             int posY = int.Parse(tbPosY.Text.Trim());
+
+            // UPDATE LAYER TEXT
+            FontFamily font = GetFontByName(cbbFontName.SelectedItem.ToString());
+            if (font != null)
+            {
+                int outlineSize = int.Parse(tbOutlineSize.Text.Trim());
+                LineJoin lineJoin = (LineJoin)(cbbOutlineStyle.SelectedIndex);
+
+                Layer currentLayer = layerManager.GetCurrentLayer();
+                currentLayer.LayerText.Content = strText;
+                currentLayer.LayerText.Font.Dispose();
+                currentLayer.LayerText.Font = new Font(font, int.Parse(cbbFontSize.Text.ToString()), FontStyle.Regular, GraphicsUnit.Pixel);
+                currentLayer.LayerText.TextColor = selectedColor;
+                currentLayer.LayerText.OutlineSize = outlineSize;
+                currentLayer.LayerText.OutlineColor = outlineColor;
+                currentLayer.LayerText.OutlineStyle = lineJoin;
+                //Layer layer = new Layer(new LayerText(strText, ff, selectedColor, outlineSize, outlineColor, lineJoin));
+                //layerManager.AddTextLayer(layer);
+                UpdateInfo();
+            }
+            else
+            {
+                MessageBox.Show("Cannot found font " + cbbFontName.SelectedItem.ToString());
+            }
+           
             layerManager.UpdateCenterPosition(posX, posY);
             pictureBox1.Invalidate();
         }
 
+        private void btnTextColor_Click(object sender, EventArgs e)
+        {
+            var result = colorDialog1.ShowDialog();
+            if(result == System.Windows.Forms.DialogResult.OK)
+            {
+                selectedColor = colorDialog1.Color;
+                btnTextColor.BackColor = selectedColor;
+            }
+        }
+
+        private void btnOutlineColor_Click(object sender, EventArgs e)
+        {
+            var result = colorDialog1.ShowDialog();
+            if (result == System.Windows.Forms.DialogResult.OK)
+            {
+                outlineColor = colorDialog1.Color;
+                btnOutlineColor.BackColor = outlineColor;
+            }
+        }
         #endregion
+
+ 
+
+  
+
 
      
 

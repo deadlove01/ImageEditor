@@ -58,31 +58,46 @@ namespace imageeditor.Model
 
             if(LayerText != null)
             {
-                Rectangle textRect = new Rectangle(0, 0, 2400, 3200);
-                SizeF f = e.MeasureString(LayerText.Content, LayerText.Font);
-                Bitmap bm = new Bitmap((int)f.Width + 10, (int)f.Height + 10);
-                using (Graphics gg = Graphics.FromImage(bm))
+                Bitmap bitmap = new Bitmap(2400, 3200);
+                using(Graphics g = Graphics.FromImage(bitmap))
                 {
-                    Rectangle newRect = new Rectangle(0, 0, bm.Width, bm.Height);
-                    gg.DrawString(LayerText.Content, LayerText.Font, new SolidBrush(Color.Red),
-                             newRect, LayerText.StringFormat);
+                    g.SmoothingMode = SmoothingMode.AntiAlias;
+                    g.InterpolationMode = InterpolationMode.HighQualityBicubic;
+                    g.TextRenderingHint = System.Drawing.Text.TextRenderingHint.AntiAlias;
+                    g.PixelOffsetMode = PixelOffsetMode.HighQuality;
+
+                    LayerText.Draw(g, pos);
+                    //Rectangle textRect = new Rectangle(0, 0, 2400, 3200);
+                    //SizeF f = g.MeasureString(LayerText.Content, LayerText.Font);
+                    //Bitmap bm = new Bitmap((int)f.Width + 10, (int)f.Height + 10);
+                    //using (Graphics gg = Graphics.FromImage(bm))
+                    //{
+                    //    gg.SmoothingMode = SmoothingMode.AntiAlias;
+                    //    gg.InterpolationMode = InterpolationMode.HighQualityBicubic;
+                    //    gg.TextRenderingHint = System.Drawing.Text.TextRenderingHint.AntiAlias;
+                    //    gg.PixelOffsetMode = PixelOffsetMode.HighQuality;
+
+                    //    Rectangle newRect = new Rectangle(0, 0, bm.Width, bm.Height);
+                    //    //gg.DrawString(LayerText.Content, LayerText.Font, new SolidBrush(LayerText.TextColor),
+                    //    //         newRect, LayerText.StringFormat);
+                    //    LayerText.Draw(gg, newRect);
+                    //}
+
+                    ////g.ResetTransform();
+                    //float posX = pos.X;
+                    //float posY = pos.Y;
+                    ////posX += (textRect.Width - img.Width) / 2;
+                    //g.DrawImage(bm, posX, posY);
+                    ////e.DrawImage(img, posX, posY);
+                    //bm.Dispose();
+                    ////img.Dispose();
                 }
 
-                int w, h;
-                w = textRect.Width;
-                h = textRect.Height;
-                if (bm.Width < w)
-                    w = bm.Width;
-                if (bm.Height < h)
-                    h = bm.Height;
-                var img = ImageUtil.ResizeImage(w, h, bm);
-
-                //g.ResetTransform();
-                float posX = pos.X;
-                float posY = pos.Y;
-                //posX += (textRect.Width - img.Width) / 2;
-                e.DrawImage(img, posX, posY);
-                img.Dispose();
+                rect = new Rectangle((int)(pos.X), (int)(pos.Y),
+                 (int)Math.Round(bitmap.Width * scale.X * zoomPercent), (int)Math.Round(bitmap.Height * scale.Y * zoomPercent));
+               
+                e.DrawImage(bitmap, rect);
+                bitmap.Dispose();
             }
             
         }
@@ -102,9 +117,51 @@ namespace imageeditor.Model
 
             if (LayerText != null)
             {
-                LayerText.Draw(e);
-            }
+                Bitmap bitmap = new Bitmap(2400, 3200);
+                using (Graphics g = Graphics.FromImage(bitmap))
+                {
+                    g.SmoothingMode = SmoothingMode.AntiAlias;
+                    g.InterpolationMode = InterpolationMode.HighQualityBicubic;
+                    g.TextRenderingHint = System.Drawing.Text.TextRenderingHint.AntiAlias;
+                    g.PixelOffsetMode = PixelOffsetMode.HighQuality;
+                    Rectangle textRect = new Rectangle(0, 0, 2400, 3200);
+                    SizeF f = g.MeasureString(LayerText.Content, LayerText.Font);
+                    Bitmap bm = new Bitmap((int)f.Width + 10, (int)f.Height + 10);
+                    using (Graphics gg = Graphics.FromImage(bm))
+                    {
+                        gg.SmoothingMode = SmoothingMode.AntiAlias;
+                        gg.InterpolationMode = InterpolationMode.HighQualityBicubic;
+                        gg.TextRenderingHint = System.Drawing.Text.TextRenderingHint.AntiAlias;
+                        gg.PixelOffsetMode = PixelOffsetMode.HighQuality;
+                        Rectangle newRect = new Rectangle(0, 0, bm.Width, bm.Height);
+                        //gg.DrawString(LayerText.Content, LayerText.Font, new SolidBrush(LayerText.Color),
+                        //         newRect, LayerText.StringFormat);
+                        //LayerText.Draw(gg, newRect);
+                    }
 
+                    //int w, h;
+                    //w = textRect.Width;
+                    //h = textRect.Height;
+                    //if (bm.Width < w)
+                    //    w = bm.Width;
+                    //if (bm.Height < h)
+                    //    h = bm.Height;
+                    //var img = ImageUtil.ResizeImage(w, h, bm);
+
+                    //g.ResetTransform();
+                    float posX = pos.X;
+                    float posY = pos.Y;
+                    //posX += (textRect.Width - img.Width) / 2;
+                    g.DrawImage(bm, posX, posY);
+                    //e.DrawImage(img, posX, posY);
+                    bm.Dispose();
+                }
+
+                rect = new Rectangle((int)(pos.X / zoomPercent), (int)(pos.Y / zoomPercent),
+                (int)Math.Round(bitmap.Width * scale.X ), (int)Math.Round(bitmap.Height * scale.Y));
+                e.DrawImage(bitmap, rect);
+                bitmap.Dispose();
+            }
         }
 
         public void Dispose()
