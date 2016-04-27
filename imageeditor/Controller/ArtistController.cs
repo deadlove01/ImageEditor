@@ -69,13 +69,19 @@ namespace imageeditor.Controller
                 // get list logo order behind main logo
                 ScriptConfig config = props.ScriptConfig;
                 List<ScriptObject> logoList = config.LogoList.OrderBy(p => p.Order).ToList();
-                for (int i = 0; i <logoList.Count ; i++)
+                string[] names = name.Trim().Split(new string[]{Settings.Default.SplitString}, StringSplitOptions.None);
+                string exportName = name;
+                if (names == null)
+                    names = new string[] { name };
+                else if (names.Length > 0)
+                    exportName = names[0];
+                for (int i = 0; i <names.Length ; i++)
                 {
                     ScriptObject obj = logoList[i];
                     string fontPath = props.LogoRootPath + obj.FontName;
                     Font ff = GetCustomFont(fontPath, obj.FontSize);
                     {
-                        Layer layer = new Layer(new LayerText(name, ff, obj.FontSize, LogoUtil.ConvertStringToColor(obj.TextColor)
+                        Layer layer = new Layer(new LayerText(names[i], ff, obj.FontSize, LogoUtil.ConvertStringToColor(obj.TextColor)
                             , (int)obj.OutlineSize, LogoUtil.ConvertStringToColor(obj.OutlineColorHex)
                             , (LineJoin)obj.LineJoin));
 
@@ -86,7 +92,7 @@ namespace imageeditor.Controller
                 } 
                 if(logoList.Count > 0)
                 {
-                    layerManager.ExportImage(exportPath + name + ".png", new Size(2400, 3200));
+                    layerManager.ExportImage(exportPath + exportName + ".png", new Size(2400, 3200));
                 }else
                 {
                     System.Windows.Forms.MessageBox.Show("Cannot found any logo info!");

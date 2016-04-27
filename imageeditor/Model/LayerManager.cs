@@ -161,7 +161,7 @@ namespace imageeditor.Model
             }
         }
 
-        public void ConvertToScriptConfig()
+        public void ConvertToScriptConfig(string savePath)
         {
             if(Layers.Count > 0)
             {
@@ -186,7 +186,7 @@ namespace imageeditor.Model
                         config.LogoList.Add(obj);
                     }
                 }
-                FileUtil.WriteConfig<ScriptConfig>(config, Directory.GetCurrentDirectory() + "\\script_create.xml");
+                FileUtil.WriteConfig<ScriptConfig>(config, savePath);
             }
         }
 

@@ -818,27 +818,38 @@ namespace imageeditor
                 MessageBox.Show("Need one layer at least!");
                 return;
             }
-            layerManager.ConvertToScriptConfig();
+            saveFileDialog1.Filter = "Xml|*.xml";
+            var result = saveFileDialog1.ShowDialog();
+            if(result == System.Windows.Forms.DialogResult.OK)
+            {
+                layerManager.ConvertToScriptConfig(saveFileDialog1.FileName);
+            }
+          
         }
         #endregion
 
         private List<string> dataList = new List<string>();
         private void btnRunScript_Click(object sender, EventArgs e)
         {
-            string filePath = Directory.GetCurrentDirectory() + "\\list.txt";
-            if(!File.Exists(filePath))
+            openFileDialog1.Filter = "Text|*.txt";
+            var result = openFileDialog1.ShowDialog();
+            if (result == System.Windows.Forms.DialogResult.OK)
             {
-                MessageBox.Show("Cannot found file path: "+filePath);
-                return;
+                dataList = File.ReadAllLines(openFileDialog1.FileName).ToList();
+                if (dataList.Count == 0)
+                {
+                    MessageBox.Show("Data list is empty!");
+                    return;
+                }
+                btnRunScript.Enabled = false;
+                bgWorker.RunWorkerAsync("AutoPng");
             }
-            dataList = File.ReadAllLines(filePath).ToList();
-            if(dataList.Count == 0)
-            {
-                MessageBox.Show("Data list is empty!");
-                return;
-            }
-            btnRunScript.Enabled = false;
-            bgWorker.RunWorkerAsync("AutoPng");
+            
+
+        }
+
+        private void toolStripContainer4_TopToolStripPanel_Click(object sender, EventArgs e)
+        {
 
         }
 

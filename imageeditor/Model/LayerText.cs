@@ -118,6 +118,7 @@ namespace imageeditor.Model
             var pos = trans.Position;
             float posX = pos.X;
             float posY = pos.Y;
+            posX += (textRect.Width - img.Width) / 2;
             e.DrawImage(img, posX, posY);
             img.Dispose();
             bm.Dispose();
