@@ -13,6 +13,7 @@ using imageeditor.Model;
 using System.Drawing.Drawing2D;
 using imageeditor.Controller;
 using imageeditor.Properties;
+using System.Threading;
 
 namespace imageeditor
 {
@@ -46,7 +47,17 @@ namespace imageeditor
                  true);
             selectedColor = Color.Blue;
             outlineColor = Color.Yellow;
-           
+
+            //var lines = File.ReadAllLines(@"D:\test.txt", Encoding.UTF8);
+            //for (int i = 0; i < lines.Length; i++)
+            //{
+            //    lines[i] = lines[i].Trim();
+            //    int lastIndex = lines[i].LastIndexOf(" ");
+            //    string temp1 = lines[i].Substring(lastIndex);
+            //    string temp2 = lines[i].Substring(0, lastIndex);
+            //    lines[i] = temp1 + ";" + temp2;
+            //}
+            //File.WriteAllLines( @"D:\test.txt", lines, Encoding.UTF8);
         }
 
         public enum Item
@@ -115,6 +126,8 @@ namespace imageeditor
                 if (pictureBox1.Image != null)
                     pictureBox1.Image.Dispose();
 
+                Thread.Sleep(20);
+                pictureBox1.Refresh();
                 pictureBox1.Invalidate();
 
                 UpdateUI();
@@ -527,6 +540,9 @@ namespace imageeditor
                 cbbFontName.Items.Add(font.GetName(1).ToString());
             }
 
+            if (cbbFontName.Items.Count > 0)
+                cbbFontName.SelectedIndex = 0;
+
             layerManager = new LayerManager();
             layerManager.ZoomPercent = 0.15f;
 
@@ -589,6 +605,11 @@ namespace imageeditor
                 tbRotY.Text = currentLayer.Transform.Rotation.Y.ToString();
                 tbWidth.Text = currentLayer.Transform.Size.X.ToString();
                 tbHeight.Text = currentLayer.Transform.Size.Y.ToString();
+                var layerText = currentLayer.LayerText;
+                if(layerText != null)
+                {
+                    tbText.Text = layerText.Content;
+                }
             }
         }
         private void UpdateInfo()
@@ -827,6 +848,15 @@ namespace imageeditor
           
         }
         #endregion
+
+        private void lbLayers_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            if(lbLayers.Items.Count > 0)
+            {
+                layerManager.SelectedIndex = lbLayers.SelectedIndex;
+                UpdateUI();
+            }
+        }
 
         private List<string> dataList = new List<string>();
         private void btnRunScript_Click(object sender, EventArgs e)

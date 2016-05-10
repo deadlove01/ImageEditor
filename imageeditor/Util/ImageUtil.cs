@@ -28,5 +28,6 @@ namespace imageeditor.Util
 
             return bmp;
         }
+        
     }
 }

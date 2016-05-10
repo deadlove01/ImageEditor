@@ -31,7 +31,7 @@ namespace imageeditor.Controller
             stringFormat.LineAlignment = StringAlignment.Center;
             stringFormat.FormatFlags = StringFormatFlags.FitBlackBox | StringFormatFlags.NoWrap;
             stringFormat.Trimming = StringTrimming.Character;
-
+            
             layerManager = new LayerManager();
             layerManager.ZoomPercent = 0.15f;
         }
@@ -71,10 +71,6 @@ namespace imageeditor.Controller
                 List<ScriptObject> logoList = config.LogoList.OrderBy(p => p.Order).ToList();
                 string[] names = name.Trim().Split(new string[]{Settings.Default.SplitString}, StringSplitOptions.None);
                 string exportName = name;
-                if (names == null)
-                    names = new string[] { name };
-                else if (names.Length > 0)
-                    exportName = names[0];
                 for (int i = 0; i <names.Length ; i++)
                 {
                     ScriptObject obj = logoList[i];

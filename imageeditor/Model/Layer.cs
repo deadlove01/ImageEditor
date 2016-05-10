@@ -17,6 +17,7 @@ namespace imageeditor.Model
         public Transform Transform { get; set; }
         public string LayerName { get; set; }
         public int Order { get; set; }
+
         public Layer()
         {
             Transform = new Transform();
@@ -51,7 +52,7 @@ namespace imageeditor.Model
             this.Transform.Size = size;
         }
 
-        public void Draw(Graphics e, float zoomPercent)
+        public void Draw(Graphics e, float zoomPercent, float heightRate=1.0f, float widthRate=1.0f)
         {
             var pos = Transform.Position;
             var scale = Transform.Scale;
@@ -75,31 +76,9 @@ namespace imageeditor.Model
                     g.TextRenderingHint = System.Drawing.Text.TextRenderingHint.AntiAlias;
                     g.PixelOffsetMode = PixelOffsetMode.HighQuality;
 
+                    LayerText.HeightRate = heightRate;
+                    LayerText.WidthRate = widthRate;
                     LayerText.Draw(g, this.Transform);
-                    //Rectangle textRect = new Rectangle(0, 0, 2400, 3200);
-                    //SizeF f = g.MeasureString(LayerText.Content, LayerText.Font);
-                    //Bitmap bm = new Bitmap((int)f.Width + 10, (int)f.Height + 10);
-                    //using (Graphics gg = Graphics.FromImage(bm))
-                    //{
-                    //    gg.SmoothingMode = SmoothingMode.AntiAlias;
-                    //    gg.InterpolationMode = InterpolationMode.HighQualityBicubic;
-                    //    gg.TextRenderingHint = System.Drawing.Text.TextRenderingHint.AntiAlias;
-                    //    gg.PixelOffsetMode = PixelOffsetMode.HighQuality;
-
-                    //    Rectangle newRect = new Rectangle(0, 0, bm.Width, bm.Height);
-                    //    //gg.DrawString(LayerText.Content, LayerText.Font, new SolidBrush(LayerText.TextColor),
-                    //    //         newRect, LayerText.StringFormat);
-                    //    LayerText.Draw(gg, newRect);
-                    //}
-
-                    ////g.ResetTransform();
-                    //float posX = pos.X;
-                    //float posY = pos.Y;
-                    ////posX += (textRect.Width - img.Width) / 2;
-                    //g.DrawImage(bm, posX, posY);
-                    ////e.DrawImage(img, posX, posY);
-                    //bm.Dispose();
-                    ////img.Dispose();
                 }
 
                 rect = new Rectangle((int)(pos.X), (int)(pos.Y),
@@ -110,7 +89,7 @@ namespace imageeditor.Model
             }
             
         }
-        public void DrawToExport(Graphics e, float zoomPercent)
+        public void DrawToExport(Graphics e, float zoomPercent, float heightRate = 1.0f, float widthRate = 1.0f)
         {
             var pos = Transform.Position;
             var scale = Transform.Scale;
@@ -133,6 +112,8 @@ namespace imageeditor.Model
                     g.TextRenderingHint = System.Drawing.Text.TextRenderingHint.AntiAlias;
                     g.PixelOffsetMode = PixelOffsetMode.HighQuality;
 
+                    LayerText.HeightRate = heightRate;
+                    LayerText.WidthRate = widthRate;
                     LayerText.Draw(g, this.Transform);
                 }
 

@@ -20,6 +20,9 @@ namespace imageeditor.Model
         public Color OutlineColor { get; set; }
         public LineJoin OutlineStyle { get; set; }
 
+        public float HeightRate { get; set; }
+        public float WidthRate { get; set; }
+
         public LayerText()
         {
             StringFormat = new StringFormat();
@@ -27,6 +30,7 @@ namespace imageeditor.Model
             StringFormat.LineAlignment = StringAlignment.Center;
             StringFormat.FormatFlags = StringFormatFlags.FitBlackBox | StringFormatFlags.NoWrap;
             StringFormat.Trimming = StringTrimming.Character;
+            HeightRate = WidthRate = 1;
         }
         public LayerText(string content, Font font, int FontSize, Color textColor, int OutlineSize, Color OutlineColor, LineJoin OutlineStyle)
         {
@@ -42,6 +46,7 @@ namespace imageeditor.Model
             StringFormat.LineAlignment = StringAlignment.Center;
             StringFormat.FormatFlags = StringFormatFlags.FitBlackBox | StringFormatFlags.NoWrap;
             StringFormat.Trimming = StringTrimming.Character;
+            HeightRate = WidthRate = 1;
         }
 
 
@@ -100,10 +105,8 @@ namespace imageeditor.Model
                 }else
                 {
                     Draw(gg, newRect);
-                }
-             
+                }             
             }
-
             // resize image
             int w, h;
             w = textRect.Width;
@@ -112,9 +115,22 @@ namespace imageeditor.Model
                 w = bm.Width;
             if (bm.Height < h || h == 0)
                 h = bm.Height;
-            var img = ImageUtil.ResizeImage(bm, w, h);
-            if(size.X == 0 || size.Y == 0)
+
+            float hRate = (float)h / bm.Height;
+            float wRate = (float)w / bm.Width;
+            if(HeightRate > hRate)
+                this.HeightRate = hRate;
+            if(WidthRate > wRate)
+                this.WidthRate = wRate;
+            Console.WriteLine("hRate: " + HeightRate + ", wRate: " + WidthRate);
+            int width = (int)Math.Ceiling(WidthRate * bm.Width);
+            int height = (int)Math.Ceiling(HeightRate * bm.Height);
+            var img = ImageUtil.ResizeImage(bm, width, height);
+            if (size.X == 0 || size.Y == 0)
                 trans.Size = new Vector3(w, h, 0);
+            //var img = ImageUtil.ResizeImage(bm, w, h);
+            //if(size.X == 0 || size.Y == 0)
+            //    trans.Size = new Vector3(w, h, 0);
             var pos = trans.Position;
             float posX = pos.X;
             float posY = pos.Y;

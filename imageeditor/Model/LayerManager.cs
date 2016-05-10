@@ -132,7 +132,11 @@ namespace imageeditor.Model
                 Layers = Layers.OrderBy(p=> p.Order).ToList();
                 for (int i = 0; i < Layers.Count; i++)
                 {
-                    Layers[i].Draw(e, ZoomPercent);
+                    if(i > 1)
+                        Layers[i].Draw(e, ZoomPercent, Layers[i-1].LayerText.HeightRate,
+                            Layers[i-1].LayerText.WidthRate);
+                    else
+                        Layers[i].Draw(e, ZoomPercent);
                 }
             }
         }
@@ -150,9 +154,14 @@ namespace imageeditor.Model
                     g.PixelOffsetMode = PixelOffsetMode.HighQuality;
 
                     g.Clear(Color.Transparent);
+                    Layers = Layers.OrderBy(p => p.Order).ToList();
                     for (int i = 0; i < Layers.Count; i++)
                     {
-                        Layers[i].DrawToExport(g, ZoomPercent);
+                        if (i > 1)
+                            Layers[i].DrawToExport(g, ZoomPercent, Layers[i - 1].LayerText.HeightRate,
+                                Layers[i - 1].LayerText.WidthRate);
+                        else
+                            Layers[i].DrawToExport(g, ZoomPercent);
                     }
                 }
                 bm.Save(path);
