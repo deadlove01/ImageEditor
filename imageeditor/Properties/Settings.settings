@@ -14,5 +14,8 @@
     <Setting Name="RunLogoName" Type="System.String" Scope="User">
       <Value Profile="(Default)">Logo 95</Value>
     </Setting>
+    <Setting Name="ExportSplitString" Type="System.String" Scope="User">
+      <Value Profile="(Default)">_</Value>
+    </Setting>
   </Settings>
 </SettingsFile>

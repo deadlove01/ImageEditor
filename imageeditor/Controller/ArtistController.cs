@@ -70,7 +70,7 @@ namespace imageeditor.Controller
                 ScriptConfig config = props.ScriptConfig;
                 List<ScriptObject> logoList = config.LogoList.OrderBy(p => p.Order).ToList();
                 string[] names = name.Trim().Split(new string[]{Settings.Default.SplitString}, StringSplitOptions.None);
-                string exportName = name;
+                string exportName = name.Replace(Settings.Default.SplitString, Settings.Default.ExportSplitString);
                 for (int i = 0; i <names.Length ; i++)
                 {
                     ScriptObject obj = logoList[i];
