@@ -129,7 +129,21 @@ namespace imageeditor.Model
                 e.InterpolationMode = InterpolationMode.HighQualityBicubic;
                 e.TextRenderingHint = System.Drawing.Text.TextRenderingHint.AntiAlias;
                 e.PixelOffsetMode = PixelOffsetMode.HighQuality;
-                Layers = Layers.OrderBy(p=> p.Order).ToList();
+                Layers.Sort(
+                      delegate (Layer p1, Layer p2)
+                      {
+                          if (p1.LayerText == null)
+                              return -1;
+                          if (p2.LayerText == null)
+                              return -1;
+                          int compareResult = p2.LayerText.Content.Length.CompareTo(p1.LayerText.Content.Length);
+                          if (compareResult == 0)
+                          {
+                              return p1.Order.CompareTo(p2.Order);
+                          }
+                          return compareResult;
+                      }
+                  );
                 for (int i = 0; i < Layers.Count; i++)
                 {
                     if(i > 1)
@@ -154,7 +168,21 @@ namespace imageeditor.Model
                     g.PixelOffsetMode = PixelOffsetMode.HighQuality;
 
                     g.Clear(Color.Transparent);
-                    Layers = Layers.OrderBy(p => p.Order).ToList();
+                    Layers.Sort(
+                        delegate (Layer p1, Layer p2)
+                        {
+                            if (p1.LayerText == null)
+                                return -1;
+                            if (p2.LayerText == null)
+                                return -1;
+                            int compareResult = p2.LayerText.Content.Length.CompareTo(p1.LayerText.Content.Length);
+                            if (compareResult == 0)
+                            {
+                                return p1.Order.CompareTo(p2.Order);
+                            }
+                            return compareResult;
+                        }
+                    );
                     for (int i = 0; i < Layers.Count; i++)
                     {
                         if (i > 1)
