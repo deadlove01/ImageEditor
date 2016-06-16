@@ -1,0 +1,36 @@
+﻿<?xml version='1.0' encoding='utf-8'?>
+<SettingsFile xmlns="http://schemas.microsoft.com/VisualStudio/2004/01/settings" CurrentProfile="(Default)" GeneratedClassNamespace="SunfrogUploader.Properties" GeneratedClassName="Settings">
+  <Profiles />
+  <Settings>
+    <Setting Name="SunfrogConfig" Type="System.String" Scope="User">
+      <Value Profile="(Default)">\DataConfig\Sunfrog\acc.json</Value>
+    </Setting>
+    <Setting Name="LogoConfig" Type="System.String" Scope="User">
+      <Value Profile="(Default)">\DataConfig\Logo\{0}.json</Value>
+    </Setting>
+    <Setting Name="ContentConfig" Type="System.String" Scope="User">
+      <Value Profile="(Default)">\DataConfig\Content\{0}.json</Value>
+    </Setting>
+    <Setting Name="LogoPath" Type="System.String" Scope="User">
+      <Value Profile="(Default)">\Resources\Logo\</Value>
+    </Setting>
+    <Setting Name="SplitString" Type="System.String" Scope="User">
+      <Value Profile="(Default)">-_-</Value>
+    </Setting>
+    <Setting Name="LogoExportPath" Type="System.String" Scope="User">
+      <Value Profile="(Default)">\Resources\Autologo\</Value>
+    </Setting>
+    <Setting Name="ExportSplitString" Type="System.String" Scope="User">
+      <Value Profile="(Default)">_</Value>
+    </Setting>
+    <Setting Name="ListNameSuccess" Type="System.String" Scope="User">
+      <Value Profile="(Default)">\ListNameSuccess.txt</Value>
+    </Setting>
+    <Setting Name="ErrorNameList" Type="System.String" Scope="User">
+      <Value Profile="(Default)">\ErrorName.txt</Value>
+    </Setting>
+    <Setting Name="UploadedLinks" Type="System.String" Scope="User">
+      <Value Profile="(Default)">\uploaded.txt</Value>
+    </Setting>
+  </Settings>
+</SettingsFile>
