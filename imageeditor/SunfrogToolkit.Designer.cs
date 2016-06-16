@@ -111,6 +111,8 @@
             this.bgWorker = new System.ComponentModel.BackgroundWorker();
             this.saveFileDialog1 = new System.Windows.Forms.SaveFileDialog();
             this.openFileDialog1 = new System.Windows.Forms.OpenFileDialog();
+            this.toolStripSeparator1 = new System.Windows.Forms.ToolStripSeparator();
+            this.btnAutoScale = new System.Windows.Forms.ToolStripButton();
             this.toolStripContainer1.ContentPanel.SuspendLayout();
             this.toolStripContainer1.LeftToolStripPanel.SuspendLayout();
             this.toolStripContainer1.TopToolStripPanel.SuspendLayout();
@@ -448,7 +450,7 @@
             this.toolStripButton9.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
             this.toolStripButton9.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.toolStripButton9.Name = "toolStripButton9";
-            this.toolStripButton9.Size = new System.Drawing.Size(23, 22);
+            this.toolStripButton9.Size = new System.Drawing.Size(23, 4);
             this.toolStripButton9.Text = "Draw rectangle";
             this.toolStripButton9.Click += new System.EventHandler(this.toolStripButton9_Click);
             // 
@@ -458,7 +460,7 @@
             this.toolStripButton10.Image = global::imageeditor.Properties.Resources.drawellip;
             this.toolStripButton10.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.toolStripButton10.Name = "toolStripButton10";
-            this.toolStripButton10.Size = new System.Drawing.Size(23, 22);
+            this.toolStripButton10.Size = new System.Drawing.Size(23, 20);
             this.toolStripButton10.Text = "Draw ellipse";
             this.toolStripButton10.Click += new System.EventHandler(this.toolStripButton10_Click);
             // 
@@ -468,7 +470,7 @@
             this.toolStripButton11.Image = global::imageeditor.Properties.Resources.line;
             this.toolStripButton11.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.toolStripButton11.Name = "toolStripButton11";
-            this.toolStripButton11.Size = new System.Drawing.Size(23, 22);
+            this.toolStripButton11.Size = new System.Drawing.Size(23, 20);
             this.toolStripButton11.Text = "Draw line";
             this.toolStripButton11.Click += new System.EventHandler(this.toolStripButton11_Click);
             // 
@@ -478,7 +480,7 @@
             this.toolStripButton12.Image = global::imageeditor.Properties.Resources.brush;
             this.toolStripButton12.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.toolStripButton12.Name = "toolStripButton12";
-            this.toolStripButton12.Size = new System.Drawing.Size(23, 22);
+            this.toolStripButton12.Size = new System.Drawing.Size(23, 20);
             this.toolStripButton12.Text = "Brush";
             this.toolStripButton12.Click += new System.EventHandler(this.toolStripButton12_Click);
             // 
@@ -488,7 +490,7 @@
             this.toolStripButton13.Image = global::imageeditor.Properties.Resources.pencil;
             this.toolStripButton13.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.toolStripButton13.Name = "toolStripButton13";
-            this.toolStripButton13.Size = new System.Drawing.Size(23, 22);
+            this.toolStripButton13.Size = new System.Drawing.Size(23, 20);
             this.toolStripButton13.Text = "Pencil";
             this.toolStripButton13.Click += new System.EventHandler(this.toolStripButton13_Click);
             // 
@@ -498,7 +500,7 @@
             this.toolStripButton14.Image = global::imageeditor.Properties.Resources.colorp;
             this.toolStripButton14.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.toolStripButton14.Name = "toolStripButton14";
-            this.toolStripButton14.Size = new System.Drawing.Size(23, 22);
+            this.toolStripButton14.Size = new System.Drawing.Size(23, 20);
             this.toolStripButton14.Text = "Color picker";
             this.toolStripButton14.Click += new System.EventHandler(this.toolStripButton14_Click);
             // 
@@ -510,7 +512,7 @@
             this.toolStripButton15.Name = "toolStripButton15";
             this.toolStripButton15.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
             this.toolStripButton15.RightToLeftAutoMirrorImage = true;
-            this.toolStripButton15.Size = new System.Drawing.Size(23, 22);
+            this.toolStripButton15.Size = new System.Drawing.Size(23, 20);
             this.toolStripButton15.Text = "Eraser";
             this.toolStripButton15.Click += new System.EventHandler(this.toolStripButton15_Click);
             // 
@@ -520,7 +522,7 @@
             this.toolStripButton16.Image = global::imageeditor.Properties.Resources.text;
             this.toolStripButton16.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.toolStripButton16.Name = "toolStripButton16";
-            this.toolStripButton16.Size = new System.Drawing.Size(23, 22);
+            this.toolStripButton16.Size = new System.Drawing.Size(23, 20);
             this.toolStripButton16.Text = "Draw text";
             this.toolStripButton16.Click += new System.EventHandler(this.toolStripButton16_Click);
             // 
@@ -771,10 +773,12 @@
             this.toolStripButton2,
             this.toolStripButton3,
             this.btnAddScript,
-            this.btnRunScript});
+            this.btnRunScript,
+            this.toolStripSeparator1,
+            this.btnAutoScale});
             this.toolStrip1.Location = new System.Drawing.Point(3, 25);
             this.toolStrip1.Name = "toolStrip1";
-            this.toolStrip1.Size = new System.Drawing.Size(234, 25);
+            this.toolStrip1.Size = new System.Drawing.Size(349, 25);
             this.toolStrip1.TabIndex = 0;
             // 
             // toolStripButton1
@@ -933,6 +937,19 @@
             // 
             this.openFileDialog1.FileName = "openFileDialog1";
             // 
+            // toolStripSeparator1
+            // 
+            this.toolStripSeparator1.Name = "toolStripSeparator1";
+            this.toolStripSeparator1.Size = new System.Drawing.Size(6, 25);
+            // 
+            // btnAutoScale
+            // 
+            this.btnAutoScale.CheckOnClick = true;
+            this.btnAutoScale.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.btnAutoScale.Name = "btnAutoScale";
+            this.btnAutoScale.Size = new System.Drawing.Size(78, 22);
+            this.btnAutoScale.Text = "AutoScaleAll";
+            // 
             // SunfrogToolkit
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -1079,6 +1096,8 @@
         private System.Windows.Forms.ToolStripProgressBar tsProgress;
         private System.Windows.Forms.SaveFileDialog saveFileDialog1;
         private System.Windows.Forms.OpenFileDialog openFileDialog1;
+        private System.Windows.Forms.ToolStripSeparator toolStripSeparator1;
+        private System.Windows.Forms.ToolStripButton btnAutoScale;
     }
 }
 

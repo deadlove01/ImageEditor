@@ -9,11 +9,11 @@ using System.Windows.Forms;
 using System.Runtime.InteropServices;
 using System.Drawing.Imaging;
 using System.IO;
-using imageeditor.Model;
 using System.Drawing.Drawing2D;
 using imageeditor.Controller;
 using imageeditor.Properties;
 using System.Threading;
+using AutoArtist.Model;
 
 namespace imageeditor
 {
@@ -523,7 +523,7 @@ namespace imageeditor
                     File.Delete(s.FileName);
                 }
 
-                layerManager.ExportImage(s.FileName, new Size(2400, 3200));
+                layerManager.ExportImage(s.FileName, new Size(2400, 3200), btnAutoScale.Checked);
             }
         }
 
@@ -609,6 +609,22 @@ namespace imageeditor
                 if(layerText != null)
                 {
                     tbText.Text = layerText.Content;
+                    btnTextColor.BackColor = layerText.TextColor;
+                    cbbFontSize.Text = layerText.FontSize.ToString();
+                    cbbFontStyle.Text = layerText.Font.Style.ToString();
+                    tbText.Text = layerText.Content;
+                    for (int i = 0; i < cbbFontName.Items.Count; i++)
+                    {
+                        if(cbbFontName.Items[i].ToString().Equals(layerText.Font.Name))
+                        {
+                            cbbFontName.SelectedIndex = i;
+                            break;
+                        }
+                    }
+
+                    tbOutlineSize.Text = layerText.OutlineSize.ToString();
+                    btnOutlineColor.BackColor = layerText.OutlineColor;
+                    cbbOutlineStyle.Text = layerText.OutlineStyle.ToString();
                 }
             }
         }
@@ -683,6 +699,7 @@ namespace imageeditor
 
 
         #region events
+        private bool lastCheck = false;
         private void pictureBox1_Paint(object sender, PaintEventArgs e)
         {
             if (draw)
@@ -690,7 +707,12 @@ namespace imageeditor
                 layerManager.UpdateCenterPosition(x, y);
             }
 
-            layerManager.DrawLayers(e.Graphics);
+            layerManager.DrawLayers(e.Graphics, btnAutoScale.Checked);
+            if(btnAutoScale.Checked != lastCheck)
+            {
+                UpdateInfo();
+                lastCheck = btnAutoScale.Checked;
+            }
         }
 
         private void btnDeleteLayer_Click(object sender, EventArgs e)
@@ -778,7 +800,7 @@ namespace imageeditor
                         currentLayer.LayerText.Content = strText;
                         currentLayer.LayerText.Font.Dispose();
                         currentLayer.LayerText.Font = new Font(font, int.Parse(cbbFontSize.Text.ToString()), fontStyle, GraphicsUnit.Pixel);
-                        currentLayer.LayerText.TextColor = selectedColor;
+                        currentLayer.LayerText.TextColor = btnTextColor.BackColor;
                         currentLayer.LayerText.OutlineSize = outlineSize;
                         currentLayer.LayerText.OutlineColor = outlineColor;
                         currentLayer.LayerText.OutlineStyle = lineJoin;
@@ -843,6 +865,7 @@ namespace imageeditor
             var result = saveFileDialog1.ShowDialog();
             if(result == System.Windows.Forms.DialogResult.OK)
             {
+                layerManager.AutoScaleAll = btnAutoScale.Checked;
                 layerManager.ConvertToScriptConfig(saveFileDialog1.FileName);
             }
           

@@ -1,5 +1,5 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
-<Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+<Project ToolsVersion="12.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">x86</Platform>
@@ -10,7 +10,7 @@
     <AppDesignerFolder>Properties</AppDesignerFolder>
     <RootNamespace>imageeditor</RootNamespace>
     <AssemblyName>ImageEditor</AssemblyName>
-    <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
+    <TargetFrameworkVersion>v4.5.2</TargetFrameworkVersion>
     <TargetFrameworkProfile>
     </TargetFrameworkProfile>
     <FileAlignment>512</FileAlignment>
@@ -75,10 +75,6 @@
     <CodeAnalysisRuleSet>MinimumRecommendedRules.ruleset</CodeAnalysisRuleSet>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="EnvelopeDistortion, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>.\EnvelopeDistortion.dll</HintPath>
-    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
     <Reference Include="System.Xml.Linq" />
@@ -96,6 +92,7 @@
     <Compile Include="Model\Layer.cs" />
     <Compile Include="Model\LayerManager.cs" />
     <Compile Include="Model\LayerText.cs" />
+    <Compile Include="Model\NewMockupResult.cs" />
     <Compile Include="Model\ScriptConfig.cs" />
     <Compile Include="Model\Singleton.cs" />
     <Compile Include="Model\Transform.cs" />
@@ -192,11 +189,16 @@
   <ItemGroup>
     <None Include="Resources\wheel.png" />
   </ItemGroup>
-  <ItemGroup />
   <ItemGroup>
     <Content Include="Resources\add.png" />
     <Content Include="Resources\check.png" />
     <Content Include="Resources\remove.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\AutoArtist\AutoArtist.csproj">
+      <Project>{32b7c727-27fc-429e-aaa1-5a99dea4c559}</Project>
+      <Name>AutoArtist</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

@@ -9,20 +9,19 @@ using System.Drawing.Drawing2D;
 using System.Drawing.Text;
 using System.Diagnostics;
 using System.Drawing.Imaging;
-using System.IO;
 using imageeditor.Model;
 using imageeditor.Util;
-using EnvelopeDistortion.Distortions;
 using System.Threading;
-using imageEditor.Model;
+using AutoArtist.Model;
 using imageeditor.Properties;
+
 namespace imageeditor.Controller
 {
-    public class ArtistController : Singleton<ArtistController>
+    public class ArtistController : AutoArtist.Model.Singleton<ArtistController>
     {
-        private ArtistProps props;
+        private AutoArtist.Model.ArtistProps props;
         private StringFormat stringFormat;
-        private LayerManager layerManager;
+        private AutoArtist.Model.LayerManager layerManager;
 
         public ArtistController()
         {
@@ -32,7 +31,7 @@ namespace imageeditor.Controller
             stringFormat.FormatFlags = StringFormatFlags.FitBlackBox | StringFormatFlags.NoWrap;
             stringFormat.Trimming = StringTrimming.Character;
             
-            layerManager = new LayerManager();
+            layerManager = new AutoArtist.Model.LayerManager();
             layerManager.ZoomPercent = 0.15f;
         }
 
@@ -47,7 +46,7 @@ namespace imageeditor.Controller
 
         private void Init(string logoName)
         {
-            props = new ArtistProps();
+            props = new AutoArtist.Model.ArtistProps();
             props.StringFormat = stringFormat;
             props.LogoRootPath = FileUtil.GetCurPath(Settings.Default.LogoPath + logoName + "\\");
             props.ScriptConfig = FileUtil.ReadConfig<ScriptConfig>(props.LogoRootPath + "script.xml");
@@ -77,7 +76,7 @@ namespace imageeditor.Controller
                     string fontPath = props.LogoRootPath + obj.FontName;
                     Font ff = GetCustomFont(fontPath, obj.FontSize);
                     {
-                        Layer layer = new Layer(new LayerText(names[i], ff, obj.FontSize, LogoUtil.ConvertStringToColor(obj.TextColor)
+                        AutoArtist.Model.Layer layer = new AutoArtist.Model.Layer(new AutoArtist.Model.LayerText(names[i], ff, obj.FontSize, LogoUtil.ConvertStringToColor(obj.TextColor)
                             , (int)obj.OutlineSize, LogoUtil.ConvertStringToColor(obj.OutlineColorHex)
                             , (LineJoin)obj.LineJoin));
 
@@ -88,7 +87,7 @@ namespace imageeditor.Controller
                 } 
                 if(logoList.Count > 0)
                 {
-                    layerManager.ExportImage(exportPath + exportName + ".png", new Size(2400, 3200));
+                    layerManager.ExportImage(exportPath + exportName + ".png", new Size(2400, 3200), config.AutoScaleAll);
                 }else
                 {
                     System.Windows.Forms.MessageBox.Show("Cannot found any logo info!");
