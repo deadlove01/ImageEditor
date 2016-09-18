@@ -1,0 +1,10 @@
+AutoArtist/bin
+AutoArtist/obj
+imageeditor/bin
+imageeditor/obj
+*.suo
+packages/
+TeespringUploader/bin
+TeespringUploader/obj
+TeespringWebUploader/obj
+TeespringWebUploader/bin
