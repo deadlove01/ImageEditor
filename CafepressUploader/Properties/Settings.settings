@@ -1,0 +1,27 @@
+﻿<?xml version='1.0' encoding='utf-8'?>
+<SettingsFile xmlns="http://schemas.microsoft.com/VisualStudio/2004/01/settings" CurrentProfile="(Default)" GeneratedClassNamespace="CafepressUploader.Properties" GeneratedClassName="Settings">
+  <Profiles />
+  <Settings>
+    <Setting Name="CAFEPRESS_EMAIL" Type="System.String" Scope="User">
+      <Value Profile="(Default)" />
+    </Setting>
+    <Setting Name="CAFEPRESS_PASS" Type="System.String" Scope="User">
+      <Value Profile="(Default)" />
+    </Setting>
+    <Setting Name="LOGIN_SUCCESS" Type="System.String" Scope="User">
+      <Value Profile="(Default)">Login success.</Value>
+    </Setting>
+    <Setting Name="LOGIN_FAILED" Type="System.String" Scope="User">
+      <Value Profile="(Default)">Login failed.</Value>
+    </Setting>
+    <Setting Name="TEMPLATE_PATH" Type="System.String" Scope="User">
+      <Value Profile="(Default)">Template\\</Value>
+    </Setting>
+    <Setting Name="SUCCESS_FILE" Type="System.String" Scope="User">
+      <Value Profile="(Default)">success.txt</Value>
+    </Setting>
+    <Setting Name="FAILED_FILE" Type="System.String" Scope="User">
+      <Value Profile="(Default)">failed.txt</Value>
+    </Setting>
+  </Settings>
+</SettingsFile>
