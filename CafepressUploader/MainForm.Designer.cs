@@ -38,6 +38,7 @@
             this.btnBrowse = new MetroFramework.Controls.MetroButton();
             this.btnClear = new MetroFramework.Controls.MetroButton();
             this.metroPanel3 = new MetroFramework.Controls.MetroPanel();
+            this.tbTemplateName = new MetroFramework.Controls.MetroTextBox();
             this.cbbTemplates = new MetroFramework.Controls.MetroComboBox();
             this.btnSaveTemplate = new MetroFramework.Controls.MetroButton();
             this.tbAbout = new MetroFramework.Controls.MetroTextBox();
@@ -55,7 +56,6 @@
             this.toolStrip1 = new System.Windows.Forms.ToolStrip();
             this.tsProgressBar = new System.Windows.Forms.ToolStripProgressBar();
             this.tsLblProgess = new System.Windows.Forms.ToolStripLabel();
-            this.tbTemplateName = new MetroFramework.Controls.MetroTextBox();
             this.metroPanel1.SuspendLayout();
             this.metroPanel2.SuspendLayout();
             this.metroPanel3.SuspendLayout();
@@ -197,6 +197,38 @@
             this.metroPanel3.VerticalScrollbarHighlightOnWheel = false;
             this.metroPanel3.VerticalScrollbarSize = 10;
             // 
+            // tbTemplateName
+            // 
+            // 
+            // 
+            // 
+            this.tbTemplateName.CustomButton.Image = null;
+            this.tbTemplateName.CustomButton.Location = new System.Drawing.Point(57, 1);
+            this.tbTemplateName.CustomButton.Name = "";
+            this.tbTemplateName.CustomButton.Size = new System.Drawing.Size(39, 39);
+            this.tbTemplateName.CustomButton.Style = MetroFramework.MetroColorStyle.Blue;
+            this.tbTemplateName.CustomButton.TabIndex = 1;
+            this.tbTemplateName.CustomButton.Theme = MetroFramework.MetroThemeStyle.Light;
+            this.tbTemplateName.CustomButton.UseSelectable = true;
+            this.tbTemplateName.CustomButton.Visible = false;
+            this.tbTemplateName.Lines = new string[] {
+        "template_name"};
+            this.tbTemplateName.Location = new System.Drawing.Point(16, 432);
+            this.tbTemplateName.MaxLength = 32767;
+            this.tbTemplateName.Name = "tbTemplateName";
+            this.tbTemplateName.PasswordChar = '\0';
+            this.tbTemplateName.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
+            this.tbTemplateName.SelectedText = "";
+            this.tbTemplateName.SelectionLength = 0;
+            this.tbTemplateName.SelectionStart = 0;
+            this.tbTemplateName.ShortcutsEnabled = true;
+            this.tbTemplateName.Size = new System.Drawing.Size(97, 41);
+            this.tbTemplateName.TabIndex = 5;
+            this.tbTemplateName.Text = "template_name";
+            this.tbTemplateName.UseSelectable = true;
+            this.tbTemplateName.WaterMarkColor = System.Drawing.Color.FromArgb(((int)(((byte)(109)))), ((int)(((byte)(109)))), ((int)(((byte)(109)))));
+            this.tbTemplateName.WaterMarkFont = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Italic, System.Drawing.GraphicsUnit.Pixel);
+            // 
             // cbbTemplates
             // 
             this.cbbTemplates.FormattingEnabled = true;
@@ -206,6 +238,7 @@
             this.cbbTemplates.Size = new System.Drawing.Size(209, 29);
             this.cbbTemplates.TabIndex = 6;
             this.cbbTemplates.UseSelectable = true;
+            this.cbbTemplates.SelectedIndexChanged += new System.EventHandler(this.cbbTemplates_SelectedIndexChanged);
             // 
             // btnSaveTemplate
             // 
@@ -458,38 +491,6 @@
             this.tsLblProgess.Name = "tsLblProgess";
             this.tsLblProgess.Size = new System.Drawing.Size(16, 22);
             this.tsLblProgess.Text = "...";
-            // 
-            // tbTemplateName
-            // 
-            // 
-            // 
-            // 
-            this.tbTemplateName.CustomButton.Image = null;
-            this.tbTemplateName.CustomButton.Location = new System.Drawing.Point(57, 1);
-            this.tbTemplateName.CustomButton.Name = "";
-            this.tbTemplateName.CustomButton.Size = new System.Drawing.Size(39, 39);
-            this.tbTemplateName.CustomButton.Style = MetroFramework.MetroColorStyle.Blue;
-            this.tbTemplateName.CustomButton.TabIndex = 1;
-            this.tbTemplateName.CustomButton.Theme = MetroFramework.MetroThemeStyle.Light;
-            this.tbTemplateName.CustomButton.UseSelectable = true;
-            this.tbTemplateName.CustomButton.Visible = false;
-            this.tbTemplateName.Lines = new string[] {
-        "template_name"};
-            this.tbTemplateName.Location = new System.Drawing.Point(16, 432);
-            this.tbTemplateName.MaxLength = 32767;
-            this.tbTemplateName.Name = "tbTemplateName";
-            this.tbTemplateName.PasswordChar = '\0';
-            this.tbTemplateName.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
-            this.tbTemplateName.SelectedText = "";
-            this.tbTemplateName.SelectionLength = 0;
-            this.tbTemplateName.SelectionStart = 0;
-            this.tbTemplateName.ShortcutsEnabled = true;
-            this.tbTemplateName.Size = new System.Drawing.Size(97, 41);
-            this.tbTemplateName.TabIndex = 5;
-            this.tbTemplateName.Text = "template_name";
-            this.tbTemplateName.UseSelectable = true;
-            this.tbTemplateName.WaterMarkColor = System.Drawing.Color.FromArgb(((int)(((byte)(109)))), ((int)(((byte)(109)))), ((int)(((byte)(109)))));
-            this.tbTemplateName.WaterMarkFont = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Italic, System.Drawing.GraphicsUnit.Pixel);
             // 
             // MainForm
             // 

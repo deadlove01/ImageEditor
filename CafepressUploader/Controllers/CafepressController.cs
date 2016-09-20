@@ -66,14 +66,38 @@ namespace CafepressUploader.Controllers
                 nvc.Add("ThumbnailStream", "data:image/png;base64," +
                     ImageUtil.ImageToBase64(resizedImg,
                     System.Drawing.Imaging.ImageFormat.Png));
-
+                img.Dispose();
+                resizedImg.Dispose();
                 string uploadUrl = "http://upload.cafepresscloud.com/DesignAndListCloudAPI/DesignAndListCloudAPIRestful.svc/GetProductUrlsForThumbnailBase64?ImageFullSizeHeight=3200&ImageFullSizeWidth=2400&FileName=5.png&ImageCaption=&ImageDescription=&MemberNo={0}";
                 string result = web.HttpUploadFile(string.Format(uploadUrl, memberNo), null, null, null, nvc);
-
+                
                 dynamic rs = JsonConvert.DeserializeObject(result);
                 dynamic suggests = rs.GetProductUrlsForThumbnailBase64Result.Suggestions;
+                if(suggests != null && suggests.Count > 0)
+                {
+                    imageNo = suggests[0].ImageNo;
+                }else
+                {
+                    // request to designs url to get image no
+                    string reqUrl = "http://members.cafepress.com/m/MemberDesigns/GetMemberDesigns";
+                    nvc.Clear();
+                    nvc.Add("page", "1");
+                    nvc.Add("sort", "recent");
+                    nvc.Add("design-type", "all");
+                    nvc.Add("designsRemovedCount", "0");
+
+                    result = web.SendRequest(reqUrl, "POST", nvc, false, "application/x-www-form-urlencoded; charset=UTF-8");
+                    dynamic designResult = JsonConvert.DeserializeObject(result);
+                    foreach (var design in designResult.Data.Designs)
+                    {
+                        if(design.TotalProductCount == 0)
+                        {
+                            imageNo = design.Id;
+                            break;
+                        }
+                    }
+                }
              
-               imageNo = suggests[0].ImageNo;
                 return true;
             }
             catch (Exception ex)

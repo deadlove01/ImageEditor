@@ -170,16 +170,16 @@ namespace CafepressUploader.Models
 
 
             HttpWebRequest wr = (HttpWebRequest)WebRequest.Create(url);
-            wr.ServicePoint.Expect100Continue = false;
+          //  wr.ServicePoint.Expect100Continue = false;
             wr.ContentType = "multipart/form-data; boundary=" + boundary;
             wr.Method = "POST";
             //    wr.KeepAlive = true;
             wr.Host = "upload.cafepresscloud.com";
             //  wr.Referer = url;
             //wr.Headers[HttpRequestHeader.AcceptEncoding] = "gzip, deflate";
-            wr.Headers[HttpRequestHeader.KeepAlive] = "true";
+            //wr.Headers[HttpRequestHeader.KeepAlive] = "true";
             //wr.Headers[HttpRequestHeader.CacheControl] = "max-age=0";
-            //wr.AllowAutoRedirect = true;
+            wr.AllowAutoRedirect = true;
             //wr.Accept = "*/*";
             // wr.Credentials = System.Net.CredentialCache.DefaultCredentials;
             //  wr.CachePolicy = new System.Net.Cache.RequestCachePolicy(System.Net.Cache.RequestCacheLevel.NoCacheNoStore); 

@@ -90,7 +90,7 @@ namespace CafepressUploader
                             uploadProductResult = CafepressController.Instance.UploadProducts(ref imageUrl);
 
                             CafepressController.Instance.Reset();
-                            Thread.Sleep(10000);
+                            Thread.Sleep(2000);
                         }
                         catch
                         {
@@ -280,5 +280,22 @@ namespace CafepressUploader
 
         #endregion
 
+        private void cbbTemplates_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            if(cbbTemplates.Items.Count > 0)
+            {
+                string dir = Directory.GetCurrentDirectory() + "\\" + Settings.Default.TEMPLATE_PATH;
+                string templateName = cbbTemplates.SelectedItem.ToString() + ".json";
+                string tempContent = File.ReadAllText(dir + templateName);
+                Template template = JsonConvert.DeserializeObject<Template>(tempContent);
+                if(template != null)
+                {
+                    tbName.Text = template.Name;
+                    tbTags.Text = template.Tags;
+                    tbAbout.Text = template.About;
+                }
+            }
+          
+        }
     }
 }
