@@ -1,7 +1,7 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 14
-VisualStudioVersion = 14.0.25123.0
+VisualStudioVersion = 14.0.25420.1
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ImageEditor", "imageeditor\ImageEditor.csproj", "{54A898F2-08DB-465C-9C02-CCACF8D6DFF8}"
 EndProject
@@ -14,6 +14,8 @@ EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TeespringWebUploader", "TeespringWebUploader\TeespringWebUploader.csproj", "{4F44AF37-F90C-4A69-AA06-DF29C3AC9E53}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CafepressUploader", "CafepressUploader\CafepressUploader.csproj", "{69B17E6C-2A7C-4AB3-905E-F714F93FE976}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ViralStyleUploader", "ViralStyleUploader\ViralStyleUploader.csproj", "{70981522-FF7C-44C0-BE9C-59254DDA68A6}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -94,6 +96,18 @@ Global
 		{69B17E6C-2A7C-4AB3-905E-F714F93FE976}.Release|x64.Build.0 = Release|Any CPU
 		{69B17E6C-2A7C-4AB3-905E-F714F93FE976}.Release|x86.ActiveCfg = Release|Any CPU
 		{69B17E6C-2A7C-4AB3-905E-F714F93FE976}.Release|x86.Build.0 = Release|Any CPU
+		{70981522-FF7C-44C0-BE9C-59254DDA68A6}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{70981522-FF7C-44C0-BE9C-59254DDA68A6}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{70981522-FF7C-44C0-BE9C-59254DDA68A6}.Debug|x64.ActiveCfg = Debug|Any CPU
+		{70981522-FF7C-44C0-BE9C-59254DDA68A6}.Debug|x64.Build.0 = Debug|Any CPU
+		{70981522-FF7C-44C0-BE9C-59254DDA68A6}.Debug|x86.ActiveCfg = Debug|Any CPU
+		{70981522-FF7C-44C0-BE9C-59254DDA68A6}.Debug|x86.Build.0 = Debug|Any CPU
+		{70981522-FF7C-44C0-BE9C-59254DDA68A6}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{70981522-FF7C-44C0-BE9C-59254DDA68A6}.Release|Any CPU.Build.0 = Release|Any CPU
+		{70981522-FF7C-44C0-BE9C-59254DDA68A6}.Release|x64.ActiveCfg = Release|Any CPU
+		{70981522-FF7C-44C0-BE9C-59254DDA68A6}.Release|x64.Build.0 = Release|Any CPU
+		{70981522-FF7C-44C0-BE9C-59254DDA68A6}.Release|x86.ActiveCfg = Release|Any CPU
+		{70981522-FF7C-44C0-BE9C-59254DDA68A6}.Release|x86.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
