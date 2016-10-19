@@ -106,5 +106,17 @@ namespace CafepressUploader.Properties {
                 this["FAILED_FILE"] = value;
             }
         }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("UPLOADED\\\\")]
+        public string UPLOADED_LOGO {
+            get {
+                return ((string)(this["UPLOADED_LOGO"]));
+            }
+            set {
+                this["UPLOADED_LOGO"] = value;
+            }
+        }
     }
 }

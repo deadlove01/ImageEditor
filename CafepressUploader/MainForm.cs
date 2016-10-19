@@ -67,6 +67,10 @@ namespace CafepressUploader
         {
             try
             {
+                string uploadedFolder = Directory.GetCurrentDirectory() + "\\" + Settings.Default.UPLOADED_LOGO;
+                if (!Directory.Exists(uploadedFolder))
+                    Directory.CreateDirectory(uploadedFolder);
+
                 string templatePath = string.Empty;
                 string dir = Directory.GetCurrentDirectory() + "\\" + Settings.Default.TEMPLATE_PATH;
                 cbbTemplates.Invoke(new Action(() =>{ templatePath = dir + cbbTemplates.SelectedItem.ToString() + ".json"; }));
@@ -91,6 +95,10 @@ namespace CafepressUploader
 
                             CafepressController.Instance.Reset();
                             Thread.Sleep(2000);
+
+                            // move logo
+                            string newLogoPath = uploadedFolder + fileName;
+                            File.Move(logoPath, newLogoPath);
                         }
                         catch
                         {

@@ -1,0 +1,12 @@
+﻿<?xml version='1.0' encoding='utf-8'?>
+<SettingsFile xmlns="http://schemas.microsoft.com/VisualStudio/2004/01/settings" CurrentProfile="(Default)" GeneratedClassNamespace="AutoUpload.Properties" GeneratedClassName="Settings">
+  <Profiles />
+  <Settings>
+    <Setting Name="ViralStyle_Mockup_Path" Type="System.String" Scope="User">
+      <Value Profile="(Default)">Platform\ViralStyle\Shirts</Value>
+    </Setting>
+    <Setting Name="ViralStyle_Account_Path" Type="System.String" Scope="User">
+      <Value Profile="(Default)">Platform\ViralStyle\accounts.txt</Value>
+    </Setting>
+  </Settings>
+</SettingsFile>

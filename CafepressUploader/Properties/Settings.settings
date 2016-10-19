@@ -23,5 +23,8 @@
     <Setting Name="FAILED_FILE" Type="System.String" Scope="User">
       <Value Profile="(Default)">failed.txt</Value>
     </Setting>
+    <Setting Name="UPLOADED_LOGO" Type="System.String" Scope="User">
+      <Value Profile="(Default)">UPLOADED\\</Value>
+    </Setting>
   </Settings>
 </SettingsFile>
