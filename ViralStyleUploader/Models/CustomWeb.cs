@@ -31,6 +31,73 @@ namespace ViralStyleUploader.Models
             return request;
         }
 
+        public string SendRequest(string url, string method, string host, NameValueCollection nvc, bool isCreateCookie = false, string contentType = "")
+        {
+            string result = string.Empty;
+            try
+            {
+                CookieContainer container = new CookieContainer();
+                string data = ConvertNVCToString(nvc);
+
+                string finalUrl = (data != "") ? url + "?" + data : url;
+                if (method.ToLower().Equals("post"))
+                    finalUrl = url;
+
+                var request = (HttpWebRequest)WebRequest.Create(finalUrl);
+                request.Method = method;
+                request.AllowAutoRedirect = true;
+                request.Accept = "*/*";
+                request.UserAgent = userAgent;
+                request.Host = host;
+                // request.Timeout = 1000 * 60 * 5;
+
+                if (!isCreateCookie)
+                {
+                    request.CookieContainer = CookieContainer;
+                }
+                else
+                {
+                    container = request.CookieContainer = new CookieContainer();
+                }
+
+
+                if (contentType != "")
+                {
+                    request.ContentType = contentType;
+                }
+                if (method.ToLower().Equals("post"))
+                {
+                    var byteData = Encoding.ASCII.GetBytes(data);
+                    request.ContentLength = byteData.Length;
+                    using (var stream = request.GetRequestStream())
+                        stream.Write(byteData, 0, byteData.Length);
+                }
+
+
+                using (var res = request.GetResponse())
+                {
+                    using (var sr = new StreamReader(res.GetResponseStream()))
+                    {
+                        result = sr.ReadToEnd();
+                    }
+                }
+
+                if (isCreateCookie)
+                {
+                    CookieContainer = container;
+                }
+
+            }
+            catch (Exception ex)
+            {
+                System.Windows.Forms.MessageBox.Show(ex.Message);
+                Console.WriteLine("error: " + ex.StackTrace);
+            }
+
+            return result;
+        }
+
+
         public string SendRequest(string url, string method, NameValueCollection nvc, bool isCreateCookie = false, string contentType = "")
         {
             string result = string.Empty;
@@ -249,7 +316,7 @@ namespace ViralStyleUploader.Models
         }
 
 
-        public string HttpUploadFileByJson(string url, string jsonModel)
+        public string HttpUploadFileByJson(string url, string jsonModel, string authToken, string xtoken)
         {
             Console.WriteLine(string.Format("Uploading {0}", url));
 
@@ -257,11 +324,13 @@ namespace ViralStyleUploader.Models
             //wr.ServicePoint.Expect100Continue = false;
             wr.ContentType = "application/json; charset=utf-8";
             wr.Method = "POST";
-            wr.Host = "manager.sunfrogshirts.com";
+            wr.Host = "viralstyle.com";
             wr.Headers[HttpRequestHeader.KeepAlive] = "true";
             wr.CookieContainer = CookieContainer;
             wr.UserAgent = userAgent;
             wr.Timeout = 1000 * 60 * 5;
+            wr.Headers.Add("authorization", "Bearer "+authToken);
+            wr.Headers.Add("X-CSRF-TOKEN", xtoken);
 
 
             using (var streamWriter = new StreamWriter(wr.GetRequestStream()))
@@ -296,7 +365,7 @@ namespace ViralStyleUploader.Models
             return null;
         }
 
-        public string SendRequestJsonType(string url, string method, string contentType, string jsonModel, bool isCreateCookie = false)
+        public string SendRequestJsonType(string url, string method, string contentType, string jsonModel, string token, bool isCreateCookie = false)
         {
             Console.WriteLine(string.Format("Uploading {0}", url));
             CookieContainer container = new CookieContainer();
@@ -305,12 +374,12 @@ namespace ViralStyleUploader.Models
             wr.ContentType = contentType;
             wr.Host = "viralstyle.com";
             wr.Method = method;
-           // wr.Headers[HttpRequestHeader.KeepAlive] = "true";
+            wr.Headers[HttpRequestHeader.KeepAlive] = "true";
             if(isCreateCookie)
             {
                 container = wr.CookieContainer = new CookieContainer();
-                wr.Headers[HttpRequestHeader.Authorization] = "Bearer MIBSI57Ud7GrHvKLZbAt8S1T52yOjOZhKl5PfvYP";
-
+                wr.Headers[HttpRequestHeader.Authorization] = "Bearer "+token;
+                                                                      //NrE5g3pfDKSGoF1DOuTk7IoYYBJBQMkLBehF5IFv
             }
             else
                 wr.CookieContainer = CookieContainer;
