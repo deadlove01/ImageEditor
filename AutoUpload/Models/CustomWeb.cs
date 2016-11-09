@@ -97,7 +97,8 @@ namespace AutoUpload.Models
             return result;
         }
 
-        public string SendRequest(string url, string method, string host, string token, NameValueCollection nvc, bool isCreateCookie = false, string contentType = "")
+
+        public string SendRequest(string url, string method, NameValueCollection nvc, bool isCreateCookie = false, string contentType = "")
         {
             string result = string.Empty;
             try
@@ -112,10 +113,8 @@ namespace AutoUpload.Models
                 var request = (HttpWebRequest)WebRequest.Create(finalUrl);
                 request.Method = method;
                 request.AllowAutoRedirect = true;
-                //request.Accept = "*/*";
+                request.Accept = "*/*";
                 request.UserAgent = userAgent;
-                request.Host = host;
-                request.Headers.Add("authorization", token);
                 // request.Timeout = 1000 * 60 * 5;
 
                 if (!isCreateCookie)
@@ -258,214 +257,8 @@ namespace AutoUpload.Models
 
             Stream rs = wr.GetRequestStream();
             rs.Flush();
-
-
-            rs.Write(boundarybytes, 0, boundarybytes.Length);
-            if (!string.IsNullOrEmpty(file))
-            {
-                string headerTemplate = "Content -Disposition: form-data; name={0}; filename={1}\r\nfilename*=utf-8''{1}";
-                string header = string.Format(headerTemplate, paramName, Path.GetFileName(file));
-                byte[] headerbytes = System.Text.Encoding.UTF8.GetBytes(header);
-                rs.Write(headerbytes, 0, headerbytes.Length);
-
-                FileStream fileStream = new FileStream(file, FileMode.Open, FileAccess.Read);
-                byte[] buffer = new byte[4096];
-                int bytesRead = 0;
-                while ((bytesRead = fileStream.Read(buffer, 0, buffer.Length)) != 0)
-                {
-                    rs.Write(buffer, 0, bytesRead);
-                }
-                fileStream.Close();
-            }
-            rs.Write(boundarybytes, 0, boundarybytes.Length);
-            string formdataTemplate = "Content-Type: text/plain; charset=utf-8\nContent-Disposition: form-data; name=\"{0}\"\r\n\r\n{1}\r\n";
-            foreach (string key in nvc.Keys)
-            {
-                rs.Write(boundarybytes, 0, boundarybytes.Length);
-                string formitem = string.Format(formdataTemplate, key, nvc[key]);
-                byte[] formitembytes = System.Text.Encoding.UTF8.GetBytes(formitem);
-                rs.Write(formitembytes, 0, formitembytes.Length);
-            }
-  
-
-
-
-
-            byte[] trailer = System.Text.Encoding.ASCII.GetBytes("\r\n--" + boundary + "--\r\n");
-            rs.Write(trailer, 0, trailer.Length);
-            rs.Close();
-
-            WebResponse wresp = null;
-            try
-            {
-                wresp = wr.GetResponse();
-                Stream stream2 = wresp.GetResponseStream();
-                StreamReader reader2 = new StreamReader(stream2);
-                return reader2.ReadToEnd();
-            }
-            catch (Exception ex)
-            {
-                Console.WriteLine("Error uploading file", ex);
-                if (wresp != null)
-                {
-                    wresp.Close();
-                    wresp = null;
-                }
-            }
-            finally
-            {
-                wr = null;
-            }
-
-            return null;
-        }
-
-
-        public string HttpUploadFileByJson(string url, string jsonModel)
-        {
-            Console.WriteLine(string.Format("Uploading {0}", url));
-
-            HttpWebRequest wr = (HttpWebRequest)WebRequest.Create(url);
-            //wr.ServicePoint.Expect100Continue = false;
-            wr.ContentType = "application/json; charset=utf-8";
-            wr.Method = "POST";
-            wr.Host = "manager.sunfrogshirts.com";
-            wr.Headers[HttpRequestHeader.KeepAlive] = "true";
-            wr.CookieContainer = CookieContainer;
-            wr.UserAgent = userAgent;
-            wr.Timeout = 1000 * 60 * 5;
-
-
-            using (var streamWriter = new StreamWriter(wr.GetRequestStream()))
-            {
-                streamWriter.Write(jsonModel);
-                streamWriter.Flush();
-            }
-
-
-            WebResponse wresp = null;
-            try
-            {
-                wresp = wr.GetResponse();
-                Stream stream2 = wresp.GetResponseStream();
-                StreamReader reader2 = new StreamReader(stream2);
-                return reader2.ReadToEnd();
-            }
-            catch (Exception ex)
-            {
-                Console.WriteLine("Error uploading file", ex);
-                if (wresp != null)
-                {
-                    wresp.Close();
-                    wresp = null;
-                }
-            }
-            finally
-            {
-                wr = null;
-            }
-
-            return null;
-        }
-
-        public string SendRequestByJson(string url, string method, string host, string token, string jsonModel)
-        {
-            HttpWebRequest wr = (HttpWebRequest)WebRequest.Create(url);
-            //wr.ServicePoint.Expect100Continue = false;
-            wr.ContentType = "application/json; charset=utf-8";
-            wr.Method = method;
-            wr.Host = host;
-            wr.Headers[HttpRequestHeader.KeepAlive] = "true";
-            wr.CookieContainer = CookieContainer;
-            wr.UserAgent = userAgent;
-            wr.Headers[HttpRequestHeader.Authorization] = token;
-           // wr.Timeout = 1000 * 60 * 5;
-
-
-            using (var streamWriter = new StreamWriter(wr.GetRequestStream()))
-            {
-                streamWriter.Write(jsonModel);
-                streamWriter.Flush();
-            }
-
-
-            WebResponse wresp = null;
-            try
-            {
-                wresp = wr.GetResponse();
-                Stream stream2 = wresp.GetResponseStream();
-                StreamReader reader2 = new StreamReader(stream2);
-                return reader2.ReadToEnd();
-            }
-            catch (Exception ex)
-            {
-                Console.WriteLine("Error uploading file", ex);
-                if (wresp != null)
-                {
-                    wresp.Close();
-                    wresp = null;
-                }
-            }
-            finally
-            {
-                wr = null;
-            }
-
-            return null;
-        }
-
-
-
-        public string ConvertNVCToString(NameValueCollection nvc)
-        {
-            if (nvc == null)
-                return "";
-            StringBuilder sb = new StringBuilder();
-            sb.Append("");
-            foreach (var item in nvc)
-            {
-                sb.AppendFormat("{0}={1}&", item.ToString(), nvc.Get(item.ToString()));
-            }
-
-
-            string result = sb.ToString();
-            if (result == null || result == "")
-                return "";
-            result = result.Remove(result.LastIndexOf('&'), 1);
-            return result;
-        }
-
-
-
-        public string HttpUploadFile2(string url, string file, string paramName, string contentType, NameValueCollection nvc)
-        {
-            Console.WriteLine(string.Format("Uploading {0} to {1}", file, url));
-            string boundary = "---------------------------" + DateTime.Now.Ticks.ToString("x");
-            byte[] boundarybytes = System.Text.Encoding.ASCII.GetBytes("--" + boundary + "\r\n");
-
-
-            HttpWebRequest wr = (HttpWebRequest)WebRequest.Create(url);
-            //  wr.ServicePoint.Expect100Continue = false;
-            wr.ContentType = "multipart/form-data; boundary=" + boundary;
-            wr.Method = "POST";
-            //    wr.KeepAlive = true;
-            wr.Host = "viralstyle.com";
-            //  wr.Referer = url;
-            //wr.Headers[HttpRequestHeader.AcceptEncoding] = "gzip, deflate";
-            //wr.Headers[HttpRequestHeader.KeepAlive] = "true";
-            //wr.Headers[HttpRequestHeader.CacheControl] = "max-age=0";
-            wr.AllowAutoRedirect = true;
-            //wr.Accept = "*/*";
-            // wr.Credentials = System.Net.CredentialCache.DefaultCredentials;
-            //  wr.CachePolicy = new System.Net.Cache.RequestCachePolicy(System.Net.Cache.RequestCacheLevel.NoCacheNoStore); 
-
-
-            wr.CookieContainer = CookieContainer;
-            wr.UserAgent = userAgent;
-
-            Stream rs = wr.GetRequestStream();
-            rs.Flush();
-            string formdataTemplate = "Content-Disposition: form-data; name=\"{0}\"\r\n\r\n{1}\r\n";
+            //string formdataTemplate = "Content-Disposition: form-data; name=\"{0}\"\r\n\r\n{1}\r\n";
+            string formdataTemplate = "Content-Type: text/plain; charset=utf-8\r\nContent-Disposition: form-data; name=\"{0}\"\r\n\r\n{1}\r\n";
             foreach (string key in nvc.Keys)
             {
                 rs.Write(boundarybytes, 0, boundarybytes.Length);
@@ -478,7 +271,8 @@ namespace AutoUpload.Models
 
             if (!string.IsNullOrEmpty(file))
             {
-                string headerTemplate = "Content-Disposition: form-data; name=\"{0}\"; filename=\"{1}\"\r\nContent-Type: {2}\r\n\r\n";
+                string headerTemplate = "Content-Disposition: form-data; name=\"{0}\"; filename=\"{1}\" ;filename*=utf-8''{1}\r\n\r\n";
+                //string headerTemplate = "Content-Disposition: form-data; name=\"{0}\"; filename=\"{1}\"\r\nContent-Type: {2}\r\n\r\n";
                 string header = string.Format(headerTemplate, paramName, Path.GetFileName(file), contentType);
                 byte[] headerbytes = System.Text.Encoding.UTF8.GetBytes(header);
                 rs.Write(headerbytes, 0, headerbytes.Length);
@@ -521,6 +315,140 @@ namespace AutoUpload.Models
             }
 
             return null;
+        }
+
+
+        public string HttpUploadFileByJson(string url, string jsonModel, string authToken, string xtoken)
+        {
+            Console.WriteLine(string.Format("Uploading {0}", url));
+
+            HttpWebRequest wr = (HttpWebRequest)WebRequest.Create(url);
+            //wr.ServicePoint.Expect100Continue = false;
+            wr.ContentType = "application/json; charset=utf-8";
+            wr.Method = "POST";
+            wr.Host = "viralstyle.com";
+            wr.Headers[HttpRequestHeader.KeepAlive] = "true";
+            wr.CookieContainer = CookieContainer;
+            wr.UserAgent = userAgent;
+            wr.Timeout = 1000 * 60 * 5;
+            wr.Headers.Add("authorization", "Bearer " + authToken);
+            wr.Headers.Add("X-CSRF-TOKEN", xtoken);
+            if (url.Contains("/store"))
+            {
+                wr.Referer = "https://viralstyle.com/design.beta";
+            }
+
+            using (var streamWriter = new StreamWriter(wr.GetRequestStream()))
+            {
+                streamWriter.Write(jsonModel);
+                streamWriter.Flush();
+            }
+
+
+            WebResponse wresp = null;
+            try
+            {
+                wresp = wr.GetResponse();
+                Stream stream2 = wresp.GetResponseStream();
+                StreamReader reader2 = new StreamReader(stream2);
+                return reader2.ReadToEnd();
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine("Error uploading file", ex);
+                if (wresp != null)
+                {
+                    wresp.Close();
+                    wresp = null;
+                }
+            }
+            finally
+            {
+                wr = null;
+            }
+
+            return null;
+        }
+
+        public string SendRequestJsonType(string url, string method, string contentType, string jsonModel, string token, bool isCreateCookie = false)
+        {
+            Console.WriteLine(string.Format("Uploading {0}", url));
+            CookieContainer container = new CookieContainer();
+            HttpWebRequest wr = (HttpWebRequest)WebRequest.Create(url);
+            //wr.ServicePoint.Expect100Continue = false;
+            wr.ContentType = contentType;
+            wr.Host = "viralstyle.com";
+            wr.Method = method;
+            wr.Headers[HttpRequestHeader.KeepAlive] = "true";
+            if (isCreateCookie)
+            {
+                container = wr.CookieContainer = new CookieContainer();
+                wr.Headers[HttpRequestHeader.Authorization] = "Bearer " + token;
+                //NrE5g3pfDKSGoF1DOuTk7IoYYBJBQMkLBehF5IFv
+            }
+            else
+                wr.CookieContainer = CookieContainer;
+            wr.UserAgent = userAgent;
+            wr.Timeout = 1000 * 60 * 5;
+
+
+            using (var streamWriter = new StreamWriter(wr.GetRequestStream()))
+            {
+                streamWriter.Write(jsonModel);
+                streamWriter.Flush();
+            }
+
+
+            WebResponse wresp = null;
+            try
+            {
+                wresp = wr.GetResponse();
+                Stream stream2 = wresp.GetResponseStream();
+                StreamReader reader2 = new StreamReader(stream2);
+
+                if (isCreateCookie)
+                {
+                    CookieContainer = container;
+                }
+                return reader2.ReadToEnd();
+
+
+
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine("Send json request error: ", ex);
+                if (wresp != null)
+                {
+                    wresp.Close();
+                    wresp = null;
+                }
+            }
+            finally
+            {
+                wr = null;
+            }
+
+            return null;
+        }
+
+        public string ConvertNVCToString(NameValueCollection nvc)
+        {
+            if (nvc == null)
+                return "";
+            StringBuilder sb = new StringBuilder();
+            sb.Append("");
+            foreach (var item in nvc)
+            {
+                sb.AppendFormat("{0}={1}&", item.ToString(), nvc.Get(item.ToString()));
+            }
+
+
+            string result = sb.ToString();
+            if (result == null || result == "")
+                return "";
+            result = result.Remove(result.LastIndexOf('&'), 1);
+            return result;
         }
 
     }

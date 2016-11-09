@@ -46,5 +46,41 @@ namespace AutoUpload.Properties {
                 this["ViralStyle_Account_Path"] = value;
             }
         }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("Platform\\ViralStyle\\Products\\Product.json")]
+        public string ViralStyle_Product_Path {
+            get {
+                return ((string)(this["ViralStyle_Product_Path"]));
+            }
+            set {
+                this["ViralStyle_Product_Path"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("false")]
+        public string SHOW_MOCKUP {
+            get {
+                return ((string)(this["SHOW_MOCKUP"]));
+            }
+            set {
+                this["SHOW_MOCKUP"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("Platform\\ViralStyle\\Templates\\")]
+        public string TEMPLATE_PATH {
+            get {
+                return ((string)(this["TEMPLATE_PATH"]));
+            }
+            set {
+                this["TEMPLATE_PATH"] = value;
+            }
+        }
     }
 }

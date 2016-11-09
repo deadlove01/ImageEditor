@@ -11,7 +11,7 @@ namespace ViralStyleUploader.Models
 {
     public class CustomWeb : System.Net.WebClient
     {
-        private string userAgent = "Mozilla/5.0 (Windows NT 6.3; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/45.0.2454.85 Safari/537.36";
+        private string userAgent = "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/54.0.2840.71 Safari/537.36";
         public CookieContainer CookieContainer { get; private set; }
 
         public CustomWeb(CookieContainer container)
@@ -49,6 +49,11 @@ namespace ViralStyleUploader.Models
                 request.Accept = "*/*";
                 request.UserAgent = userAgent;
                 request.Host = host;
+                request.Headers["Origin"] = "https://www.teepublic.com";
+                request.Referer = "https://www.teepublic.com";
+                request.Headers["X-Requested-With"] = "XMLHttpRequest";
+                //Origin: https://www.teepublic.com
+                //Referer: https://www.teepublic.com
                 // request.Timeout = 1000 * 60 * 5;
 
                 if (!isCreateCookie)
@@ -257,7 +262,8 @@ namespace ViralStyleUploader.Models
 
             Stream rs = wr.GetRequestStream();
             rs.Flush();
-            string formdataTemplate = "Content-Disposition: form-data; name=\"{0}\"\r\n\r\n{1}\r\n";
+            //string formdataTemplate = "Content-Disposition: form-data; name=\"{0}\"\r\n\r\n{1}\r\n";
+            string formdataTemplate = "Content-Type: text/plain; charset=utf-8\r\nContent-Disposition: form-data; name=\"{0}\"\r\n\r\n{1}\r\n";
             foreach (string key in nvc.Keys)
             {
                 rs.Write(boundarybytes, 0, boundarybytes.Length);
@@ -270,7 +276,8 @@ namespace ViralStyleUploader.Models
 
             if (!string.IsNullOrEmpty(file))
             {
-                string headerTemplate = "Content-Disposition: form-data; name=\"{0}\"; filename=\"{1}\"\r\nContent-Type: {2}\r\n\r\n";
+                string headerTemplate = "Content-Disposition: form-data; name=\"{0}\"; filename=\"{1}\" ;filename*=utf-8''{1}\r\n\r\n";
+                //string headerTemplate = "Content-Disposition: form-data; name=\"{0}\"; filename=\"{1}\"\r\nContent-Type: {2}\r\n\r\n";
                 string header = string.Format(headerTemplate, paramName, Path.GetFileName(file), contentType);
                 byte[] headerbytes = System.Text.Encoding.UTF8.GetBytes(header);
                 rs.Write(headerbytes, 0, headerbytes.Length);
@@ -331,7 +338,10 @@ namespace ViralStyleUploader.Models
             wr.Timeout = 1000 * 60 * 5;
             wr.Headers.Add("authorization", "Bearer "+authToken);
             wr.Headers.Add("X-CSRF-TOKEN", xtoken);
-
+            if(url.Contains("/store"))
+            {
+                wr.Referer = "https://viralstyle.com/design.beta";
+            }
 
             using (var streamWriter = new StreamWriter(wr.GetRequestStream()))
             {
