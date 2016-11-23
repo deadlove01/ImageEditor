@@ -34,6 +34,12 @@
             this.News = new MetroFramework.Controls.MetroTabPage();
             this.newsTbNews = new MetroFramework.Controls.MetroTextBox();
             this.Viralstyle = new MetroFramework.Controls.MetroTabPage();
+            this.groupBox3 = new System.Windows.Forms.GroupBox();
+            this.metroLabel8 = new MetroFramework.Controls.MetroLabel();
+            this.btnUpload = new MetroFramework.Controls.MetroButton();
+            this.metroLabel5 = new MetroFramework.Controls.MetroLabel();
+            this.tbTemplateName = new MetroFramework.Controls.MetroTextBox();
+            this.btnLoadTemplate = new MetroFramework.Controls.MetroButton();
             this.flowLayoutMokcup = new System.Windows.Forms.FlowLayoutPanel();
             this.metroLabel2 = new MetroFramework.Controls.MetroLabel();
             this.tbDescription = new MetroFramework.Controls.MetroTextBox();
@@ -44,45 +50,45 @@
             this.tbTitle = new MetroFramework.Controls.MetroTextBox();
             this.metroLabel1 = new MetroFramework.Controls.MetroLabel();
             this.metroPanel1 = new MetroFramework.Controls.MetroPanel();
+            this.numGoal = new System.Windows.Forms.NumericUpDown();
+            this.chbShowBack = new MetroFramework.Controls.MetroCheckBox();
             this.chbShowGoal = new MetroFramework.Controls.MetroCheckBox();
             this.chbPageTimer = new MetroFramework.Controls.MetroCheckBox();
             this.chbHideMarketPlace = new MetroFramework.Controls.MetroCheckBox();
             this.chbAutoExtend = new MetroFramework.Controls.MetroCheckBox();
             this.chbAutoRelaunch = new MetroFramework.Controls.MetroCheckBox();
             this.btnSaveTemplate = new MetroFramework.Controls.MetroButton();
+            this.metroLabel7 = new MetroFramework.Controls.MetroLabel();
             this.tabPage1 = new System.Windows.Forms.TabPage();
             this.panel1 = new System.Windows.Forms.Panel();
-            this.viralMockupImageList = new System.Windows.Forms.ImageList(this.components);
-            this.groupBox1 = new System.Windows.Forms.GroupBox();
-            this.bgWorker = new System.ComponentModel.BackgroundWorker();
-            this.metroLabel5 = new MetroFramework.Controls.MetroLabel();
-            this.tbTemplateName = new MetroFramework.Controls.MetroTextBox();
-            this.metroLabel6 = new MetroFramework.Controls.MetroLabel();
-            this.cbbTemplates = new System.Windows.Forms.ComboBox();
-            this.btnApplyTemplate = new MetroFramework.Controls.MetroButton();
             this.groupBox2 = new System.Windows.Forms.GroupBox();
-            this.opBtnSave = new MetroFramework.Controls.MetroButton();
             this.opChbShowMockup = new System.Windows.Forms.CheckBox();
-            this.metroLabel7 = new MetroFramework.Controls.MetroLabel();
-            this.numGoal = new System.Windows.Forms.NumericUpDown();
-            this.chbShowBack = new MetroFramework.Controls.MetroCheckBox();
-            this.groupBox3 = new System.Windows.Forms.GroupBox();
+            this.opBtnSave = new MetroFramework.Controls.MetroButton();
+            this.viralMockupImageList = new System.Windows.Forms.ImageList(this.components);
+            this.bgWorker = new System.ComponentModel.BackgroundWorker();
+            this.btnLoadLogo = new MetroFramework.Controls.MetroButton();
+            this.listViewLogo = new System.Windows.Forms.ListBox();
             this.mockup1 = new AutoUpload.Controls.Mockup();
             this.mockupControl1 = new AutoUpload.Controls.MockupControl();
-            this.listViewLogos = new System.Windows.Forms.ListView();
-            this.metroLabel8 = new MetroFramework.Controls.MetroLabel();
-            this.btnUpload = new MetroFramework.Controls.MetroButton();
+            this.listLogs = new System.Windows.Forms.ListBox();
+            this.toolStrip1 = new System.Windows.Forms.ToolStrip();
+            this.tsProgress = new System.Windows.Forms.ToolStripProgressBar();
+            this.tsLblProgress = new System.Windows.Forms.ToolStripLabel();
+            this.opTbEmail = new MetroFramework.Controls.MetroTextBox();
+            this.metroLabel6 = new MetroFramework.Controls.MetroLabel();
+            this.metroLabel9 = new MetroFramework.Controls.MetroLabel();
+            this.opTbPass = new MetroFramework.Controls.MetroTextBox();
             this.metroTabControl1.SuspendLayout();
             this.News.SuspendLayout();
             this.Viralstyle.SuspendLayout();
+            this.groupBox3.SuspendLayout();
             this.flowLayoutMokcup.SuspendLayout();
             this.metroPanel1.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.numGoal)).BeginInit();
             this.tabPage1.SuspendLayout();
             this.panel1.SuspendLayout();
-            this.groupBox1.SuspendLayout();
             this.groupBox2.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.numGoal)).BeginInit();
-            this.groupBox3.SuspendLayout();
+            this.toolStrip1.SuspendLayout();
             this.SuspendLayout();
             // 
             // metroTabControl1
@@ -93,8 +99,8 @@
             this.metroTabControl1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.metroTabControl1.Location = new System.Drawing.Point(20, 60);
             this.metroTabControl1.Name = "metroTabControl1";
-            this.metroTabControl1.SelectedIndex = 1;
-            this.metroTabControl1.Size = new System.Drawing.Size(776, 613);
+            this.metroTabControl1.SelectedIndex = 2;
+            this.metroTabControl1.Size = new System.Drawing.Size(776, 628);
             this.metroTabControl1.TabIndex = 0;
             this.metroTabControl1.UseSelectable = true;
             // 
@@ -154,15 +160,8 @@
             // Viralstyle
             // 
             this.Viralstyle.Controls.Add(this.groupBox3);
-            this.Viralstyle.Controls.Add(this.groupBox1);
             this.Viralstyle.Controls.Add(this.flowLayoutMokcup);
             this.Viralstyle.Controls.Add(this.metroLabel2);
-            this.Viralstyle.Controls.Add(this.tbDescription);
-            this.Viralstyle.Controls.Add(this.tbTags);
-            this.Viralstyle.Controls.Add(this.metroLabel4);
-            this.Viralstyle.Controls.Add(this.tbCampUrl);
-            this.Viralstyle.Controls.Add(this.metroLabel3);
-            this.Viralstyle.Controls.Add(this.tbTitle);
             this.Viralstyle.Controls.Add(this.metroLabel1);
             this.Viralstyle.Controls.Add(this.metroPanel1);
             this.Viralstyle.HorizontalScrollbarBarColor = true;
@@ -170,12 +169,98 @@
             this.Viralstyle.HorizontalScrollbarSize = 10;
             this.Viralstyle.Location = new System.Drawing.Point(4, 38);
             this.Viralstyle.Name = "Viralstyle";
-            this.Viralstyle.Size = new System.Drawing.Size(768, 571);
+            this.Viralstyle.Size = new System.Drawing.Size(768, 586);
             this.Viralstyle.TabIndex = 1;
             this.Viralstyle.Text = "ViralStyle";
             this.Viralstyle.VerticalScrollbarBarColor = true;
             this.Viralstyle.VerticalScrollbarHighlightOnWheel = false;
             this.Viralstyle.VerticalScrollbarSize = 10;
+            // 
+            // groupBox3
+            // 
+            this.groupBox3.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.groupBox3.Controls.Add(this.listLogs);
+            this.groupBox3.Controls.Add(this.listViewLogo);
+            this.groupBox3.Controls.Add(this.metroLabel8);
+            this.groupBox3.Controls.Add(this.btnLoadLogo);
+            this.groupBox3.Controls.Add(this.btnUpload);
+            this.groupBox3.Location = new System.Drawing.Point(504, 3);
+            this.groupBox3.Name = "groupBox3";
+            this.groupBox3.Size = new System.Drawing.Size(279, 559);
+            this.groupBox3.TabIndex = 10;
+            this.groupBox3.TabStop = false;
+            // 
+            // metroLabel8
+            // 
+            this.metroLabel8.AutoSize = true;
+            this.metroLabel8.Location = new System.Drawing.Point(73, 16);
+            this.metroLabel8.Name = "metroLabel8";
+            this.metroLabel8.Size = new System.Drawing.Size(99, 19);
+            this.metroLabel8.TabIndex = 5;
+            this.metroLabel8.Text = "Danh sach logo";
+            // 
+            // btnUpload
+            // 
+            this.btnUpload.FontSize = MetroFramework.MetroButtonSize.Medium;
+            this.btnUpload.Location = new System.Drawing.Point(73, 496);
+            this.btnUpload.Name = "btnUpload";
+            this.btnUpload.Size = new System.Drawing.Size(113, 53);
+            this.btnUpload.TabIndex = 4;
+            this.btnUpload.Text = "Start Upload";
+            this.btnUpload.UseCustomForeColor = true;
+            this.btnUpload.UseSelectable = true;
+            this.btnUpload.UseStyleColors = true;
+            this.btnUpload.Click += new System.EventHandler(this.btnUpload_Click);
+            // 
+            // metroLabel5
+            // 
+            this.metroLabel5.AutoSize = true;
+            this.metroLabel5.Location = new System.Drawing.Point(10, 200);
+            this.metroLabel5.Name = "metroLabel5";
+            this.metroLabel5.Size = new System.Drawing.Size(102, 19);
+            this.metroLabel5.TabIndex = 5;
+            this.metroLabel5.Text = "Template Name";
+            // 
+            // tbTemplateName
+            // 
+            // 
+            // 
+            // 
+            this.tbTemplateName.CustomButton.Image = null;
+            this.tbTemplateName.CustomButton.Location = new System.Drawing.Point(183, 1);
+            this.tbTemplateName.CustomButton.Name = "";
+            this.tbTemplateName.CustomButton.Size = new System.Drawing.Size(21, 21);
+            this.tbTemplateName.CustomButton.Style = MetroFramework.MetroColorStyle.Blue;
+            this.tbTemplateName.CustomButton.TabIndex = 1;
+            this.tbTemplateName.CustomButton.Theme = MetroFramework.MetroThemeStyle.Light;
+            this.tbTemplateName.CustomButton.UseSelectable = true;
+            this.tbTemplateName.CustomButton.Visible = false;
+            this.tbTemplateName.Lines = new string[0];
+            this.tbTemplateName.Location = new System.Drawing.Point(121, 200);
+            this.tbTemplateName.MaxLength = 32767;
+            this.tbTemplateName.Name = "tbTemplateName";
+            this.tbTemplateName.PasswordChar = '\0';
+            this.tbTemplateName.ScrollBars = System.Windows.Forms.ScrollBars.None;
+            this.tbTemplateName.SelectedText = "";
+            this.tbTemplateName.SelectionLength = 0;
+            this.tbTemplateName.SelectionStart = 0;
+            this.tbTemplateName.ShortcutsEnabled = true;
+            this.tbTemplateName.Size = new System.Drawing.Size(205, 23);
+            this.tbTemplateName.TabIndex = 6;
+            this.tbTemplateName.UseSelectable = true;
+            this.tbTemplateName.WaterMarkColor = System.Drawing.Color.FromArgb(((int)(((byte)(109)))), ((int)(((byte)(109)))), ((int)(((byte)(109)))));
+            this.tbTemplateName.WaterMarkFont = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Italic, System.Drawing.GraphicsUnit.Pixel);
+            // 
+            // btnLoadTemplate
+            // 
+            this.btnLoadTemplate.Location = new System.Drawing.Point(229, 229);
+            this.btnLoadTemplate.Name = "btnLoadTemplate";
+            this.btnLoadTemplate.Size = new System.Drawing.Size(97, 36);
+            this.btnLoadTemplate.TabIndex = 4;
+            this.btnLoadTemplate.Text = "Load Template";
+            this.btnLoadTemplate.UseSelectable = true;
+            this.btnLoadTemplate.Click += new System.EventHandler(this.btnLoadTemplate_Click);
             // 
             // flowLayoutMokcup
             // 
@@ -186,7 +271,7 @@
             this.flowLayoutMokcup.Controls.Add(this.mockup1);
             this.flowLayoutMokcup.Location = new System.Drawing.Point(3, 315);
             this.flowLayoutMokcup.Name = "flowLayoutMokcup";
-            this.flowLayoutMokcup.Size = new System.Drawing.Size(494, 243);
+            this.flowLayoutMokcup.Size = new System.Drawing.Size(494, 247);
             this.flowLayoutMokcup.TabIndex = 8;
             this.flowLayoutMokcup.WrapContents = false;
             // 
@@ -205,17 +290,16 @@
             // 
             // 
             this.tbDescription.CustomButton.Image = null;
-            this.tbDescription.CustomButton.Location = new System.Drawing.Point(123, 1);
+            this.tbDescription.CustomButton.Location = new System.Drawing.Point(145, 1);
             this.tbDescription.CustomButton.Name = "";
-            this.tbDescription.CustomButton.Size = new System.Drawing.Size(81, 81);
+            this.tbDescription.CustomButton.Size = new System.Drawing.Size(59, 59);
             this.tbDescription.CustomButton.Style = MetroFramework.MetroColorStyle.Blue;
             this.tbDescription.CustomButton.TabIndex = 1;
             this.tbDescription.CustomButton.Theme = MetroFramework.MetroThemeStyle.Light;
             this.tbDescription.CustomButton.UseSelectable = true;
             this.tbDescription.CustomButton.Visible = false;
-            this.tbDescription.Lines = new string[] {
-        "metroTextBox1"};
-            this.tbDescription.Location = new System.Drawing.Point(104, 58);
+            this.tbDescription.Lines = new string[0];
+            this.tbDescription.Location = new System.Drawing.Point(121, 55);
             this.tbDescription.MaxLength = 32767;
             this.tbDescription.Multiline = true;
             this.tbDescription.Name = "tbDescription";
@@ -225,9 +309,8 @@
             this.tbDescription.SelectionLength = 0;
             this.tbDescription.SelectionStart = 0;
             this.tbDescription.ShortcutsEnabled = true;
-            this.tbDescription.Size = new System.Drawing.Size(205, 83);
+            this.tbDescription.Size = new System.Drawing.Size(205, 61);
             this.tbDescription.TabIndex = 6;
-            this.tbDescription.Text = "metroTextBox1";
             this.tbDescription.UseSelectable = true;
             this.tbDescription.WaterMarkColor = System.Drawing.Color.FromArgb(((int)(((byte)(109)))), ((int)(((byte)(109)))), ((int)(((byte)(109)))));
             this.tbDescription.WaterMarkFont = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Italic, System.Drawing.GraphicsUnit.Pixel);
@@ -246,9 +329,8 @@
             this.tbTags.CustomButton.Theme = MetroFramework.MetroThemeStyle.Light;
             this.tbTags.CustomButton.UseSelectable = true;
             this.tbTags.CustomButton.Visible = false;
-            this.tbTags.Lines = new string[] {
-        "metroTextBox1"};
-            this.tbTags.Location = new System.Drawing.Point(104, 199);
+            this.tbTags.Lines = new string[0];
+            this.tbTags.Location = new System.Drawing.Point(121, 167);
             this.tbTags.MaxLength = 32767;
             this.tbTags.Name = "tbTags";
             this.tbTags.PasswordChar = '\0';
@@ -259,7 +341,6 @@
             this.tbTags.ShortcutsEnabled = true;
             this.tbTags.Size = new System.Drawing.Size(205, 23);
             this.tbTags.TabIndex = 6;
-            this.tbTags.Text = "metroTextBox1";
             this.tbTags.UseSelectable = true;
             this.tbTags.WaterMarkColor = System.Drawing.Color.FromArgb(((int)(((byte)(109)))), ((int)(((byte)(109)))), ((int)(((byte)(109)))));
             this.tbTags.WaterMarkFont = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Italic, System.Drawing.GraphicsUnit.Pixel);
@@ -267,7 +348,7 @@
             // metroLabel4
             // 
             this.metroLabel4.AutoSize = true;
-            this.metroLabel4.Location = new System.Drawing.Point(13, 199);
+            this.metroLabel4.Location = new System.Drawing.Point(10, 167);
             this.metroLabel4.Name = "metroLabel4";
             this.metroLabel4.Size = new System.Drawing.Size(34, 19);
             this.metroLabel4.TabIndex = 5;
@@ -287,9 +368,8 @@
             this.tbCampUrl.CustomButton.Theme = MetroFramework.MetroThemeStyle.Light;
             this.tbCampUrl.CustomButton.UseSelectable = true;
             this.tbCampUrl.CustomButton.Visible = false;
-            this.tbCampUrl.Lines = new string[] {
-        "metroTextBox1"};
-            this.tbCampUrl.Location = new System.Drawing.Point(104, 160);
+            this.tbCampUrl.Lines = new string[0];
+            this.tbCampUrl.Location = new System.Drawing.Point(121, 132);
             this.tbCampUrl.MaxLength = 32767;
             this.tbCampUrl.Name = "tbCampUrl";
             this.tbCampUrl.PasswordChar = '\0';
@@ -300,7 +380,6 @@
             this.tbCampUrl.ShortcutsEnabled = true;
             this.tbCampUrl.Size = new System.Drawing.Size(205, 23);
             this.tbCampUrl.TabIndex = 6;
-            this.tbCampUrl.Text = "metroTextBox1";
             this.tbCampUrl.UseSelectable = true;
             this.tbCampUrl.WaterMarkColor = System.Drawing.Color.FromArgb(((int)(((byte)(109)))), ((int)(((byte)(109)))), ((int)(((byte)(109)))));
             this.tbCampUrl.WaterMarkFont = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Italic, System.Drawing.GraphicsUnit.Pixel);
@@ -308,7 +387,7 @@
             // metroLabel3
             // 
             this.metroLabel3.AutoSize = true;
-            this.metroLabel3.Location = new System.Drawing.Point(13, 160);
+            this.metroLabel3.Location = new System.Drawing.Point(10, 136);
             this.metroLabel3.Name = "metroLabel3";
             this.metroLabel3.Size = new System.Drawing.Size(66, 19);
             this.metroLabel3.TabIndex = 5;
@@ -328,9 +407,8 @@
             this.tbTitle.CustomButton.Theme = MetroFramework.MetroThemeStyle.Light;
             this.tbTitle.CustomButton.UseSelectable = true;
             this.tbTitle.CustomButton.Visible = false;
-            this.tbTitle.Lines = new string[] {
-        "metroTextBox1"};
-            this.tbTitle.Location = new System.Drawing.Point(104, 18);
+            this.tbTitle.Lines = new string[0];
+            this.tbTitle.Location = new System.Drawing.Point(121, 15);
             this.tbTitle.MaxLength = 32767;
             this.tbTitle.Name = "tbTitle";
             this.tbTitle.PasswordChar = '\0';
@@ -341,7 +419,6 @@
             this.tbTitle.ShortcutsEnabled = true;
             this.tbTitle.Size = new System.Drawing.Size(205, 23);
             this.tbTitle.TabIndex = 6;
-            this.tbTitle.Text = "metroTextBox1";
             this.tbTitle.UseSelectable = true;
             this.tbTitle.WaterMarkColor = System.Drawing.Color.FromArgb(((int)(((byte)(109)))), ((int)(((byte)(109)))), ((int)(((byte)(109)))));
             this.tbTitle.WaterMarkFont = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Italic, System.Drawing.GraphicsUnit.Pixel);
@@ -360,10 +437,19 @@
             this.metroPanel1.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.metroPanel1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(255)))), ((int)(((byte)(192)))));
+            this.metroPanel1.Controls.Add(this.btnLoadTemplate);
+            this.metroPanel1.Controls.Add(this.metroLabel5);
+            this.metroPanel1.Controls.Add(this.tbTemplateName);
+            this.metroPanel1.Controls.Add(this.metroLabel4);
+            this.metroPanel1.Controls.Add(this.tbDescription);
+            this.metroPanel1.Controls.Add(this.metroLabel3);
+            this.metroPanel1.Controls.Add(this.tbTags);
             this.metroPanel1.Controls.Add(this.numGoal);
             this.metroPanel1.Controls.Add(this.chbShowBack);
+            this.metroPanel1.Controls.Add(this.tbCampUrl);
             this.metroPanel1.Controls.Add(this.chbShowGoal);
             this.metroPanel1.Controls.Add(this.chbPageTimer);
+            this.metroPanel1.Controls.Add(this.tbTitle);
             this.metroPanel1.Controls.Add(this.chbHideMarketPlace);
             this.metroPanel1.Controls.Add(this.chbAutoExtend);
             this.metroPanel1.Controls.Add(this.chbAutoRelaunch);
@@ -381,10 +467,37 @@
             this.metroPanel1.VerticalScrollbarHighlightOnWheel = false;
             this.metroPanel1.VerticalScrollbarSize = 10;
             // 
+            // numGoal
+            // 
+            this.numGoal.Location = new System.Drawing.Point(398, 14);
+            this.numGoal.Maximum = new decimal(new int[] {
+            10000,
+            0,
+            0,
+            0});
+            this.numGoal.Name = "numGoal";
+            this.numGoal.Size = new System.Drawing.Size(71, 20);
+            this.numGoal.TabIndex = 6;
+            this.numGoal.Value = new decimal(new int[] {
+            50,
+            0,
+            0,
+            0});
+            // 
+            // chbShowBack
+            // 
+            this.chbShowBack.AutoSize = true;
+            this.chbShowBack.Location = new System.Drawing.Point(346, 153);
+            this.chbShowBack.Name = "chbShowBack";
+            this.chbShowBack.Size = new System.Drawing.Size(121, 15);
+            this.chbShowBack.TabIndex = 5;
+            this.chbShowBack.Text = "Show Back Default";
+            this.chbShowBack.UseSelectable = true;
+            // 
             // chbShowGoal
             // 
             this.chbShowGoal.AutoSize = true;
-            this.chbShowGoal.Location = new System.Drawing.Point(332, 184);
+            this.chbShowGoal.Location = new System.Drawing.Point(346, 132);
             this.chbShowGoal.Name = "chbShowGoal";
             this.chbShowGoal.Size = new System.Drawing.Size(137, 15);
             this.chbShowGoal.TabIndex = 5;
@@ -394,7 +507,7 @@
             // chbPageTimer
             // 
             this.chbPageTimer.AutoSize = true;
-            this.chbPageTimer.Location = new System.Drawing.Point(332, 149);
+            this.chbPageTimer.Location = new System.Drawing.Point(346, 106);
             this.chbPageTimer.Name = "chbPageTimer";
             this.chbPageTimer.Size = new System.Drawing.Size(141, 15);
             this.chbPageTimer.TabIndex = 5;
@@ -404,7 +517,7 @@
             // chbHideMarketPlace
             // 
             this.chbHideMarketPlace.AutoSize = true;
-            this.chbHideMarketPlace.Location = new System.Drawing.Point(332, 119);
+            this.chbHideMarketPlace.Location = new System.Drawing.Point(346, 85);
             this.chbHideMarketPlace.Name = "chbHideMarketPlace";
             this.chbHideMarketPlace.Size = new System.Drawing.Size(119, 15);
             this.chbHideMarketPlace.TabIndex = 5;
@@ -414,7 +527,7 @@
             // chbAutoExtend
             // 
             this.chbAutoExtend.AutoSize = true;
-            this.chbAutoExtend.Location = new System.Drawing.Point(332, 86);
+            this.chbAutoExtend.Location = new System.Drawing.Point(346, 64);
             this.chbAutoExtend.Name = "chbAutoExtend";
             this.chbAutoExtend.Size = new System.Drawing.Size(145, 15);
             this.chbAutoExtend.TabIndex = 5;
@@ -424,7 +537,7 @@
             // chbAutoRelaunch
             // 
             this.chbAutoRelaunch.AutoSize = true;
-            this.chbAutoRelaunch.Location = new System.Drawing.Point(332, 55);
+            this.chbAutoRelaunch.Location = new System.Drawing.Point(346, 43);
             this.chbAutoRelaunch.Name = "chbAutoRelaunch";
             this.chbAutoRelaunch.Size = new System.Drawing.Size(101, 15);
             this.chbAutoRelaunch.TabIndex = 5;
@@ -433,20 +546,29 @@
             // 
             // btnSaveTemplate
             // 
-            this.btnSaveTemplate.Location = new System.Drawing.Point(101, 237);
+            this.btnSaveTemplate.Location = new System.Drawing.Point(121, 229);
             this.btnSaveTemplate.Name = "btnSaveTemplate";
-            this.btnSaveTemplate.Size = new System.Drawing.Size(102, 53);
+            this.btnSaveTemplate.Size = new System.Drawing.Size(92, 36);
             this.btnSaveTemplate.TabIndex = 4;
             this.btnSaveTemplate.Text = "Save Template";
             this.btnSaveTemplate.UseSelectable = true;
             this.btnSaveTemplate.Click += new System.EventHandler(this.metroButton1_Click);
+            // 
+            // metroLabel7
+            // 
+            this.metroLabel7.AutoSize = true;
+            this.metroLabel7.Location = new System.Drawing.Point(346, 15);
+            this.metroLabel7.Name = "metroLabel7";
+            this.metroLabel7.Size = new System.Drawing.Size(36, 19);
+            this.metroLabel7.TabIndex = 5;
+            this.metroLabel7.Text = "Goal";
             // 
             // tabPage1
             // 
             this.tabPage1.Controls.Add(this.panel1);
             this.tabPage1.Location = new System.Drawing.Point(4, 38);
             this.tabPage1.Name = "tabPage1";
-            this.tabPage1.Size = new System.Drawing.Size(768, 571);
+            this.tabPage1.Size = new System.Drawing.Size(768, 586);
             this.tabPage1.TabIndex = 2;
             this.tabPage1.Text = "Options";
             // 
@@ -458,6 +580,41 @@
             this.panel1.Name = "panel1";
             this.panel1.Size = new System.Drawing.Size(783, 568);
             this.panel1.TabIndex = 0;
+            // 
+            // groupBox2
+            // 
+            this.groupBox2.Controls.Add(this.opTbPass);
+            this.groupBox2.Controls.Add(this.metroLabel9);
+            this.groupBox2.Controls.Add(this.opTbEmail);
+            this.groupBox2.Controls.Add(this.metroLabel6);
+            this.groupBox2.Controls.Add(this.opChbShowMockup);
+            this.groupBox2.Controls.Add(this.opBtnSave);
+            this.groupBox2.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.groupBox2.Location = new System.Drawing.Point(0, 0);
+            this.groupBox2.Name = "groupBox2";
+            this.groupBox2.Size = new System.Drawing.Size(783, 568);
+            this.groupBox2.TabIndex = 10;
+            this.groupBox2.TabStop = false;
+            // 
+            // opChbShowMockup
+            // 
+            this.opChbShowMockup.AutoSize = true;
+            this.opChbShowMockup.Location = new System.Drawing.Point(192, 130);
+            this.opChbShowMockup.Name = "opChbShowMockup";
+            this.opChbShowMockup.Size = new System.Drawing.Size(141, 17);
+            this.opChbShowMockup.TabIndex = 5;
+            this.opChbShowMockup.Text = "Show ViralStyle Mockup";
+            this.opChbShowMockup.UseVisualStyleBackColor = true;
+            // 
+            // opBtnSave
+            // 
+            this.opBtnSave.Location = new System.Drawing.Point(192, 163);
+            this.opBtnSave.Name = "opBtnSave";
+            this.opBtnSave.Size = new System.Drawing.Size(102, 53);
+            this.opBtnSave.TabIndex = 4;
+            this.opBtnSave.Text = "Save";
+            this.opBtnSave.UseSelectable = true;
+            this.opBtnSave.Click += new System.EventHandler(this.opBtnSave_Click);
             // 
             // viralMockupImageList
             // 
@@ -533,166 +690,30 @@
             this.viralMockupImageList.Images.SetKeyName(67, "Racerback-Back.png");
             this.viralMockupImageList.Images.SetKeyName(68, "Racerback-Front.png");
             // 
-            // groupBox1
+            // bgWorker
             // 
-            this.groupBox1.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.groupBox1.Controls.Add(this.cbbTemplates);
-            this.groupBox1.Controls.Add(this.metroLabel6);
-            this.groupBox1.Controls.Add(this.metroLabel5);
-            this.groupBox1.Controls.Add(this.tbTemplateName);
-            this.groupBox1.Controls.Add(this.btnApplyTemplate);
-            this.groupBox1.Location = new System.Drawing.Point(503, 3);
-            this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Size = new System.Drawing.Size(262, 306);
-            this.groupBox1.TabIndex = 9;
-            this.groupBox1.TabStop = false;
+            this.bgWorker.WorkerReportsProgress = true;
+            this.bgWorker.DoWork += new System.ComponentModel.DoWorkEventHandler(this.bgWorker_DoWork);
+            this.bgWorker.ProgressChanged += new System.ComponentModel.ProgressChangedEventHandler(this.bgWorker_ProgressChanged);
+            this.bgWorker.RunWorkerCompleted += new System.ComponentModel.RunWorkerCompletedEventHandler(this.bgWorker_RunWorkerCompleted);
             // 
-            // metroLabel5
+            // btnLoadLogo
             // 
-            this.metroLabel5.AutoSize = true;
-            this.metroLabel5.Location = new System.Drawing.Point(6, 15);
-            this.metroLabel5.Name = "metroLabel5";
-            this.metroLabel5.Size = new System.Drawing.Size(102, 19);
-            this.metroLabel5.TabIndex = 5;
-            this.metroLabel5.Text = "Template Name";
+            this.btnLoadLogo.Location = new System.Drawing.Point(84, 263);
+            this.btnLoadLogo.Name = "btnLoadLogo";
+            this.btnLoadLogo.Size = new System.Drawing.Size(102, 36);
+            this.btnLoadLogo.TabIndex = 4;
+            this.btnLoadLogo.Text = "Load Logos";
+            this.btnLoadLogo.UseSelectable = true;
+            this.btnLoadLogo.Click += new System.EventHandler(this.btnLoadLogo_Click);
             // 
-            // tbTemplateName
+            // listViewLogo
             // 
-            // 
-            // 
-            // 
-            this.tbTemplateName.CustomButton.Image = null;
-            this.tbTemplateName.CustomButton.Location = new System.Drawing.Point(99, 1);
-            this.tbTemplateName.CustomButton.Name = "";
-            this.tbTemplateName.CustomButton.Size = new System.Drawing.Size(21, 21);
-            this.tbTemplateName.CustomButton.Style = MetroFramework.MetroColorStyle.Blue;
-            this.tbTemplateName.CustomButton.TabIndex = 1;
-            this.tbTemplateName.CustomButton.Theme = MetroFramework.MetroThemeStyle.Light;
-            this.tbTemplateName.CustomButton.UseSelectable = true;
-            this.tbTemplateName.CustomButton.Visible = false;
-            this.tbTemplateName.Lines = new string[] {
-        "metroTextBox1"};
-            this.tbTemplateName.Location = new System.Drawing.Point(135, 15);
-            this.tbTemplateName.MaxLength = 32767;
-            this.tbTemplateName.Name = "tbTemplateName";
-            this.tbTemplateName.PasswordChar = '\0';
-            this.tbTemplateName.ScrollBars = System.Windows.Forms.ScrollBars.None;
-            this.tbTemplateName.SelectedText = "";
-            this.tbTemplateName.SelectionLength = 0;
-            this.tbTemplateName.SelectionStart = 0;
-            this.tbTemplateName.ShortcutsEnabled = true;
-            this.tbTemplateName.Size = new System.Drawing.Size(121, 23);
-            this.tbTemplateName.TabIndex = 6;
-            this.tbTemplateName.Text = "metroTextBox1";
-            this.tbTemplateName.UseSelectable = true;
-            this.tbTemplateName.WaterMarkColor = System.Drawing.Color.FromArgb(((int)(((byte)(109)))), ((int)(((byte)(109)))), ((int)(((byte)(109)))));
-            this.tbTemplateName.WaterMarkFont = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Italic, System.Drawing.GraphicsUnit.Pixel);
-            // 
-            // metroLabel6
-            // 
-            this.metroLabel6.AutoSize = true;
-            this.metroLabel6.Location = new System.Drawing.Point(6, 55);
-            this.metroLabel6.Name = "metroLabel6";
-            this.metroLabel6.Size = new System.Drawing.Size(84, 19);
-            this.metroLabel6.TabIndex = 5;
-            this.metroLabel6.Text = "Template List";
-            // 
-            // cbbTemplates
-            // 
-            this.cbbTemplates.FormattingEnabled = true;
-            this.cbbTemplates.Location = new System.Drawing.Point(135, 55);
-            this.cbbTemplates.Name = "cbbTemplates";
-            this.cbbTemplates.Size = new System.Drawing.Size(121, 21);
-            this.cbbTemplates.TabIndex = 7;
-            // 
-            // btnApplyTemplate
-            // 
-            this.btnApplyTemplate.Location = new System.Drawing.Point(82, 94);
-            this.btnApplyTemplate.Name = "btnApplyTemplate";
-            this.btnApplyTemplate.Size = new System.Drawing.Size(102, 53);
-            this.btnApplyTemplate.TabIndex = 4;
-            this.btnApplyTemplate.Text = "Apply Template";
-            this.btnApplyTemplate.UseSelectable = true;
-            this.btnApplyTemplate.Click += new System.EventHandler(this.metroButton1_Click);
-            // 
-            // groupBox2
-            // 
-            this.groupBox2.Controls.Add(this.opChbShowMockup);
-            this.groupBox2.Controls.Add(this.opBtnSave);
-            this.groupBox2.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.groupBox2.Location = new System.Drawing.Point(0, 0);
-            this.groupBox2.Name = "groupBox2";
-            this.groupBox2.Size = new System.Drawing.Size(783, 568);
-            this.groupBox2.TabIndex = 10;
-            this.groupBox2.TabStop = false;
-            // 
-            // opBtnSave
-            // 
-            this.opBtnSave.Location = new System.Drawing.Point(29, 82);
-            this.opBtnSave.Name = "opBtnSave";
-            this.opBtnSave.Size = new System.Drawing.Size(102, 53);
-            this.opBtnSave.TabIndex = 4;
-            this.opBtnSave.Text = "Save";
-            this.opBtnSave.UseSelectable = true;
-            // 
-            // opChbShowMockup
-            // 
-            this.opChbShowMockup.AutoSize = true;
-            this.opChbShowMockup.Location = new System.Drawing.Point(29, 29);
-            this.opChbShowMockup.Name = "opChbShowMockup";
-            this.opChbShowMockup.Size = new System.Drawing.Size(141, 17);
-            this.opChbShowMockup.TabIndex = 5;
-            this.opChbShowMockup.Text = "Show ViralStyle Mockup";
-            this.opChbShowMockup.UseVisualStyleBackColor = true;
-            // 
-            // metroLabel7
-            // 
-            this.metroLabel7.AutoSize = true;
-            this.metroLabel7.Location = new System.Drawing.Point(332, 15);
-            this.metroLabel7.Name = "metroLabel7";
-            this.metroLabel7.Size = new System.Drawing.Size(36, 19);
-            this.metroLabel7.TabIndex = 5;
-            this.metroLabel7.Text = "Goal";
-            // 
-            // numGoal
-            // 
-            this.numGoal.Location = new System.Drawing.Point(398, 14);
-            this.numGoal.Maximum = new decimal(new int[] {
-            10000,
-            0,
-            0,
-            0});
-            this.numGoal.Name = "numGoal";
-            this.numGoal.Size = new System.Drawing.Size(71, 20);
-            this.numGoal.TabIndex = 6;
-            this.numGoal.Value = new decimal(new int[] {
-            50,
-            0,
-            0,
-            0});
-            // 
-            // chbShowBack
-            // 
-            this.chbShowBack.AutoSize = true;
-            this.chbShowBack.Location = new System.Drawing.Point(332, 217);
-            this.chbShowBack.Name = "chbShowBack";
-            this.chbShowBack.Size = new System.Drawing.Size(121, 15);
-            this.chbShowBack.TabIndex = 5;
-            this.chbShowBack.Text = "Show Back Default";
-            this.chbShowBack.UseSelectable = true;
-            // 
-            // groupBox3
-            // 
-            this.groupBox3.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.groupBox3.Controls.Add(this.listViewLogos);
-            this.groupBox3.Controls.Add(this.metroLabel8);
-            this.groupBox3.Controls.Add(this.btnUpload);
-            this.groupBox3.Location = new System.Drawing.Point(504, 318);
-            this.groupBox3.Name = "groupBox3";
-            this.groupBox3.Size = new System.Drawing.Size(279, 240);
-            this.groupBox3.TabIndex = 10;
-            this.groupBox3.TabStop = false;
+            this.listViewLogo.FormattingEnabled = true;
+            this.listViewLogo.Location = new System.Drawing.Point(19, 43);
+            this.listViewLogo.Name = "listViewLogo";
+            this.listViewLogo.Size = new System.Drawing.Size(221, 199);
+            this.listViewLogo.TabIndex = 6;
             // 
             // mockup1
             // 
@@ -710,39 +731,122 @@
             this.mockupControl1.Size = new System.Drawing.Size(150, 150);
             this.mockupControl1.TabIndex = 0;
             // 
-            // listViewLogos
+            // listLogs
             // 
-            this.listViewLogos.Location = new System.Drawing.Point(16, 38);
-            this.listViewLogos.Name = "listViewLogos";
-            this.listViewLogos.Size = new System.Drawing.Size(227, 161);
-            this.listViewLogos.TabIndex = 0;
-            this.listViewLogos.UseCompatibleStateImageBehavior = false;
-            this.listViewLogos.View = System.Windows.Forms.View.List;
+            this.listLogs.FormattingEnabled = true;
+            this.listLogs.Location = new System.Drawing.Point(19, 312);
+            this.listLogs.Name = "listLogs";
+            this.listLogs.Size = new System.Drawing.Size(221, 173);
+            this.listLogs.TabIndex = 6;
             // 
-            // metroLabel8
+            // toolStrip1
             // 
-            this.metroLabel8.AutoSize = true;
-            this.metroLabel8.Location = new System.Drawing.Point(73, 16);
-            this.metroLabel8.Name = "metroLabel8";
-            this.metroLabel8.Size = new System.Drawing.Size(99, 19);
-            this.metroLabel8.TabIndex = 5;
-            this.metroLabel8.Text = "Danh sach logo";
+            this.toolStrip1.Dock = System.Windows.Forms.DockStyle.Bottom;
+            this.toolStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.tsProgress,
+            this.tsLblProgress});
+            this.toolStrip1.Location = new System.Drawing.Point(20, 663);
+            this.toolStrip1.Name = "toolStrip1";
+            this.toolStrip1.Size = new System.Drawing.Size(776, 25);
+            this.toolStrip1.TabIndex = 1;
+            this.toolStrip1.Text = "toolStrip1";
             // 
-            // btnUpload
+            // tsProgress
             // 
-            this.btnUpload.Location = new System.Drawing.Point(73, 205);
-            this.btnUpload.Name = "btnUpload";
-            this.btnUpload.Size = new System.Drawing.Size(102, 29);
-            this.btnUpload.TabIndex = 4;
-            this.btnUpload.Text = "Start Upload";
-            this.btnUpload.UseSelectable = true;
-            this.btnUpload.Click += new System.EventHandler(this.metroButton1_Click);
+            this.tsProgress.Name = "tsProgress";
+            this.tsProgress.Size = new System.Drawing.Size(300, 22);
+            // 
+            // tsLblProgress
+            // 
+            this.tsLblProgress.Name = "tsLblProgress";
+            this.tsLblProgress.Size = new System.Drawing.Size(16, 22);
+            this.tsLblProgress.Text = "...";
+            // 
+            // opTbEmail
+            // 
+            // 
+            // 
+            // 
+            this.opTbEmail.CustomButton.Image = null;
+            this.opTbEmail.CustomButton.Location = new System.Drawing.Point(183, 1);
+            this.opTbEmail.CustomButton.Name = "";
+            this.opTbEmail.CustomButton.Size = new System.Drawing.Size(21, 21);
+            this.opTbEmail.CustomButton.Style = MetroFramework.MetroColorStyle.Blue;
+            this.opTbEmail.CustomButton.TabIndex = 1;
+            this.opTbEmail.CustomButton.Theme = MetroFramework.MetroThemeStyle.Light;
+            this.opTbEmail.CustomButton.UseSelectable = true;
+            this.opTbEmail.CustomButton.Visible = false;
+            this.opTbEmail.Lines = new string[0];
+            this.opTbEmail.Location = new System.Drawing.Point(192, 37);
+            this.opTbEmail.MaxLength = 32767;
+            this.opTbEmail.Name = "opTbEmail";
+            this.opTbEmail.PasswordChar = '\0';
+            this.opTbEmail.ScrollBars = System.Windows.Forms.ScrollBars.None;
+            this.opTbEmail.SelectedText = "";
+            this.opTbEmail.SelectionLength = 0;
+            this.opTbEmail.SelectionStart = 0;
+            this.opTbEmail.ShortcutsEnabled = true;
+            this.opTbEmail.Size = new System.Drawing.Size(205, 23);
+            this.opTbEmail.TabIndex = 8;
+            this.opTbEmail.UseSelectable = true;
+            this.opTbEmail.WaterMarkColor = System.Drawing.Color.FromArgb(((int)(((byte)(109)))), ((int)(((byte)(109)))), ((int)(((byte)(109)))));
+            this.opTbEmail.WaterMarkFont = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Italic, System.Drawing.GraphicsUnit.Pixel);
+            // 
+            // metroLabel6
+            // 
+            this.metroLabel6.AutoSize = true;
+            this.metroLabel6.Location = new System.Drawing.Point(51, 41);
+            this.metroLabel6.Name = "metroLabel6";
+            this.metroLabel6.Size = new System.Drawing.Size(98, 19);
+            this.metroLabel6.TabIndex = 7;
+            this.metroLabel6.Text = "ViralStyle Email";
+            // 
+            // metroLabel9
+            // 
+            this.metroLabel9.AutoSize = true;
+            this.metroLabel9.Location = new System.Drawing.Point(51, 85);
+            this.metroLabel9.Name = "metroLabel9";
+            this.metroLabel9.Size = new System.Drawing.Size(120, 19);
+            this.metroLabel9.TabIndex = 7;
+            this.metroLabel9.Text = "ViralStyle Password";
+            // 
+            // opTbPass
+            // 
+            // 
+            // 
+            // 
+            this.opTbPass.CustomButton.Image = null;
+            this.opTbPass.CustomButton.Location = new System.Drawing.Point(183, 1);
+            this.opTbPass.CustomButton.Name = "";
+            this.opTbPass.CustomButton.Size = new System.Drawing.Size(21, 21);
+            this.opTbPass.CustomButton.Style = MetroFramework.MetroColorStyle.Blue;
+            this.opTbPass.CustomButton.TabIndex = 1;
+            this.opTbPass.CustomButton.Theme = MetroFramework.MetroThemeStyle.Light;
+            this.opTbPass.CustomButton.UseSelectable = true;
+            this.opTbPass.CustomButton.Visible = false;
+            this.opTbPass.Lines = new string[0];
+            this.opTbPass.Location = new System.Drawing.Point(192, 81);
+            this.opTbPass.MaxLength = 32767;
+            this.opTbPass.Name = "opTbPass";
+            this.opTbPass.PasswordChar = '●';
+            this.opTbPass.ScrollBars = System.Windows.Forms.ScrollBars.None;
+            this.opTbPass.SelectedText = "";
+            this.opTbPass.SelectionLength = 0;
+            this.opTbPass.SelectionStart = 0;
+            this.opTbPass.ShortcutsEnabled = true;
+            this.opTbPass.Size = new System.Drawing.Size(205, 23);
+            this.opTbPass.TabIndex = 8;
+            this.opTbPass.UseSelectable = true;
+            this.opTbPass.UseSystemPasswordChar = true;
+            this.opTbPass.WaterMarkColor = System.Drawing.Color.FromArgb(((int)(((byte)(109)))), ((int)(((byte)(109)))), ((int)(((byte)(109)))));
+            this.opTbPass.WaterMarkFont = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Italic, System.Drawing.GraphicsUnit.Pixel);
             // 
             // MainForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(816, 693);
+            this.ClientSize = new System.Drawing.Size(816, 708);
+            this.Controls.Add(this.toolStrip1);
             this.Controls.Add(this.metroTabControl1);
             this.Name = "MainForm";
             this.Text = "Auto Upload";
@@ -751,19 +855,20 @@
             this.News.ResumeLayout(false);
             this.Viralstyle.ResumeLayout(false);
             this.Viralstyle.PerformLayout();
+            this.groupBox3.ResumeLayout(false);
+            this.groupBox3.PerformLayout();
             this.flowLayoutMokcup.ResumeLayout(false);
             this.metroPanel1.ResumeLayout(false);
             this.metroPanel1.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.numGoal)).EndInit();
             this.tabPage1.ResumeLayout(false);
             this.panel1.ResumeLayout(false);
-            this.groupBox1.ResumeLayout(false);
-            this.groupBox1.PerformLayout();
             this.groupBox2.ResumeLayout(false);
             this.groupBox2.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.numGoal)).EndInit();
-            this.groupBox3.ResumeLayout(false);
-            this.groupBox3.PerformLayout();
+            this.toolStrip1.ResumeLayout(false);
+            this.toolStrip1.PerformLayout();
             this.ResumeLayout(false);
+            this.PerformLayout();
 
         }
 
@@ -794,13 +899,10 @@
         private System.Windows.Forms.Panel panel1;
         private System.Windows.Forms.FlowLayoutPanel flowLayoutMokcup;
         private Controls.Mockup mockup1;
-        private System.Windows.Forms.GroupBox groupBox1;
         private System.ComponentModel.BackgroundWorker bgWorker;
         private MetroFramework.Controls.MetroLabel metroLabel5;
         private MetroFramework.Controls.MetroTextBox tbTemplateName;
-        private System.Windows.Forms.ComboBox cbbTemplates;
-        private MetroFramework.Controls.MetroLabel metroLabel6;
-        private MetroFramework.Controls.MetroButton btnApplyTemplate;
+        private MetroFramework.Controls.MetroButton btnLoadTemplate;
         private System.Windows.Forms.GroupBox groupBox2;
         private MetroFramework.Controls.MetroButton opBtnSave;
         private System.Windows.Forms.CheckBox opChbShowMockup;
@@ -808,9 +910,18 @@
         private MetroFramework.Controls.MetroLabel metroLabel7;
         private MetroFramework.Controls.MetroCheckBox chbShowBack;
         private System.Windows.Forms.GroupBox groupBox3;
-        private System.Windows.Forms.ListView listViewLogos;
         private MetroFramework.Controls.MetroLabel metroLabel8;
         private MetroFramework.Controls.MetroButton btnUpload;
+        private MetroFramework.Controls.MetroButton btnLoadLogo;
+        private System.Windows.Forms.ListBox listViewLogo;
+        private System.Windows.Forms.ListBox listLogs;
+        private System.Windows.Forms.ToolStrip toolStrip1;
+        private System.Windows.Forms.ToolStripProgressBar tsProgress;
+        private System.Windows.Forms.ToolStripLabel tsLblProgress;
+        private MetroFramework.Controls.MetroTextBox opTbEmail;
+        private MetroFramework.Controls.MetroLabel metroLabel6;
+        private MetroFramework.Controls.MetroTextBox opTbPass;
+        private MetroFramework.Controls.MetroLabel metroLabel9;
     }
 }
 

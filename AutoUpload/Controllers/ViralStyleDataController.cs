@@ -1,10 +1,12 @@
-﻿using AutoUpload.Models.Viralstyle;
+﻿using AutoUpload.Models;
+using AutoUpload.Models.Viralstyle;
 using AutoUpload.Properties;
 using log4net;
 using Newtonsoft.Json;
 using RaviLib.Models;
 using System;
 using System.Collections.Generic;
+using System.Dynamic;
 using System.IO;
 using System.Linq;
 using System.Text;
@@ -33,10 +35,19 @@ namespace AutoUpload.Controllers
         {
             try
             {
-                string rootPath = Directory.GetCurrentDirectory() + "\\";
-                string jsonData = File.ReadAllText(rootPath + Settings.Default.ViralStyle_Product_Path);
-                jsonData = jsonData.Replace("\r\n", "");
-                viralStyleProduct = JsonConvert.DeserializeObject<ViralStyleProduct>(jsonData);
+                CustomWeb web = new CustomWeb();
+                string result = web.SendRequest("https://viralstyle.com/design.beta/product-categories?api_campaign=false",
+                    "GET", "viralstyle.com", null, false);
+                result = "{\"ProductData\":" + result + "}";
+                viralStyleProduct = JsonConvert.DeserializeObject<ViralStyleProduct>(result);
+                //ViralStyleProductData jsonData = JsonConvert.DeserializeObject<ViralStyleProductData>(result);
+
+                //viralStyleProduct = new ViralStyleProduct();
+                //viralStyleProduct.ProductData.Add(jsonData);
+                //string rootPath = Directory.GetCurrentDirectory() + "\\";
+                //string jsonData = File.ReadAllText(rootPath + Settings.Default.ViralStyle_Product_Path);
+                //jsonData = jsonData.Replace("\r\n", "");
+                //viralStyleProduct = JsonConvert.DeserializeObject<ViralStyleProduct>(jsonData);
             }
             catch (Exception ex)
             {
@@ -47,7 +58,7 @@ namespace AutoUpload.Controllers
         {
             try
             {
-                for (int i = 0; i < viralStyleProduct.ProductData.Length; i++)
+                for (int i = 0; i < viralStyleProduct.ProductData.Count; i++)
                 {
                     var product = viralStyleProduct.ProductData[i];
                     for (int k = 0; k < product.category_products.Count; k++)
@@ -73,7 +84,7 @@ namespace AutoUpload.Controllers
             try
             {
                 Dictionary<string, string> pairs = new Dictionary<string, string>();
-                for (int i = 0; i < viralStyleProduct.ProductData.Length; i++)
+                for (int i = 0; i < viralStyleProduct.ProductData.Count; i++)
                 {
                     var product = viralStyleProduct.ProductData[i];
                     for (int k = 0; k < product.category_products.Count; k++)

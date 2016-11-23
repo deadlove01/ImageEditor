@@ -82,5 +82,53 @@ namespace AutoUpload.Properties {
                 this["TEMPLATE_PATH"] = value;
             }
         }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("Completed\\")]
+        public string COMPLETED_PATH {
+            get {
+                return ((string)(this["COMPLETED_PATH"]));
+            }
+            set {
+                this["COMPLETED_PATH"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("")]
+        public string EMAIL {
+            get {
+                return ((string)(this["EMAIL"]));
+            }
+            set {
+                this["EMAIL"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("")]
+        public string PASSWORD {
+            get {
+                return ((string)(this["PASSWORD"]));
+            }
+            set {
+                this["PASSWORD"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("20")]
+        public string MAX_COLORS {
+            get {
+                return ((string)(this["MAX_COLORS"]));
+            }
+            set {
+                this["MAX_COLORS"] = value;
+            }
+        }
     }
 }

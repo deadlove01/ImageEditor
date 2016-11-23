@@ -9,7 +9,12 @@ namespace AutoUpload.Models.Viralstyle
 
     public class ViralStyleProduct
     {
-        public ViralStyleProductData[] ProductData { get; set; }
+        public List<ViralStyleProductData> ProductData { get; set; }
+
+        public ViralStyleProduct()
+        {
+            ProductData = new List<ViralStyleProductData>();
+        }
     }
 
     public class ViralStyleProductData

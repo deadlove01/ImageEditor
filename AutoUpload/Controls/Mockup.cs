@@ -9,6 +9,8 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 using AutoUpload.Models.Viralstyle;
 using AutoUpload.Utils;
+using AutoUpload.Properties;
+using System.IO;
 
 namespace AutoUpload.Controls
 {
@@ -19,7 +21,11 @@ namespace AutoUpload.Controls
 
         private List<CheckBox> checkboxList;
         private MockupInfo mockupInfo;
-
+        public static string NameDefault = string.Empty;
+        public static List<string> ChosenNames = new List<string>();
+        public static int TotalColors = 0;
+        private static object lastSender = null;
+     
         public Mockup()
         {
             InitializeComponent();
@@ -64,6 +70,66 @@ namespace AutoUpload.Controls
                 lblSellingPrice.Text = mockupInfo.Product.suggested_price;
             }
      
+        }
+
+        private void chbDefault_CheckedChanged(object sender, EventArgs e)
+        {
+            if (chbDefault.Checked)
+            {
+                NameDefault = this.Name;
+                if(lastSender != null)
+                {
+                    var chb = (CheckBox)lastSender;
+                    chb.Checked = false;
+                }
+                lastSender = sender;
+            }
+            else
+            {
+                NameDefault = string.Empty;
+                lastSender = null;
+            }
+        }
+
+        private void chbSelect_CheckedChanged(object sender, EventArgs e)
+        {
+            
+            if(chbSelect.Checked)
+            {
+                if (!ChosenNames.Contains(this.Name))
+                {
+                    ChosenNames.Add(this.Name);
+                }
+            }
+            else
+            {
+                ChosenNames.Remove(this.Name);
+            }
+            
+        }
+
+        private void checkBox4g_CheckedChanged(object sender, EventArgs e)
+        {
+            var chb = (CheckBox)sender;
+            if(chb.Checked)
+            {
+                int maxColors = int.Parse(Settings.Default.MAX_COLORS);
+                if(TotalColors >= maxColors)
+                {
+                    MessageBox.Show("Only allow 20 colors!");
+                    chb.Checked = false;
+                    TotalColors++;
+                }
+                else
+                {
+                    TotalColors++;
+                }
+            }else
+            {
+                TotalColors--;
+                if (TotalColors < 0)
+                    TotalColors = 0;
+            }
         }
     }
 }

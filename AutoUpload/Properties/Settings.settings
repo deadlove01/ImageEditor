@@ -17,5 +17,17 @@
     <Setting Name="TEMPLATE_PATH" Type="System.String" Scope="User">
       <Value Profile="(Default)">Platform\ViralStyle\Templates\</Value>
     </Setting>
+    <Setting Name="COMPLETED_PATH" Type="System.String" Scope="User">
+      <Value Profile="(Default)">Completed\</Value>
+    </Setting>
+    <Setting Name="EMAIL" Type="System.String" Scope="User">
+      <Value Profile="(Default)" />
+    </Setting>
+    <Setting Name="PASSWORD" Type="System.String" Scope="User">
+      <Value Profile="(Default)" />
+    </Setting>
+    <Setting Name="MAX_COLORS" Type="System.String" Scope="User">
+      <Value Profile="(Default)">20</Value>
+    </Setting>
   </Settings>
 </SettingsFile>

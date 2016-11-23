@@ -13,11 +13,16 @@ namespace AutoUpload.Models.Viralstyle
         public Campaign campaign_data { get; set; }
     }
 
+    public class ViralStyleRequestJsonData
+    {
+        public string _token { get; set; }
+        public string campaign_data { get; set; }
+    }
 
     public class Campaign
     {
         public bool isDraft { get; set; }
-        public object campaignId { get; set; }
+        public string campaignId { get; set; }
         public bool createSimilar { get; set; }
         public string campaignUniqueId { get; set; }
         public string imageIdentifier { get; set; }
@@ -31,7 +36,7 @@ namespace AutoUpload.Models.Viralstyle
         public string[] campaign_tags { get; set; }
         public int campaign_length { get; set; }
         public string campaign_end_date { get; set; }
-        public DateTime campaign_end_date_obj { get; set; }
+        public string campaign_end_date_obj { get; set; }
         public long campaign_end_date_utc { get; set; }
         public bool hide_marketplace { get; set; }
         public bool campaign_auto_relaunch { get; set; }

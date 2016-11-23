@@ -22,7 +22,10 @@ namespace ViralStyleUploader
         public MainForm()
         {
             InitializeComponent();
-          //  Resize(@"C:\Users\RAVI\Desktop\Logo\BROWN.png", @"C:\Users\RAVI\Desktop\Logo\test.png", 0.5);
+            //  Resize(@"C:\Users\RAVI\Desktop\Logo\BROWN.png", @"C:\Users\RAVI\Desktop\Logo\test.png", 0.5);
+    
+         //   JsonConvert.DeserializeObject<ViralStyleRequestData>(jsonData);
+    
         }
 
         private void button1_Click(object sender, EventArgs e)
@@ -99,7 +102,7 @@ namespace ViralStyleUploader
             string description = "this is another description";
            // string token = "tkMyMmQDXpeeLkFaLv5wb3lPx0KdEsNV269PnepU";
             string uniqueCampUrl = "here-is-my-url-"+ StringUtil.RandomString(8);
-            string jsonData = File.ReadAllText(Directory.GetCurrentDirectory() + "\\data2.json");
+            string jsonData = File.ReadAllText(Directory.GetCurrentDirectory() + "\\data3.json");
 
             nvc.Clear();
             result = web.SendRequest("https://viralstyle.com/design.beta", "GET", nvc);

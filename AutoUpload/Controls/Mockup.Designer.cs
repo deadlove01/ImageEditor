@@ -66,12 +66,12 @@
             this.label1 = new System.Windows.Forms.Label();
             this.lblSellingPrice = new System.Windows.Forms.Label();
             this.chbSelect = new System.Windows.Forms.CheckBox();
+            this.chbDefault = new System.Windows.Forms.CheckBox();
             ((System.ComponentModel.ISupportInitialize)(this.picture)).BeginInit();
             this.SuspendLayout();
             // 
             // checkBox1
             // 
-            this.checkBox1.Appearance = System.Windows.Forms.Appearance.Button;
             this.checkBox1.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.checkBox1.Location = new System.Drawing.Point(3, 208);
             this.checkBox1.Name = "checkBox1";
@@ -79,6 +79,7 @@
             this.checkBox1.TabIndex = 17;
             this.checkBox1.UseVisualStyleBackColor = false;
             this.checkBox1.Visible = false;
+            this.checkBox1.CheckedChanged += new System.EventHandler(this.checkBox4g_CheckedChanged);
             // 
             // picture
             // 
@@ -92,7 +93,6 @@
             // 
             // checkBox1a
             // 
-            this.checkBox1a.Appearance = System.Windows.Forms.Appearance.Button;
             this.checkBox1a.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.checkBox1a.Location = new System.Drawing.Point(29, 208);
             this.checkBox1a.Name = "checkBox1a";
@@ -100,10 +100,10 @@
             this.checkBox1a.TabIndex = 17;
             this.checkBox1a.UseVisualStyleBackColor = true;
             this.checkBox1a.Visible = false;
+            this.checkBox1a.CheckedChanged += new System.EventHandler(this.checkBox4g_CheckedChanged);
             // 
             // checkBox1b
             // 
-            this.checkBox1b.Appearance = System.Windows.Forms.Appearance.Button;
             this.checkBox1b.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.checkBox1b.Location = new System.Drawing.Point(55, 208);
             this.checkBox1b.Name = "checkBox1b";
@@ -111,21 +111,21 @@
             this.checkBox1b.TabIndex = 17;
             this.checkBox1b.UseVisualStyleBackColor = true;
             this.checkBox1b.Visible = false;
+            this.checkBox1b.CheckedChanged += new System.EventHandler(this.checkBox4g_CheckedChanged);
             // 
             // checkBox1c
             // 
-            this.checkBox1c.Appearance = System.Windows.Forms.Appearance.Button;
             this.checkBox1c.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.checkBox1c.Location = new System.Drawing.Point(81, 208);
             this.checkBox1c.Name = "checkBox1c";
             this.checkBox1c.Size = new System.Drawing.Size(20, 20);
             this.checkBox1c.TabIndex = 17;
-            this.checkBox1c.UseVisualStyleBackColor = true;
+            this.checkBox1c.UseVisualStyleBackColor = false;
             this.checkBox1c.Visible = false;
+            this.checkBox1c.CheckedChanged += new System.EventHandler(this.checkBox4g_CheckedChanged);
             // 
             // checkBox1e
             // 
-            this.checkBox1e.Appearance = System.Windows.Forms.Appearance.Button;
             this.checkBox1e.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.checkBox1e.Location = new System.Drawing.Point(108, 208);
             this.checkBox1e.Name = "checkBox1e";
@@ -133,10 +133,11 @@
             this.checkBox1e.TabIndex = 17;
             this.checkBox1e.UseVisualStyleBackColor = true;
             this.checkBox1e.Visible = false;
+            this.checkBox1e.CheckedChanged += new System.EventHandler(this.checkBox4g_CheckedChanged);
             // 
             // checkBox1f
             // 
-            this.checkBox1f.Appearance = System.Windows.Forms.Appearance.Button;
+            this.checkBox1f.FlatAppearance.BorderSize = 5;
             this.checkBox1f.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.checkBox1f.Location = new System.Drawing.Point(134, 208);
             this.checkBox1f.Name = "checkBox1f";
@@ -144,10 +145,10 @@
             this.checkBox1f.TabIndex = 17;
             this.checkBox1f.UseVisualStyleBackColor = true;
             this.checkBox1f.Visible = false;
+            this.checkBox1f.CheckedChanged += new System.EventHandler(this.checkBox4g_CheckedChanged);
             // 
             // checkBox1g
             // 
-            this.checkBox1g.Appearance = System.Windows.Forms.Appearance.Button;
             this.checkBox1g.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.checkBox1g.Location = new System.Drawing.Point(160, 208);
             this.checkBox1g.Name = "checkBox1g";
@@ -155,10 +156,10 @@
             this.checkBox1g.TabIndex = 17;
             this.checkBox1g.UseVisualStyleBackColor = true;
             this.checkBox1g.Visible = false;
+            this.checkBox1g.CheckedChanged += new System.EventHandler(this.checkBox4g_CheckedChanged);
             // 
             // checkBox1h
             // 
-            this.checkBox1h.Appearance = System.Windows.Forms.Appearance.Button;
             this.checkBox1h.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.checkBox1h.Location = new System.Drawing.Point(186, 208);
             this.checkBox1h.Name = "checkBox1h";
@@ -166,10 +167,10 @@
             this.checkBox1h.TabIndex = 17;
             this.checkBox1h.UseVisualStyleBackColor = true;
             this.checkBox1h.Visible = false;
+            this.checkBox1h.CheckedChanged += new System.EventHandler(this.checkBox4g_CheckedChanged);
             // 
             // checkBox2
             // 
-            this.checkBox2.Appearance = System.Windows.Forms.Appearance.Button;
             this.checkBox2.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.checkBox2.Location = new System.Drawing.Point(3, 234);
             this.checkBox2.Name = "checkBox2";
@@ -177,10 +178,10 @@
             this.checkBox2.TabIndex = 17;
             this.checkBox2.UseVisualStyleBackColor = true;
             this.checkBox2.Visible = false;
+            this.checkBox2.CheckedChanged += new System.EventHandler(this.checkBox4g_CheckedChanged);
             // 
             // checkBox2a
             // 
-            this.checkBox2a.Appearance = System.Windows.Forms.Appearance.Button;
             this.checkBox2a.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.checkBox2a.Location = new System.Drawing.Point(29, 234);
             this.checkBox2a.Name = "checkBox2a";
@@ -188,10 +189,10 @@
             this.checkBox2a.TabIndex = 17;
             this.checkBox2a.UseVisualStyleBackColor = true;
             this.checkBox2a.Visible = false;
+            this.checkBox2a.CheckedChanged += new System.EventHandler(this.checkBox4g_CheckedChanged);
             // 
             // checkBox2d
             // 
-            this.checkBox2d.Appearance = System.Windows.Forms.Appearance.Button;
             this.checkBox2d.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.checkBox2d.Location = new System.Drawing.Point(108, 234);
             this.checkBox2d.Name = "checkBox2d";
@@ -199,10 +200,10 @@
             this.checkBox2d.TabIndex = 17;
             this.checkBox2d.UseVisualStyleBackColor = true;
             this.checkBox2d.Visible = false;
+            this.checkBox2d.CheckedChanged += new System.EventHandler(this.checkBox4g_CheckedChanged);
             // 
             // checkBox2b
             // 
-            this.checkBox2b.Appearance = System.Windows.Forms.Appearance.Button;
             this.checkBox2b.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.checkBox2b.Location = new System.Drawing.Point(55, 234);
             this.checkBox2b.Name = "checkBox2b";
@@ -210,10 +211,10 @@
             this.checkBox2b.TabIndex = 17;
             this.checkBox2b.UseVisualStyleBackColor = true;
             this.checkBox2b.Visible = false;
+            this.checkBox2b.CheckedChanged += new System.EventHandler(this.checkBox4g_CheckedChanged);
             // 
             // checkBox2e
             // 
-            this.checkBox2e.Appearance = System.Windows.Forms.Appearance.Button;
             this.checkBox2e.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.checkBox2e.Location = new System.Drawing.Point(134, 234);
             this.checkBox2e.Name = "checkBox2e";
@@ -221,10 +222,10 @@
             this.checkBox2e.TabIndex = 17;
             this.checkBox2e.UseVisualStyleBackColor = true;
             this.checkBox2e.Visible = false;
+            this.checkBox2e.CheckedChanged += new System.EventHandler(this.checkBox4g_CheckedChanged);
             // 
             // checkBox2f
             // 
-            this.checkBox2f.Appearance = System.Windows.Forms.Appearance.Button;
             this.checkBox2f.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.checkBox2f.Location = new System.Drawing.Point(160, 234);
             this.checkBox2f.Name = "checkBox2f";
@@ -232,10 +233,10 @@
             this.checkBox2f.TabIndex = 17;
             this.checkBox2f.UseVisualStyleBackColor = true;
             this.checkBox2f.Visible = false;
+            this.checkBox2f.CheckedChanged += new System.EventHandler(this.checkBox4g_CheckedChanged);
             // 
             // checkBox2c
             // 
-            this.checkBox2c.Appearance = System.Windows.Forms.Appearance.Button;
             this.checkBox2c.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.checkBox2c.Location = new System.Drawing.Point(81, 234);
             this.checkBox2c.Name = "checkBox2c";
@@ -243,10 +244,10 @@
             this.checkBox2c.TabIndex = 17;
             this.checkBox2c.UseVisualStyleBackColor = true;
             this.checkBox2c.Visible = false;
+            this.checkBox2c.CheckedChanged += new System.EventHandler(this.checkBox4g_CheckedChanged);
             // 
             // checkBox2g
             // 
-            this.checkBox2g.Appearance = System.Windows.Forms.Appearance.Button;
             this.checkBox2g.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.checkBox2g.Location = new System.Drawing.Point(186, 234);
             this.checkBox2g.Name = "checkBox2g";
@@ -254,10 +255,10 @@
             this.checkBox2g.TabIndex = 17;
             this.checkBox2g.UseVisualStyleBackColor = true;
             this.checkBox2g.Visible = false;
+            this.checkBox2g.CheckedChanged += new System.EventHandler(this.checkBox4g_CheckedChanged);
             // 
             // checkBox3
             // 
-            this.checkBox3.Appearance = System.Windows.Forms.Appearance.Button;
             this.checkBox3.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.checkBox3.Location = new System.Drawing.Point(3, 260);
             this.checkBox3.Name = "checkBox3";
@@ -265,10 +266,10 @@
             this.checkBox3.TabIndex = 17;
             this.checkBox3.UseVisualStyleBackColor = true;
             this.checkBox3.Visible = false;
+            this.checkBox3.CheckedChanged += new System.EventHandler(this.checkBox4g_CheckedChanged);
             // 
             // checkBox3a
             // 
-            this.checkBox3a.Appearance = System.Windows.Forms.Appearance.Button;
             this.checkBox3a.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.checkBox3a.Location = new System.Drawing.Point(29, 260);
             this.checkBox3a.Name = "checkBox3a";
@@ -276,10 +277,10 @@
             this.checkBox3a.TabIndex = 17;
             this.checkBox3a.UseVisualStyleBackColor = true;
             this.checkBox3a.Visible = false;
+            this.checkBox3a.CheckedChanged += new System.EventHandler(this.checkBox4g_CheckedChanged);
             // 
             // checkBox4
             // 
-            this.checkBox4.Appearance = System.Windows.Forms.Appearance.Button;
             this.checkBox4.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.checkBox4.Location = new System.Drawing.Point(3, 286);
             this.checkBox4.Name = "checkBox4";
@@ -287,10 +288,10 @@
             this.checkBox4.TabIndex = 17;
             this.checkBox4.UseVisualStyleBackColor = true;
             this.checkBox4.Visible = false;
+            this.checkBox4.CheckedChanged += new System.EventHandler(this.checkBox4g_CheckedChanged);
             // 
             // checkBox3d
             // 
-            this.checkBox3d.Appearance = System.Windows.Forms.Appearance.Button;
             this.checkBox3d.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.checkBox3d.Location = new System.Drawing.Point(108, 260);
             this.checkBox3d.Name = "checkBox3d";
@@ -298,10 +299,10 @@
             this.checkBox3d.TabIndex = 17;
             this.checkBox3d.UseVisualStyleBackColor = true;
             this.checkBox3d.Visible = false;
+            this.checkBox3d.CheckedChanged += new System.EventHandler(this.checkBox4g_CheckedChanged);
             // 
             // checkBox4a
             // 
-            this.checkBox4a.Appearance = System.Windows.Forms.Appearance.Button;
             this.checkBox4a.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.checkBox4a.Location = new System.Drawing.Point(29, 286);
             this.checkBox4a.Name = "checkBox4a";
@@ -309,10 +310,10 @@
             this.checkBox4a.TabIndex = 17;
             this.checkBox4a.UseVisualStyleBackColor = true;
             this.checkBox4a.Visible = false;
+            this.checkBox4a.CheckedChanged += new System.EventHandler(this.checkBox4g_CheckedChanged);
             // 
             // checkBox3b
             // 
-            this.checkBox3b.Appearance = System.Windows.Forms.Appearance.Button;
             this.checkBox3b.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.checkBox3b.Location = new System.Drawing.Point(55, 260);
             this.checkBox3b.Name = "checkBox3b";
@@ -320,10 +321,10 @@
             this.checkBox3b.TabIndex = 17;
             this.checkBox3b.UseVisualStyleBackColor = true;
             this.checkBox3b.Visible = false;
+            this.checkBox3b.CheckedChanged += new System.EventHandler(this.checkBox4g_CheckedChanged);
             // 
             // checkBox4d
             // 
-            this.checkBox4d.Appearance = System.Windows.Forms.Appearance.Button;
             this.checkBox4d.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.checkBox4d.Location = new System.Drawing.Point(108, 286);
             this.checkBox4d.Name = "checkBox4d";
@@ -331,10 +332,10 @@
             this.checkBox4d.TabIndex = 17;
             this.checkBox4d.UseVisualStyleBackColor = true;
             this.checkBox4d.Visible = false;
+            this.checkBox4d.CheckedChanged += new System.EventHandler(this.checkBox4g_CheckedChanged);
             // 
             // checkBox3e
             // 
-            this.checkBox3e.Appearance = System.Windows.Forms.Appearance.Button;
             this.checkBox3e.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.checkBox3e.Location = new System.Drawing.Point(134, 260);
             this.checkBox3e.Name = "checkBox3e";
@@ -342,10 +343,10 @@
             this.checkBox3e.TabIndex = 17;
             this.checkBox3e.UseVisualStyleBackColor = true;
             this.checkBox3e.Visible = false;
+            this.checkBox3e.CheckedChanged += new System.EventHandler(this.checkBox4g_CheckedChanged);
             // 
             // checkBox4b
             // 
-            this.checkBox4b.Appearance = System.Windows.Forms.Appearance.Button;
             this.checkBox4b.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.checkBox4b.Location = new System.Drawing.Point(55, 286);
             this.checkBox4b.Name = "checkBox4b";
@@ -353,10 +354,10 @@
             this.checkBox4b.TabIndex = 17;
             this.checkBox4b.UseVisualStyleBackColor = true;
             this.checkBox4b.Visible = false;
+            this.checkBox4b.CheckedChanged += new System.EventHandler(this.checkBox4g_CheckedChanged);
             // 
             // checkBox3f
             // 
-            this.checkBox3f.Appearance = System.Windows.Forms.Appearance.Button;
             this.checkBox3f.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.checkBox3f.Location = new System.Drawing.Point(160, 260);
             this.checkBox3f.Name = "checkBox3f";
@@ -364,10 +365,10 @@
             this.checkBox3f.TabIndex = 17;
             this.checkBox3f.UseVisualStyleBackColor = true;
             this.checkBox3f.Visible = false;
+            this.checkBox3f.CheckedChanged += new System.EventHandler(this.checkBox4g_CheckedChanged);
             // 
             // checkBox4e
             // 
-            this.checkBox4e.Appearance = System.Windows.Forms.Appearance.Button;
             this.checkBox4e.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.checkBox4e.Location = new System.Drawing.Point(134, 286);
             this.checkBox4e.Name = "checkBox4e";
@@ -375,10 +376,10 @@
             this.checkBox4e.TabIndex = 17;
             this.checkBox4e.UseVisualStyleBackColor = true;
             this.checkBox4e.Visible = false;
+            this.checkBox4e.CheckedChanged += new System.EventHandler(this.checkBox4g_CheckedChanged);
             // 
             // checkBox4f
             // 
-            this.checkBox4f.Appearance = System.Windows.Forms.Appearance.Button;
             this.checkBox4f.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.checkBox4f.Location = new System.Drawing.Point(160, 286);
             this.checkBox4f.Name = "checkBox4f";
@@ -386,10 +387,10 @@
             this.checkBox4f.TabIndex = 17;
             this.checkBox4f.UseVisualStyleBackColor = true;
             this.checkBox4f.Visible = false;
+            this.checkBox4f.CheckedChanged += new System.EventHandler(this.checkBox4g_CheckedChanged);
             // 
             // checkBox3c
             // 
-            this.checkBox3c.Appearance = System.Windows.Forms.Appearance.Button;
             this.checkBox3c.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.checkBox3c.Location = new System.Drawing.Point(81, 260);
             this.checkBox3c.Name = "checkBox3c";
@@ -397,10 +398,10 @@
             this.checkBox3c.TabIndex = 17;
             this.checkBox3c.UseVisualStyleBackColor = true;
             this.checkBox3c.Visible = false;
+            this.checkBox3c.CheckedChanged += new System.EventHandler(this.checkBox4g_CheckedChanged);
             // 
             // checkBox4c
             // 
-            this.checkBox4c.Appearance = System.Windows.Forms.Appearance.Button;
             this.checkBox4c.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.checkBox4c.Location = new System.Drawing.Point(81, 286);
             this.checkBox4c.Name = "checkBox4c";
@@ -408,10 +409,10 @@
             this.checkBox4c.TabIndex = 17;
             this.checkBox4c.UseVisualStyleBackColor = true;
             this.checkBox4c.Visible = false;
+            this.checkBox4c.CheckedChanged += new System.EventHandler(this.checkBox4g_CheckedChanged);
             // 
             // checkBox3g
             // 
-            this.checkBox3g.Appearance = System.Windows.Forms.Appearance.Button;
             this.checkBox3g.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.checkBox3g.Location = new System.Drawing.Point(186, 260);
             this.checkBox3g.Name = "checkBox3g";
@@ -419,10 +420,10 @@
             this.checkBox3g.TabIndex = 17;
             this.checkBox3g.UseVisualStyleBackColor = true;
             this.checkBox3g.Visible = false;
+            this.checkBox3g.CheckedChanged += new System.EventHandler(this.checkBox4g_CheckedChanged);
             // 
             // checkBox4g
             // 
-            this.checkBox4g.Appearance = System.Windows.Forms.Appearance.Button;
             this.checkBox4g.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.checkBox4g.Location = new System.Drawing.Point(186, 286);
             this.checkBox4g.Name = "checkBox4g";
@@ -430,6 +431,7 @@
             this.checkBox4g.TabIndex = 17;
             this.checkBox4g.UseVisualStyleBackColor = true;
             this.checkBox4g.Visible = false;
+            this.checkBox4g.CheckedChanged += new System.EventHandler(this.checkBox4g_CheckedChanged);
             // 
             // lblName
             // 
@@ -464,17 +466,30 @@
             // chbSelect
             // 
             this.chbSelect.AutoSize = true;
-            this.chbSelect.Location = new System.Drawing.Point(21, 169);
+            this.chbSelect.Location = new System.Drawing.Point(23, 161);
             this.chbSelect.Name = "chbSelect";
             this.chbSelect.Size = new System.Drawing.Size(105, 17);
             this.chbSelect.TabIndex = 20;
             this.chbSelect.Text = "Select to Upload";
             this.chbSelect.UseVisualStyleBackColor = true;
+            this.chbSelect.CheckedChanged += new System.EventHandler(this.chbSelect_CheckedChanged);
+            // 
+            // chbDefault
+            // 
+            this.chbDefault.AutoSize = true;
+            this.chbDefault.Location = new System.Drawing.Point(23, 184);
+            this.chbDefault.Name = "chbDefault";
+            this.chbDefault.Size = new System.Drawing.Size(93, 17);
+            this.chbDefault.TabIndex = 20;
+            this.chbDefault.Text = "Select Default";
+            this.chbDefault.UseVisualStyleBackColor = true;
+            this.chbDefault.CheckedChanged += new System.EventHandler(this.chbDefault_CheckedChanged);
             // 
             // Mockup
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.Controls.Add(this.chbDefault);
             this.Controls.Add(this.chbSelect);
             this.Controls.Add(this.lblSellingPrice);
             this.Controls.Add(this.label1);
@@ -560,5 +575,6 @@
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Label lblSellingPrice;
         private System.Windows.Forms.CheckBox chbSelect;
+        private System.Windows.Forms.CheckBox chbDefault;
     }
 }

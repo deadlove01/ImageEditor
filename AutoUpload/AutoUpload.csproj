@@ -115,8 +115,10 @@
     <Compile Include="Models\CustomWeb.cs">
       <SubType>Component</SubType>
     </Compile>
+    <Compile Include="Models\Viralstyle\LoginModel.cs" />
     <Compile Include="Models\Viralstyle\MockupInfo.cs" />
     <Compile Include="Models\Viralstyle\Product.cs" />
+    <Compile Include="Models\Viralstyle\Template.cs" />
     <Compile Include="Models\Viralstyle\ViralStyleRequest.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -128,7 +130,9 @@
     </Compile>
     <Compile Include="Utils\ColorUtil.cs" />
     <Compile Include="Utils\Constants.cs" />
+    <Compile Include="Utils\DateTimeUtil.cs" />
     <Compile Include="Utils\StringUtil.cs" />
+    <Compile Include="Utils\ViralStyleUtil.cs" />
     <EmbeddedResource Include="Controls\Mockup.resx">
       <DependentUpon>Mockup.cs</DependentUpon>
     </EmbeddedResource>
