@@ -407,17 +407,52 @@ namespace AutoUpload
                 return;
             }
 
-            if(Mockup.ChosenNames.Count  == 0)
-            {
-                MessageBox.Show("Choose at least one mockup!");
-                return;
-            }
-
             if(string.IsNullOrEmpty(Mockup.NameDefault))
             {
                 MessageBox.Show("Choose one default mockup!");
                 return;
+            }else
+            {
+                if(Mockup.selectedMockup.Count == 0)
+                {
+                    MessageBox.Show("Choose one mockup to upload!");
+                    return;
+                }else
+                {
+                    bool error = false;
+                    bool notFound = true;
+                    foreach (var mockup in Mockup.selectedMockup)
+                    {
+                        if(Mockup.NameDefault == mockup.Name)
+                        {
+                            if(mockup.colorList.Count == 0)
+                            {
+                                error = true;                               
+                                break;
+                            }                           
+                        }
+                    }
+
+                    foreach (var mockup in Mockup.selectedMockup)
+                    {
+                        if (Mockup.NameDefault == mockup.Name)
+                        {
+                            notFound = false;
+                            break;
+                        }
+                    }
+
+                    if (error || notFound)
+                    {
+                        MessageBox.Show("Default mockup require at least one color!");
+                        return;
+                    }
+                }
+
+                
             }
+
+
 
             bgWorker.RunWorkerAsync("UploadViralStyle");
             btnUpload.Enabled = false;

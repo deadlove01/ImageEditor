@@ -1,4 +1,5 @@
-﻿using AutoUpload.Models;
+﻿using AutoUpload.Controls;
+using AutoUpload.Models;
 using AutoUpload.Models.Viralstyle;
 using AutoUpload.Utils;
 using log4net;
@@ -104,7 +105,7 @@ namespace AutoUpload.Controllers
 
                 string loginUrl = "https://viralstyle.com/api/v2/auth/login";
 
-                LoginModel loginModel = new LoginModel("deadlove011011@gmail.com", "19001560", false);
+                LoginModel loginModel = new LoginModel(email, password, true);
                 string loginJson = JsonConvert.SerializeObject(loginModel);
                 string result = web.SendRequestJsonType(loginUrl, "POST", "application/json", 
                     loginJson, token, true);
@@ -207,11 +208,11 @@ namespace AutoUpload.Controllers
                 string uniqueCampUrl = template.CampUrl+"-" + StringUtil.RandomString(8);
 
                 // check url
-                dynamic urlObj = new ExpandoObject();
-                urlObj.url = uniqueCampUrl;
-                string checkResult = web.HttpUploadFileByJson("https://viralstyle.com/design.beta/check-url",
-                    JsonConvert.SerializeObject(urlObj), token, newToken);
-                Console.WriteLine(checkResult);
+                //dynamic urlObj = new ExpandoObject();
+                //urlObj.url = uniqueCampUrl;
+                //string checkResult = web.HttpUploadFileByJson("https://viralstyle.com/design.beta/check-url",
+                //    JsonConvert.SerializeObject(urlObj), token, newToken);
+                //Console.WriteLine(checkResult);
 
                 //string jsonData = File.ReadAllText(Directory.GetCurrentDirectory() + "\\data3.json");
                 //System.Drawing.Image img = System.Drawing.Image.FromFile(logoPath);
@@ -249,6 +250,7 @@ namespace AutoUpload.Controllers
                 data._token = tempData._token;
                 data.campaign_data = JsonConvert.DeserializeObject<Campaign>(tempData.campaign_data);
 
+                string logoName = Path.GetFileNameWithoutExtension(logoPath);
                 //string loadedJsonData = File.ReadAllText(Directory.GetCurrentDirectory() + "\\data4.json");
                 //    jsonData = jsonData.Replace("\\", "").Replace("\r\n", "");
                 //var data = JsonConvert.DeserializeObject<ViralStyleRequestData>(jsonData);
@@ -264,17 +266,76 @@ namespace AutoUpload.Controllers
                 data.campaign_data.mainProduct.front.designerItems[0].imageData.thumbnail_url = resizeUrl;
                 data.campaign_data.mainProduct.front.designerItems[0].imageData.original_upload_url = orgUrl;
                 data.campaign_data.campaign_length = 7;
-                data.campaign_data.campaign_name = template.Title;
-                data.campaign_data.campaign_description = template.Description;
-                data.campaign_data.campaign_url = uniqueCampUrl;
+                data.campaign_data.campaign_name = template.Title.Replace("{NAME}", logoName) ;
+                data.campaign_data.campaign_description = template.Description.Replace("{NAME}", logoName);
+                data.campaign_data.campaign_url = uniqueCampUrl.Replace("{NAME}", logoName);
+                data.campaign_data.campaign_tags = template.Tags.Split(',');
+
+                data.campaign_data.campaign_auto_extend = template.AutoExtend;
+                data.campaign_data.campaign_auto_relaunch = template.AutoRelaunch;
+                data.campaign_data.campaign_show_goal = template.ShowGoal;
+                data.campaign_data.campaign_page_timer = template.CampaignPageTimer;
+                data.campaign_data.hide_marketplace = template.HideMarketPlace;
+                data.campaign_data.campaign_show_back_default = template.ShowBackDefault;
+                data.campaign_data.goal = template.Goal;
+
                 data._token = newToken;
                 data.campaign_data.design.front.upscaled = base64String;
+               
 
+                // update main color
+                var mainColor = GetDefaultProductColor();
+                data.campaign_data.mainProduct.currentColor.id = mainColor.id;
+                data.campaign_data.mainProduct.currentColor.product_id = mainColor.product_id;
+                data.campaign_data.mainProduct.currentColor.name = mainColor.name;
+                data.campaign_data.mainProduct.currentColor.hex = mainColor.hex;
+                data.campaign_data.mainProduct.currentColor.ab_color = mainColor.ab_color;
+                data.campaign_data.mainProduct.currentColor.common_color_id = mainColor.common_color_id;
+                data.campaign_data.mainProduct.currentColor.sm_color = mainColor.sm_color;
+                data.campaign_data.mainProduct.currentColor.created_at = mainColor.created_at;
+                data.campaign_data.mainProduct.currentColor.updated_at = mainColor.updated_at;
+                data.campaign_data.mainProduct.product_id = mainColor.product_id;
+
+               // update main product
+               string urlAsset = "https://assets.viralstyle.com/product-images/";
+                var mainProduct = ViralStyleDataController.Instance.GetProductByName(Mockup.NameDefault);
+                data.campaign_data.mainProduct.product.image.front.original = mainProduct.front_base;
+                data.campaign_data.mainProduct.product.image.front.thumbnail = mainProduct.front_preview;
+                data.campaign_data.mainProduct.product.image.front.large = mainProduct.front_base_large;
+                data.campaign_data.mainProduct.product.product_thumbnail_image = urlAsset + mainProduct.front_preview;
+                data.campaign_data.mainProduct.product.product_image = urlAsset + mainProduct.front_base;
+                data.campaign_data.pricing.basePrice = 0.0f;
+                data.campaign_data.pricing.dtgPrice = 8.5f;
+                data.campaign_data.pricing.sellingPrice = mainProduct.suggested_price;
+                
+                //data.campaign_data.pricing.dtgPrice
+
+                // update other colors's main product
+                var colors = GetOtherProductColor();
+                List<Additionalproduct> moreProductColors = new List<Additionalproduct>();
+                for (int i = 0; i < colors.Count; i++)
+                {
+                    Additionalproduct addProduct = new Additionalproduct();
+                    addProduct.product = mainProduct.id;
+                    addProduct.color = colors[i].id;
+                    addProduct.hex = colors[i].hex;
+                    addProduct.selling_price = mainProduct.suggested_price;
+                    addProduct.profit = "NaN";
+                    addProduct.dtg_profit = "NaN";
+                    addProduct.base_price = 0.0f;
+                    addProduct.dtg_price = 8.5f;
+                    moreProductColors.Add(addProduct);
+                }
+                moreProductColors.AddRange(GetOtherMockup());
+                data.campaign_data.additionalProducts = moreProductColors.ToArray();
+                //Array.Clear(data.campaign_data.additionalProducts, 0, data.campaign_data.additionalProducts.Length);
+
+                tempData._token = newToken;
                 tempData.campaign_data = JsonConvert.SerializeObject(data.campaign_data);
                 string encodeJson = JsonConvert.SerializeObject(tempData);
                 //jsonData = jsonData.Replace("\\", "").Replace("\r\n", "");
                 //jsonData = jsonData.Replace("\r\n", "");
-                //jsonData = jsonData.Replace("{CAMP_ID}", campId)
+                //encodeJson = encodeJson.Replace("{CAMP_ID}", campId)
                 //    .Replace("{IMAGE_ID}", id)
                 //    .Replace("{RESIZE_IMAGE_URL}", resizeUrl)
                 //    .Replace("{TRIMMED_IMAGE_URL}", trimmedUrl)
@@ -315,5 +376,62 @@ namespace AutoUpload.Controllers
                 }
             }
         }
+
+        private Product_Colors GetDefaultProductColor()
+        {
+            string defaultMockupName = Mockup.NameDefault;
+            foreach (var mockup in Mockup.selectedMockup)
+            {
+                if(defaultMockupName == mockup.Name)
+                {
+                    return mockup.colorList[0];
+                }
+            }
+            return null;
+        }
+
+        private List<Product_Colors> GetOtherProductColor()
+        {
+            string defaultMockupName = Mockup.NameDefault;
+            foreach (var mockup in Mockup.selectedMockup)
+            {
+                if (defaultMockupName == mockup.Name)
+                {
+                    return mockup.colorList;
+                }
+            }
+            return null;
+        }
+
+        private List<Additionalproduct> GetOtherMockup()
+        {
+            List<Additionalproduct> moreProductColors = new List<Additionalproduct>();
+            foreach (var mockup in Mockup.selectedMockup)
+            {
+                if(mockup.Name != Mockup.NameDefault)
+                {
+                    foreach (var color in mockup.colorList)
+                    {
+                        Additionalproduct addProduct = new Additionalproduct();
+                        addProduct.product = color.product_id;
+                        addProduct.color = color.id;
+                        addProduct.hex = color.hex;
+                        addProduct.selling_price = mockup.mockupInfo.Product.suggested_price;
+                        addProduct.profit = "NaN";
+                        addProduct.dtg_profit = "NaN";
+                        addProduct.base_price = 0.0f;
+                        addProduct.dtg_price = 8.5f;
+                        moreProductColors.Add(addProduct);
+                    }
+                }
+                
+            }
+
+            return moreProductColors;
+        }
+
+        
+    
+        
     }
 }

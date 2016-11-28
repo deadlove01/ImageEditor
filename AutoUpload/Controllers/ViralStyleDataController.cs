@@ -64,7 +64,7 @@ namespace AutoUpload.Controllers
                     for (int k = 0; k < product.category_products.Count; k++)
                     {
                         var proc = product.category_products[k].products;
-                        if (proc.front_base.ToLower() == uniqueName.ToLower())
+                        if (proc.name.ToLower() == uniqueName.ToLower())
                         {
                             return proc;
                         }
@@ -106,6 +106,8 @@ namespace AutoUpload.Controllers
 
             return null;
         }
+
+
 
     }
 }

@@ -65,8 +65,8 @@
             this.backgroundWorker1 = new System.ComponentModel.BackgroundWorker();
             this.label1 = new System.Windows.Forms.Label();
             this.lblSellingPrice = new System.Windows.Forms.Label();
-            this.chbSelect = new System.Windows.Forms.CheckBox();
             this.chbDefault = new System.Windows.Forms.CheckBox();
+            this.chbSelect = new System.Windows.Forms.CheckBox();
             ((System.ComponentModel.ISupportInitialize)(this.picture)).BeginInit();
             this.SuspendLayout();
             // 
@@ -463,21 +463,10 @@
             this.lblSellingPrice.TabIndex = 19;
             this.lblSellingPrice.Text = "...";
             // 
-            // chbSelect
-            // 
-            this.chbSelect.AutoSize = true;
-            this.chbSelect.Location = new System.Drawing.Point(23, 161);
-            this.chbSelect.Name = "chbSelect";
-            this.chbSelect.Size = new System.Drawing.Size(105, 17);
-            this.chbSelect.TabIndex = 20;
-            this.chbSelect.Text = "Select to Upload";
-            this.chbSelect.UseVisualStyleBackColor = true;
-            this.chbSelect.CheckedChanged += new System.EventHandler(this.chbSelect_CheckedChanged);
-            // 
             // chbDefault
             // 
             this.chbDefault.AutoSize = true;
-            this.chbDefault.Location = new System.Drawing.Point(23, 184);
+            this.chbDefault.Location = new System.Drawing.Point(54, 184);
             this.chbDefault.Name = "chbDefault";
             this.chbDefault.Size = new System.Drawing.Size(93, 17);
             this.chbDefault.TabIndex = 20;
@@ -485,12 +474,23 @@
             this.chbDefault.UseVisualStyleBackColor = true;
             this.chbDefault.CheckedChanged += new System.EventHandler(this.chbDefault_CheckedChanged);
             // 
+            // chbSelect
+            // 
+            this.chbSelect.AutoSize = true;
+            this.chbSelect.Location = new System.Drawing.Point(55, 161);
+            this.chbSelect.Name = "chbSelect";
+            this.chbSelect.Size = new System.Drawing.Size(109, 17);
+            this.chbSelect.TabIndex = 20;
+            this.chbSelect.Text = "Select To Upload";
+            this.chbSelect.UseVisualStyleBackColor = true;
+            this.chbSelect.CheckedChanged += new System.EventHandler(this.chbSelect_CheckedChanged);
+            // 
             // Mockup
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.Controls.Add(this.chbDefault);
             this.Controls.Add(this.chbSelect);
+            this.Controls.Add(this.chbDefault);
             this.Controls.Add(this.lblSellingPrice);
             this.Controls.Add(this.label1);
             this.Controls.Add(this.lblName);
@@ -574,7 +574,7 @@
         private System.ComponentModel.BackgroundWorker backgroundWorker1;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Label lblSellingPrice;
-        private System.Windows.Forms.CheckBox chbSelect;
         private System.Windows.Forms.CheckBox chbDefault;
+        private System.Windows.Forms.CheckBox chbSelect;
     }
 }

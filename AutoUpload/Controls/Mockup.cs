@@ -20,11 +20,12 @@ namespace AutoUpload.Controls
         public string Name { get; set; }
 
         private List<CheckBox> checkboxList;
-        private MockupInfo mockupInfo;
+        public MockupInfo mockupInfo;
         public static string NameDefault = string.Empty;
-        public static List<string> ChosenNames = new List<string>();
+        public List<Product_Colors> colorList = new List<Product_Colors>();
         public static int TotalColors = 0;
         private static object lastSender = null;
+        public static List<Mockup> selectedMockup = new List<Mockup>();
      
         public Mockup()
         {
@@ -93,28 +94,33 @@ namespace AutoUpload.Controls
 
         private void chbSelect_CheckedChanged(object sender, EventArgs e)
         {
-            
-            if(chbSelect.Checked)
+
+            if (chbSelect.Checked)
             {
-                if (!ChosenNames.Contains(this.Name))
+                if(!selectedMockup.Exists(p=> p.Name == this.Name))
                 {
-                    ChosenNames.Add(this.Name);
+                    selectedMockup.Add(this);
                 }
             }
             else
             {
-                ChosenNames.Remove(this.Name);
+                if (selectedMockup.Exists(p => p.Name == this.Name))
+                {
+                    selectedMockup.Remove(this);
+                }
             }
-            
+
         }
 
         private void checkBox4g_CheckedChanged(object sender, EventArgs e)
         {
             var chb = (CheckBox)sender;
+            string hexColor = ColorTranslator.ToHtml(chb.BackColor);
+            Console.WriteLine(hexColor);
             if(chb.Checked)
             {
-                int maxColors = int.Parse(Settings.Default.MAX_COLORS);
-                if(TotalColors >= maxColors)
+                //int maxColors = int.Parse(Settings.Default.MAX_COLORS);
+                if(TotalColors >= 20)
                 {
                     MessageBox.Show("Only allow 20 colors!");
                     chb.Checked = false;
@@ -122,11 +128,28 @@ namespace AutoUpload.Controls
                 }
                 else
                 {
-                    TotalColors++;
+                    foreach (var color in mockupInfo.Product.product_colors)
+                    {
+                        if(color.hex.ToLower() == hexColor.ToLower())
+                        {
+                            colorList.Add(color);
+                            TotalColors++;
+                            break;
+                        }
+                    }
+                 
                 }
             }else
             {
-                TotalColors--;
+                foreach (var color in mockupInfo.Product.product_colors)
+                {
+                    if (color.hex.ToLower() == hexColor.ToLower())
+                    {
+                        colorList.Remove(color);
+                        TotalColors--;
+                        break;
+                    }
+                }
                 if (TotalColors < 0)
                     TotalColors = 0;
             }
