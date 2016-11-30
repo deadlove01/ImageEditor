@@ -1,6 +1,7 @@
 ﻿using AutoUpload.Controls;
 using AutoUpload.Models;
 using AutoUpload.Models.Viralstyle;
+using AutoUpload.Properties;
 using AutoUpload.Utils;
 using log4net;
 using Newtonsoft.Json;
@@ -109,6 +110,8 @@ namespace AutoUpload.Controllers
                 string loginJson = JsonConvert.SerializeObject(loginModel);
                 string result = web.SendRequestJsonType(loginUrl, "POST", "application/json", 
                     loginJson, token, true);
+                logger.Info("login success!");
+                IsLogged = true;
                 Console.WriteLine(result);
             }
             catch (Exception ex)
@@ -116,6 +119,7 @@ namespace AutoUpload.Controllers
                 logger.ErrorFormat("Error: {0}, stacktrace: {1}", ex.Message, ex.StackTrace);
                 System.Windows.Forms.MessageBox.Show(ex.Message);
             }
+            IsLogged = false;
         }
 
         public void CheckUrl(string checkUrl, string newToken)
@@ -243,7 +247,7 @@ namespace AutoUpload.Controllers
                  * \"campaign_end_date\":\"Friday, Nov. 18 2016 - 21 PM\",
 \"campaign_end_date_obj\":\"2016-11-18T21:18:37.818Z\",\"campaign_end_date_utc\":1479503917819,
 */
-                string jsonData = File.ReadAllText(Directory.GetCurrentDirectory() + "\\data3.json");
+                string jsonData = File.ReadAllText(Directory.GetCurrentDirectory() + "\\"+ Settings.Default.SAMPLE_DATA_PATH);
                 jsonData = jsonData.Replace("\r\n", "");
                 var tempData = JsonConvert.DeserializeObject<ViralStyleRequestJsonData>(jsonData);
                 ViralStyleRequestData data = new ViralStyleRequestData();
@@ -351,6 +355,7 @@ namespace AutoUpload.Controllers
                 string campUrl = "https://viralstyle.com/api/v2/designer/store";
                 string result = web.HttpUploadFileByJson(campUrl, encodeJson, token, newToken);
                 Console.WriteLine(result);
+                logger.Info("upload result: " + result);
             }
             catch (Exception ex)
             {

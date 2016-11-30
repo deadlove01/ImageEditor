@@ -63,25 +63,7 @@ namespace AutoUpload
             //resizeImg.Dispose();
 
         }
-        public static Bitmap Resize(string imageFile, string outputFile, double scaleFactor)
-        {
-            using (var srcImage = System.Drawing.Image.FromFile(imageFile))
-            {
-                var newWidth = (int)(srcImage.Width * scaleFactor);
-                var newHeight = (int)(srcImage.Height * scaleFactor);
-                using (var newImage = new Bitmap(newWidth, newHeight))
-                using (var graphics = Graphics.FromImage(newImage))
-                {
-                    graphics.SmoothingMode = SmoothingMode.AntiAlias;
-                    graphics.InterpolationMode = InterpolationMode.HighQualityBicubic;
-                    graphics.PixelOffsetMode = PixelOffsetMode.HighQuality;
-                    graphics.DrawImage(srcImage, new Rectangle(0, 0, newWidth, newHeight));
-                    return newImage;
-                    
-                }
-            }
-            return null;
-        }
+ 
 
         private void MainForm_Load(object sender, EventArgs e)
         {
@@ -155,7 +137,6 @@ namespace AutoUpload
 
                         bgWorker.ReportProgress((i + 1) * 100 / logoList.Count);
                        
-                        break;
 
                     }
                     e.Result = "UploadViralStyle";
@@ -192,7 +173,7 @@ namespace AutoUpload
             // load settings
             opTbEmail.Text = Settings.Default.EMAIL;
             opTbPass.Text = Settings.Default.PASSWORD;
-            opChbShowMockup.Checked = Settings.Default.SHOW_MOCKUP == "true" ? true : false;
+            opChbShowMockup.Checked = Settings.Default.SHOW_MOCKUP;
 
             // load products data from json
             ViralStyleDataController.Instance.LoadProductJson();
@@ -478,7 +459,7 @@ namespace AutoUpload
         {
             Settings.Default.EMAIL = opTbEmail.Text.Trim();
             Settings.Default.PASSWORD = opTbPass.Text.Trim();
-            Settings.Default.SHOW_MOCKUP = opChbShowMockup.Checked ? "true" : "false";
+            Settings.Default.SHOW_MOCKUP = opChbShowMockup.Checked;
             Settings.Default.Save();
 
             MessageBox.Show("Saved!");

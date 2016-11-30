@@ -11,8 +11,8 @@
     <Setting Name="ViralStyle_Product_Path" Type="System.String" Scope="User">
       <Value Profile="(Default)">Platform\ViralStyle\Products\Product.json</Value>
     </Setting>
-    <Setting Name="SHOW_MOCKUP" Type="System.String" Scope="User">
-      <Value Profile="(Default)">false</Value>
+    <Setting Name="SHOW_MOCKUP" Type="System.Boolean" Scope="User">
+      <Value Profile="(Default)">True</Value>
     </Setting>
     <Setting Name="TEMPLATE_PATH" Type="System.String" Scope="User">
       <Value Profile="(Default)">Platform\ViralStyle\Templates\</Value>
@@ -28,6 +28,9 @@
     </Setting>
     <Setting Name="MAX_COLORS" Type="System.String" Scope="User">
       <Value Profile="(Default)">20</Value>
+    </Setting>
+    <Setting Name="SAMPLE_DATA_PATH" Type="System.String" Scope="User">
+      <Value Profile="(Default)">Platform\ViralStyle\Sample.json</Value>
     </Setting>
   </Settings>
 </SettingsFile>

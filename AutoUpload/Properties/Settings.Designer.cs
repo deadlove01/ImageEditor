@@ -61,10 +61,10 @@ namespace AutoUpload.Properties {
         
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("false")]
-        public string SHOW_MOCKUP {
+        [global::System.Configuration.DefaultSettingValueAttribute("True")]
+        public bool SHOW_MOCKUP {
             get {
-                return ((string)(this["SHOW_MOCKUP"]));
+                return ((bool)(this["SHOW_MOCKUP"]));
             }
             set {
                 this["SHOW_MOCKUP"] = value;
@@ -128,6 +128,18 @@ namespace AutoUpload.Properties {
             }
             set {
                 this["MAX_COLORS"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("Platform\\ViralStyle\\Sample.json")]
+        public string SAMPLE_DATA_PATH {
+            get {
+                return ((string)(this["SAMPLE_DATA_PATH"]));
+            }
+            set {
+                this["SAMPLE_DATA_PATH"] = value;
             }
         }
     }
