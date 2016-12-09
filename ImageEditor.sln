@@ -23,6 +23,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RaviLib", "RaviLib\RaviLib.
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MultiUpload", "MultiUpload\MultiUpload.csproj", "{C9559566-E3CD-4BDD-A459-1DAD0002313B}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TeepublicTool", "TeepublicTool\TeepublicTool.csproj", "{8FB81260-3F1D-4D60-941F-DBEA0DBE25B3}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -150,6 +152,18 @@ Global
 		{C9559566-E3CD-4BDD-A459-1DAD0002313B}.Release|x64.Build.0 = Release|Any CPU
 		{C9559566-E3CD-4BDD-A459-1DAD0002313B}.Release|x86.ActiveCfg = Release|Any CPU
 		{C9559566-E3CD-4BDD-A459-1DAD0002313B}.Release|x86.Build.0 = Release|Any CPU
+		{8FB81260-3F1D-4D60-941F-DBEA0DBE25B3}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{8FB81260-3F1D-4D60-941F-DBEA0DBE25B3}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{8FB81260-3F1D-4D60-941F-DBEA0DBE25B3}.Debug|x64.ActiveCfg = Debug|Any CPU
+		{8FB81260-3F1D-4D60-941F-DBEA0DBE25B3}.Debug|x64.Build.0 = Debug|Any CPU
+		{8FB81260-3F1D-4D60-941F-DBEA0DBE25B3}.Debug|x86.ActiveCfg = Debug|Any CPU
+		{8FB81260-3F1D-4D60-941F-DBEA0DBE25B3}.Debug|x86.Build.0 = Debug|Any CPU
+		{8FB81260-3F1D-4D60-941F-DBEA0DBE25B3}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{8FB81260-3F1D-4D60-941F-DBEA0DBE25B3}.Release|Any CPU.Build.0 = Release|Any CPU
+		{8FB81260-3F1D-4D60-941F-DBEA0DBE25B3}.Release|x64.ActiveCfg = Release|Any CPU
+		{8FB81260-3F1D-4D60-941F-DBEA0DBE25B3}.Release|x64.Build.0 = Release|Any CPU
+		{8FB81260-3F1D-4D60-941F-DBEA0DBE25B3}.Release|x86.ActiveCfg = Release|Any CPU
+		{8FB81260-3F1D-4D60-941F-DBEA0DBE25B3}.Release|x86.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
