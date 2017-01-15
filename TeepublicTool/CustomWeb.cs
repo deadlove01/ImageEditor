@@ -12,8 +12,8 @@ namespace AutoUpload.Models
 {
     public class CustomWeb : System.Net.WebClient
     {
-        private string userAgent = "Mozilla/5.0 (Windows NT 6.3; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/45.0.2454.85 Safari/537.36";
-        public CookieContainer CookieContainer { get; private set; }
+        private string userAgent = "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/55.0.2883.87 Safari/537.36";
+        public CookieContainer CookieContainer { get; set; }
 
         public CustomWeb(CookieContainer container)
         {
@@ -24,6 +24,7 @@ namespace AutoUpload.Models
         public CustomWeb()
             : this(new CookieContainer())
         { }
+       
 
         protected override WebRequest GetWebRequest(Uri address)
         {
@@ -31,7 +32,6 @@ namespace AutoUpload.Models
             request.CookieContainer = CookieContainer;
             return request;
         }
-
 
         protected override WebResponse GetWebResponse(WebRequest request)
         {
@@ -154,13 +154,13 @@ namespace AutoUpload.Models
 
                 var request = (HttpWebRequest)WebRequest.Create(finalUrl);
                 request.Method = method;
-                request.AllowAutoRedirect = true;
+                //request.AllowAutoRedirect = true;
                 request.Accept = "*/*";
                 request.UserAgent = userAgent;
                 request.Host = host;
                 request.Headers["Origin"] = "https://www.teepublic.com";
-                request.Timeout = 1000000;
-                // request.Timeout = 1000 * 60 * 5;
+                //request.Timeout = 1000000;
+                 request.Timeout = 1000 * 60 * 5;
 
                 if (!isCreateCookie)
                 {
@@ -224,12 +224,13 @@ namespace AutoUpload.Models
 
                 var request = (HttpWebRequest)WebRequest.Create(finalUrl);
                 request.Method = method;
-                request.AllowAutoRedirect = true;
+                request.AllowAutoRedirect = false;
                 request.Accept = "*/*";
                 request.UserAgent = userAgent;
                 request.Timeout = 1000000;
                 //request.Headers[HttpRequestHeader.Host] = "www.teepublic.com";
                 request.Host = "www.teepublic.com";
+                request.Headers["Origin"] = "https://www.teepublic.com";
                 // request.Timeout = 1000 * 60 * 5;
 
                 if (!isCreateCookie)
@@ -292,7 +293,7 @@ namespace AutoUpload.Models
 
                 var request = (HttpWebRequest)WebRequest.Create(finalUrl);
                 request.Method = method;
-                request.AllowAutoRedirect = true;
+                //request.AllowAutoRedirect = true;
                 request.Accept = "*/*";
                 request.UserAgent = userAgent;
                 // request.Timeout = 1000 * 60 * 5;
@@ -361,7 +362,7 @@ namespace AutoUpload.Models
             //wr.Headers[HttpRequestHeader.AcceptEncoding] = "gzip, deflate";
             //wr.Headers[HttpRequestHeader.KeepAlive] = "true";
             //wr.Headers[HttpRequestHeader.CacheControl] = "max-age=0";
-            wr.AllowAutoRedirect = true;
+            //wr.AllowAutoRedirect = true;
             //wr.Accept = "*/*";
             // wr.Credentials = System.Net.CredentialCache.DefaultCredentials;
             //  wr.CachePolicy = new System.Net.Cache.RequestCachePolicy(System.Net.Cache.RequestCacheLevel.NoCacheNoStore); 
@@ -567,6 +568,64 @@ namespace AutoUpload.Models
             return result;
         }
 
+        public string SendUploadInfo(string url, string method, string host, string contentType, string queryString, string referer)
+        {
+            string result = string.Empty;
+            try
+            {
+                string finalUrl = url + "?" + queryString;
+                if (method.ToLower().Equals("post"))
+                    finalUrl = url;
+                
+              
+
+                var request = (HttpWebRequest)WebRequest.Create(url);
+                request.Method = method;
+                //request.AllowAutoRedirect = true;
+                request.Accept = "*/*";
+                request.UserAgent = userAgent;
+                request.Timeout = 1000000;
+                request.Host = host;
+                //request.Headers["Origin"] = "https://www.teepublic.com";
+                //request.Referer = referer;
+                request.KeepAlive = true;
+                //request.Headers["Access-Control-Request-Method"] = "POST";
+                //request.Headers["Access-Control-Request-Headers"] = "x-requested-with, x-unique-upload-id";
+
+                request.CookieContainer = CookieContainer;
+
+
+                if (contentType != "")
+                {
+                    request.ContentType = contentType;
+                }
+                if (method.ToLower().Equals("post"))
+                {
+                    var byteData = Encoding.ASCII.GetBytes(queryString);
+                    request.ContentLength = byteData.Length;
+                    using (var stream = request.GetRequestStream())
+                        stream.Write(byteData, 0, byteData.Length);
+                }
+
+       
+
+                using (var res = request.GetResponse())
+                {
+                    using (var sr = new StreamReader(res.GetResponseStream()))
+                    {
+                        result = sr.ReadToEnd();
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                System.Windows.Forms.MessageBox.Show(ex.Message);
+                Console.WriteLine("error: " + ex.StackTrace);
+            }
+
+            return result;
+        }
+
 
         public string SendUploadOptionRequest(string url, string method, string referer)
         {
@@ -575,8 +634,8 @@ namespace AutoUpload.Models
             {
                 var request = (HttpWebRequest)WebRequest.Create(url);
                 request.Method = method;
-                request.AllowAutoRedirect = true;
-                request.Accept = "*/*";
+                //request.AllowAutoRedirect = true;
+                request.Accept = "*";
                 request.UserAgent = userAgent;
                 request.Timeout = 1000000;
                 request.Host = "api.cloudinary.com";
@@ -584,9 +643,9 @@ namespace AutoUpload.Models
                 request.Referer = referer;
                 //request.Headers["Access-Control-Request-Method"] = "POST";
                 //request.Headers["Access-Control-Request-Headers"] = "x-requested-with, x-unique-upload-id";
-             
+
                 request.CookieContainer = CookieContainer;
-                
+
                 using (var res = request.GetResponse())
                 {
                     using (var sr = new StreamReader(res.GetResponseStream()))
@@ -609,22 +668,22 @@ namespace AutoUpload.Models
             string host, string origin, string referer)
         {
             Console.WriteLine(string.Format("Uploading {0} to {1}", file, url));
-            string boundary = "---------------------------" + DateTime.Now.Ticks.ToString("x");
+            string boundary = "----WebKitFormBoundary" + DateTime.Now.Ticks.ToString("x");
             byte[] boundarybytes = System.Text.Encoding.ASCII.GetBytes("--" + boundary + "\r\n");
 
 
             HttpWebRequest wr = (HttpWebRequest)WebRequest.Create(url);
-            //  wr.ServicePoint.Expect100Continue = false;
+            wr.ServicePoint.Expect100Continue = false;
             wr.ContentType = "multipart/form-data; boundary=" + boundary;
             wr.Method = "POST";
-            //    wr.KeepAlive = true;
+            wr.KeepAlive = true;
             wr.Host = host;
             wr.Headers["Origin"] = origin;
             wr.Referer = referer;
-            wr.Headers[HttpRequestHeader.KeepAlive] = "true";
+            // wr.Headers[HttpRequestHeader.KeepAlive] = "true";
             //wr.Headers[HttpRequestHeader.CacheControl] = "max-age=0";
             wr.AllowAutoRedirect = true;
-            //wr.Accept = "*/*";
+            //wr.Accept = "*";
             // wr.Credentials = System.Net.CredentialCache.DefaultCredentials;
             //  wr.CachePolicy = new System.Net.Cache.RequestCachePolicy(System.Net.Cache.RequestCacheLevel.NoCacheNoStore); 
 

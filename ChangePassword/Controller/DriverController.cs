@@ -1,0 +1,318 @@
+﻿using AutoIt;
+using AutoItX3Lib;
+using ChangePassword.Models;
+using log4net;
+using OpenQA.Selenium;
+using OpenQA.Selenium.Chrome;
+using OpenQA.Selenium.Firefox;
+using OpenQA.Selenium.Interactions;
+using OpenQA.Selenium.Support.UI;
+using System;
+using System.Collections.Generic;
+using System.IO;
+using System.Linq;
+using System.Text;
+using System.Threading;
+using System.Threading.Tasks;
+
+namespace ChangePassword.Controller
+{
+    public class DriverController : Singleton<DriverController>
+    {
+        private static readonly ILog logger =
+              LogManager.GetLogger(typeof(DriverController));
+
+
+        private IWebDriver webDriver;
+
+        public DriverController()
+        {
+
+        }
+
+
+        public void Login(Gmail gmail)
+        {
+            try
+            {
+                Init();
+                string loginUrl = "https://accounts.google.com";
+                webDriver.Navigate().GoToUrl(loginUrl);
+
+                // id tab
+                var emailInput = GetElement(webDriver, By.Id("Email"), 2);
+                emailInput.Clear();
+                emailInput.SendKeys(gmail.ID);
+                Thread.Sleep(500);
+                var nextBtn = GetElement(webDriver, By.Id("next"), 1);
+                nextBtn.Click();
+                Thread.Sleep(1000);
+
+                // pass tab
+                var passInput = GetElement(webDriver, By.Id("Passwd"), 1);
+                passInput.Clear();
+                passInput.SendKeys(gmail.OldPass);
+                Thread.Sleep(500);
+                var signInBtn = GetElement(webDriver, By.Id("signIn"), 1);
+                signInBtn.Click();
+                Thread.Sleep(1000);
+            }
+            catch (Exception ex)
+            {
+                logger.ErrorFormat("ID: "+gmail.ID+", {0}, stacktrace: {1}", ex.Message, ex.StackTrace);
+            }           
+
+        }
+
+
+        public void ChangePassword(Gmail gmail)
+        {
+            try
+            {
+                string changePassUrl = "https://myaccount.google.com/security/signinoptions/password";
+                webDriver.Navigate().GoToUrl(changePassUrl);
+
+                try
+                {
+                    var passInput = GetElement(webDriver, By.Id("Passwd"), 2);
+                    passInput.Clear();
+                    passInput.SendKeys(gmail.OldPass);
+                    Thread.Sleep(500);
+                    var signInBtn = GetElement(webDriver, By.Id("signIn"), 1);
+                    signInBtn.Click();
+                    Thread.Sleep(1000);
+                }
+                catch (Exception e)
+                {
+                    logger.InfoFormat("{0}, stacktrace: {1}", e.Message, e.StackTrace);
+                }
+
+                var passInputs = webDriver.FindElements(By.XPath("//input[@type='password']"));
+
+                foreach (var passInput in passInputs)
+                {
+                    passInput.Clear();
+                    passInput.SendKeys(gmail.NewPass);
+                    Thread.Sleep(900);
+                }
+
+                //var divRole = webDriver.FindElement(By.XPath("//div[@role='button']"));
+                //var spanBtn = divRole.FindElement(By.XPath(".//span"));
+                var spanBtn = webDriver.FindElement(By.XPath("//div[@role='main']/div/div/div/div/div/content/span"));
+                spanBtn.Click();
+
+                Thread.Sleep(1500);
+                //var divPass = webDriver.FindElement(By.XPath("//div[contains(text(), 'New password')]"));
+                //var parent = divPass.FindElement(By.XPath(".."));
+                //var pass1Input = parent.FindElement(By.XPath(".//input"));
+                //pass1Input.Clear();
+                //pass1Input.SendKeys(gmail.NewPass);
+                //Thread.Sleep(900);
+
+
+                //var divPass2 = webDriver.FindElement(By.XPath("//div[contains(text(), 'Confirm new password')]"));
+                //var parent2 = divPass2.FindElement(By.XPath(".."));
+                //var pass2Input = parent2.FindElement(By.XPath(".//input"));
+                //pass2Input.Clear();
+                //pass2Input.SendKeys(gmail.NewPass);
+                //Thread.Sleep(900);
+
+                //var changeBtn = webDriver.FindElement(By.XPath("//span[contains(text(), 'Change password')]"));
+                //changeBtn.Click();
+                //Thread.Sleep(600);
+
+
+            }
+            catch (Exception ex)
+            {
+                logger.ErrorFormat("ID: " + gmail.ID + ", {0}, stacktrace: {1}", ex.Message, ex.StackTrace);
+                File.AppendAllLines(Directory.GetCurrentDirectory() + "\\error_accounts.txt", new string[] { gmail.ID });
+            }
+        }
+
+        public void AddRecoveryEmail(Gmail gmail)
+        {
+            string changePassUrl = "https://security.google.com/settings/security/signinoptions/rescueemail";
+            webDriver.Navigate().GoToUrl(changePassUrl);
+            Thread.Sleep(2000);
+
+            var emailInput = webDriver.FindElement(By.XPath("//input"));
+            var text = emailInput.GetAttribute("value");
+            if(string.IsNullOrEmpty(text))
+            {
+                emailInput.SendKeys(gmail.RecoveryEmail);
+                Thread.Sleep(1000);
+
+                var spanTag = webDriver.FindElement(By.XPath("//span[contains(., 'Xong')]"));
+                spanTag.Click();
+                Thread.Sleep(3000);
+
+                //var divBtn = spanTag.FindElement(By.XPath("../"));
+                //divBtn.Click();
+                //Thread.Sleep(1000);
+                //DivClick(webDriver, divBtn, 3000);
+             
+            }
+        }
+
+        public bool TurnOnLessSecureApp(Gmail gmail)
+        {
+            try
+            {
+                // add recovery email;
+                AddRecoveryEmail(gmail);
+
+                string changePassUrl = "https://myaccount.google.com/security#signin";
+                webDriver.Navigate().GoToUrl(changePassUrl);
+                Thread.Sleep(2000);
+
+
+                ////h5[contains(.,'Allow less secure apps: ON')]
+                // var h5Tag = GetElement(webDriver, By.XPath("//h5[contains(.,'Allow less secure apps: ON')]"), 15);
+                var h5Tag = webDriver.FindElement(By.XPath("//h5[contains(.,'Cho phép ứng dụng kém an toàn')]"));
+                var divRoot = h5Tag.FindElement(By.XPath("../../../.."));
+                var divToggle = divRoot.FindElement(By.XPath("//div[@role='checkbox']"));
+                var checkStateAtt = divToggle.GetAttribute("aria-checked");
+                if(checkStateAtt == "false")
+                {
+                    DivClick(webDriver, divToggle, 3000);
+                }
+                Thread.Sleep(1500);
+                return true;
+            }
+            catch (Exception ex)
+            {
+                logger.ErrorFormat("ID: " + gmail.ID + ", {0}, stacktrace: {1}", ex.Message, ex.StackTrace);
+            }
+            return false;
+        }
+
+
+
+
+
+
+        #region private methods
+
+        private void DivClick(IWebDriver driver, IWebElement div, int sleep = 0)
+        {
+            try
+            {
+                Actions actions = new Actions(driver);
+                actions.MoveToElement(div);
+                actions.Click();
+                actions.Build().Perform();
+
+                if (sleep > 0)
+                    Thread.Sleep(sleep);
+            }
+            catch (Exception ex)
+            {
+                logger.Error(ex.Message);
+                logger.Error(ex.StackTrace);
+            }
+
+        }
+        private void Init()
+        {
+            if (webDriver != null)
+                webDriver.Quit();
+
+            var firefoxProfile = new FirefoxProfile("D:\\FirefoxProfile");
+            FirefoxProfileManager manager = new FirefoxProfileManager();
+            // allProfiles = new ProfilesIni();
+            //FirefoxProfile profile = allProfiles.getProfile("WebDriver");
+            //profile.setPreferences("foo.bar", 23);
+            //profile.SetPreference("general.useragent.override", [UserAgent]);
+            String PROXY = "https://tikdepzai:Thewings123@23.104.162.47:80";
+            //firefoxProfile.SetPreference("network.proxy.type", 1);
+            //firefoxProfile.SetPreference("network.proxy.http", "23.104.162.47");
+            //firefoxProfile.SetPreference("network.proxy.http_port", 80);
+            //firefoxProfile.SetPreference("network.proxy.ssl", "23.104.162.47");
+            //firefoxProfile.SetPreference("network.proxy.ssl_port", 80);
+            ////firefoxProfile.SetPreference("network.proxy.no_proxies_on", "add website url(s)");
+
+            //Create a chrome options object
+            var chromeOptions = new ChromeOptions();
+           // chromeOptions.AddArgument("")
+            //Create a new proxy object
+            var proxy = new Proxy();
+            //Set the http proxy value, host and port.
+            proxy.HttpProxy = "23.104.162.47:80";
+            //proxy.SslProxy = "http://tikdepzai:Thewings123@23.104.162.47:80";
+            //Set the proxy to the Chrome options
+            chromeOptions.Proxy = proxy;
+            //Then create a new ChromeDriver passing in the options
+            //ChromeDriver path isn't required if its on your path
+            //If it now downloaded it and put the path here
+            webDriver = new ChromeDriver(chromeOptions);
+
+            //Navigation to a url and a look at the traffic logged in fiddler
+            //Driver.Navigate().GoToUrl("http://bbc.co.uk");
+
+           
+            LoginWithAutoIt("http://www.whatismyipaddress.com");
+            Thread.Sleep(5000);
+
+        }
+
+        private void LoginWithAutoIt(string url)
+        {
+            int count = 0;
+           // do
+           // {
+                webDriver.Navigate().GoToUrl(url);
+                Thread.Sleep(3000);
+                AutoItX3Lib.AutoItX3 auto = new AutoItX3Lib.AutoItX3();
+
+                var AutoIT = new AutoItX3();
+                int result = AutoIT.WinWait("Authentication Required", "", 10);
+                Console.WriteLine(result);
+              //  if (AutoIT.WinExists("Authentication Required", ""))
+                {
+                    AutoIT.WinActivate("Authentication Required");
+                    AutoIT.Send("tikdepzai");
+                Thread.Sleep(300);
+                    AutoIT.Send("{TAB}");
+                Thread.Sleep(300);
+                AutoIT.Send("Thewings123");
+                Thread.Sleep(300);
+                AutoIT.Send("{ENTER}");
+                }
+                //else
+                //{
+                //    break;
+                //}
+                Thread.Sleep(3000);
+                Console.WriteLine("count: "+(count++));
+           // } while (true);
+           
+            //if (AutoItX.WinExists("Authentication Required"))
+            //    {
+
+            //}
+            //   AutoItX.WinActivate("Authentication Required")
+            //   AutoItX.Send($CmdLine[1])
+            //   AutoItX.Send("{TAB}")
+            //   AutoItX.Send($CmdLine[2])
+            //   AutoItX.Send("{ENTER}")
+
+        }
+
+
+        private IWebElement GetElement(IWebDriver driver, By by, int sleep=5) 
+        {
+            if (sleep > 0)
+            {
+                driver.Manage().Timeouts().ImplicitlyWait(TimeSpan.FromSeconds(1));
+                var wait = new WebDriverWait(driver, TimeSpan.FromSeconds(sleep));
+                //return wait.Until(drv => drv.FindElement(by));
+                return wait.Until(ExpectedConditions.ElementExists(by));
+            }
+            return driver.FindElement(by);
+            
+        }
+
+        #endregion
+    }
+}

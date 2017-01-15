@@ -21,7 +21,7 @@ namespace AutoArtist.Model
         {
             SelectedIndex = -1;
             Layers = new List<Layer>();
-            ZoomPercent = 1;
+            ZoomPercent = 0.15f;
         }
 
 

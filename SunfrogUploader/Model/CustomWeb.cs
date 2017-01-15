@@ -264,5 +264,70 @@ namespace SunfrogUploader.Model
             return result;
         }
 
+        public async Task<string> UpdateMockupByJson(string url, string jsonModel)
+        {
+            Console.WriteLine(string.Format("Updating {0}", url));
+
+            HttpWebRequest wr = (HttpWebRequest)WebRequest.Create(url);
+            wr.ServicePoint.Expect100Continue = false;
+            wr.ProtocolVersion = HttpVersion.Version11;
+            wr.ContentType = "application/json; charset=utf-8";
+            wr.Method = "POST";
+            wr.Host = "manager.sunfrogshirts.com";
+            //wr.AllowAutoRedirect = false;
+            //wr.Headers.Add("X-Requested-With", "XMLHttpRequest");
+            //wr.Headers[HttpRequestHeader.KeepAlive] = "true";
+            //wr.AllowAutoRedirect = true;
+            wr.CookieContainer = CookieContainer;
+            wr.UserAgent = userAgent;
+            wr.Timeout = 1000 * 60 * 60;
+            //wr.Timeout = Timeout.Infinite;
+            //wr.KeepAlive = true;
+            //wr.ProtocolVersion = HttpVersion.Version10; // fix 1
+            //wr.Timeout = 1000000000; // fix 3
+            //wr.ReadWriteTimeout = 1000000000; // fix 4
+            //wr.Referer = "https://manager.sunfrogshirts.com/Designer/";
+            wr.Referer = "https://manager.sunfrogshirts.com/my-art-edit.cfm?editNewDesign";
+
+            using (var streamWriter = new StreamWriter(wr.GetRequestStream()))
+            {
+                streamWriter.Write(jsonModel);
+                streamWriter.Flush();
+            }
+
+            WebResponse wresp = null;
+            try
+            {
+                using (var response = (HttpWebResponse)await wr.GetResponseAsync())
+                {
+                    Stream stream2 = wresp.GetResponseStream();
+                    StreamReader reader2 = new StreamReader(stream2);
+                    string result = reader2.ReadToEnd();
+                    return result;
+                }
+                //wresp = wr.GetResponse();
+                //Stream stream2 = wresp.GetResponseStream();
+                //StreamReader reader2 = new StreamReader(stream2);
+                //string result = reader2.ReadToEnd();
+                //return result;
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine("Error uploading file: " + ex.Message + ", stacktrace: " + ex.StackTrace);
+                if (wresp != null)
+                {
+                    wresp.Close();
+                    wresp = null;
+                }
+            }
+            finally
+            {
+                wr = null;
+            }
+
+            return null;
+        }
+
+
     }
 }

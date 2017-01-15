@@ -68,7 +68,7 @@ namespace AutoArtist.Model
 
             if(LayerText != null)
             {
-                Bitmap bitmap = new Bitmap(2400, 3200);
+                Bitmap bitmap = new Bitmap(AutoArtist.Util.Constants.IMAGE_WITH, AutoArtist.Util.Constants.IMAGE_HEIGHT);
                 using(Graphics g = Graphics.FromImage(bitmap))
                 {
                     g.SmoothingMode = SmoothingMode.AntiAlias;
@@ -104,7 +104,7 @@ namespace AutoArtist.Model
             }
             if (LayerText != null)
             {
-                Bitmap bitmap = new Bitmap(2400, 3200);
+                Bitmap bitmap = new Bitmap(AutoArtist.Util.Constants.IMAGE_WITH, AutoArtist.Util.Constants.IMAGE_HEIGHT);
                 using (Graphics g = Graphics.FromImage(bitmap))
                 {
                     g.SmoothingMode = SmoothingMode.AntiAlias;

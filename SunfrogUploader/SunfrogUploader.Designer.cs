@@ -30,14 +30,14 @@
         {
             this.btnStart = new MetroFramework.Controls.MetroButton();
             this.groupBox2 = new System.Windows.Forms.GroupBox();
-            this.groupBox4 = new System.Windows.Forms.GroupBox();
-            this.chbShutdown = new System.Windows.Forms.CheckBox();
             this.lblNameIndex = new MetroFramework.Controls.MetroLabel();
             this.progCurrentName = new MetroFramework.Controls.MetroProgressBar();
             this.lblTotalNames = new MetroFramework.Controls.MetroLabel();
             this.lblCurName = new MetroFramework.Controls.MetroLabel();
             this.metroLabel2 = new MetroFramework.Controls.MetroLabel();
+            this.tbNameList = new System.Windows.Forms.TextBox();
             this.lblLogin = new MetroFramework.Controls.MetroLabel();
+            this.metroLabel8 = new MetroFramework.Controls.MetroLabel();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
             this.numEnd = new System.Windows.Forms.NumericUpDown();
             this.numStart = new System.Windows.Forms.NumericUpDown();
@@ -53,11 +53,10 @@
             this.metroLabel6 = new MetroFramework.Controls.MetroLabel();
             this.metroLabel1 = new MetroFramework.Controls.MetroLabel();
             this.bgWoker = new System.ComponentModel.BackgroundWorker();
-            this.metroLabel8 = new MetroFramework.Controls.MetroLabel();
-            this.tbNameList = new System.Windows.Forms.TextBox();
             this.openFileDialog1 = new System.Windows.Forms.OpenFileDialog();
+            this.lbError = new System.Windows.Forms.RichTextBox();
+            this.chbAutologo = new System.Windows.Forms.CheckBox();
             this.groupBox2.SuspendLayout();
-            this.groupBox4.SuspendLayout();
             this.groupBox1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.numEnd)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.numStart)).BeginInit();
@@ -66,7 +65,7 @@
             // btnStart
             // 
             this.btnStart.Highlight = true;
-            this.btnStart.Location = new System.Drawing.Point(247, 434);
+            this.btnStart.Location = new System.Drawing.Point(247, 539);
             this.btnStart.Name = "btnStart";
             this.btnStart.Size = new System.Drawing.Size(152, 49);
             this.btnStart.TabIndex = 6;
@@ -75,7 +74,6 @@
             // 
             // groupBox2
             // 
-            this.groupBox2.Controls.Add(this.groupBox4);
             this.groupBox2.Controls.Add(this.lblNameIndex);
             this.groupBox2.Controls.Add(this.progCurrentName);
             this.groupBox2.Controls.Add(this.lblTotalNames);
@@ -91,26 +89,6 @@
             this.groupBox2.TabIndex = 5;
             this.groupBox2.TabStop = false;
             this.groupBox2.Text = "Upload Status";
-            // 
-            // groupBox4
-            // 
-            this.groupBox4.Controls.Add(this.chbShutdown);
-            this.groupBox4.Location = new System.Drawing.Point(6, 125);
-            this.groupBox4.Name = "groupBox4";
-            this.groupBox4.Size = new System.Drawing.Size(599, 70);
-            this.groupBox4.TabIndex = 6;
-            this.groupBox4.TabStop = false;
-            this.groupBox4.Text = "Computer Setting";
-            // 
-            // chbShutdown
-            // 
-            this.chbShutdown.AutoSize = true;
-            this.chbShutdown.Location = new System.Drawing.Point(33, 29);
-            this.chbShutdown.Name = "chbShutdown";
-            this.chbShutdown.Size = new System.Drawing.Size(142, 17);
-            this.chbShutdown.TabIndex = 0;
-            this.chbShutdown.Text = "Shutdown when finished";
-            this.chbShutdown.UseVisualStyleBackColor = true;
             // 
             // lblNameIndex
             // 
@@ -159,22 +137,41 @@
             this.metroLabel2.TabIndex = 3;
             this.metroLabel2.Text = "Total Names: ";
             // 
+            // tbNameList
+            // 
+            this.tbNameList.Location = new System.Drawing.Point(91, 19);
+            this.tbNameList.Name = "tbNameList";
+            this.tbNameList.ReadOnly = true;
+            this.tbNameList.Size = new System.Drawing.Size(100, 20);
+            this.tbNameList.TabIndex = 4;
+            this.tbNameList.Click += new System.EventHandler(this.tbNameList_Click);
+            // 
             // lblLogin
             // 
             this.lblLogin.AutoSize = true;
             this.lblLogin.BackColor = System.Drawing.Color.Transparent;
             this.lblLogin.FontWeight = MetroFramework.MetroLabelWeight.Bold;
             this.lblLogin.ForeColor = System.Drawing.Color.Lime;
-            this.lblLogin.Location = new System.Drawing.Point(249, 16);
+            this.lblLogin.Location = new System.Drawing.Point(437, 20);
             this.lblLogin.Name = "lblLogin";
             this.lblLogin.Size = new System.Drawing.Size(134, 19);
             this.lblLogin.TabIndex = 3;
             this.lblLogin.Text = "Waiting for login...";
             this.lblLogin.UseStyleColors = true;
             // 
+            // metroLabel8
+            // 
+            this.metroLabel8.AutoSize = true;
+            this.metroLabel8.Location = new System.Drawing.Point(6, 20);
+            this.metroLabel8.Name = "metroLabel8";
+            this.metroLabel8.Size = new System.Drawing.Size(68, 19);
+            this.metroLabel8.TabIndex = 3;
+            this.metroLabel8.Text = "Logo Path";
+            // 
             // groupBox1
             // 
             this.groupBox1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(255)))), ((int)(((byte)(255)))));
+            this.groupBox1.Controls.Add(this.chbAutologo);
             this.groupBox1.Controls.Add(this.numEnd);
             this.groupBox1.Controls.Add(this.numStart);
             this.groupBox1.Controls.Add(this.btnSaveAcc);
@@ -199,7 +196,7 @@
             // 
             this.numEnd.Location = new System.Drawing.Point(272, 62);
             this.numEnd.Maximum = new decimal(new int[] {
-            32767,
+            100000,
             0,
             0,
             0});
@@ -318,34 +315,38 @@
             this.bgWoker.ProgressChanged += new System.ComponentModel.ProgressChangedEventHandler(this.bgWoker_ProgressChanged);
             this.bgWoker.RunWorkerCompleted += new System.ComponentModel.RunWorkerCompletedEventHandler(this.bgWoker_RunWorkerCompleted);
             // 
-            // metroLabel8
-            // 
-            this.metroLabel8.AutoSize = true;
-            this.metroLabel8.Location = new System.Drawing.Point(6, 20);
-            this.metroLabel8.Name = "metroLabel8";
-            this.metroLabel8.Size = new System.Drawing.Size(67, 19);
-            this.metroLabel8.TabIndex = 3;
-            this.metroLabel8.Text = "Name List";
-            // 
-            // tbNameList
-            // 
-            this.tbNameList.Location = new System.Drawing.Point(91, 19);
-            this.tbNameList.Name = "tbNameList";
-            this.tbNameList.ReadOnly = true;
-            this.tbNameList.Size = new System.Drawing.Size(100, 20);
-            this.tbNameList.TabIndex = 4;
-            this.tbNameList.Click += new System.EventHandler(this.tbNameList_Click);
-            // 
             // openFileDialog1
             // 
             this.openFileDialog1.FileName = "openFileDialog1";
             this.openFileDialog1.Filter = "Text|*.txt";
             // 
+            // lbError
+            // 
+            this.lbError.Location = new System.Drawing.Point(27, 435);
+            this.lbError.Name = "lbError";
+            this.lbError.ReadOnly = true;
+            this.lbError.Size = new System.Drawing.Size(611, 96);
+            this.lbError.TabIndex = 7;
+            this.lbError.Text = "";
+            // 
+            // chbAutologo
+            // 
+            this.chbAutologo.AutoSize = true;
+            this.chbAutologo.Checked = true;
+            this.chbAutologo.CheckState = System.Windows.Forms.CheckState.Checked;
+            this.chbAutologo.Location = new System.Drawing.Point(91, 104);
+            this.chbAutologo.Name = "chbAutologo";
+            this.chbAutologo.Size = new System.Drawing.Size(71, 17);
+            this.chbAutologo.TabIndex = 7;
+            this.chbAutologo.Text = "Auto logo";
+            this.chbAutologo.UseVisualStyleBackColor = true;
+            // 
             // SunfrogUploader
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(667, 491);
+            this.ClientSize = new System.Drawing.Size(667, 594);
+            this.Controls.Add(this.lbError);
             this.Controls.Add(this.btnStart);
             this.Controls.Add(this.groupBox2);
             this.Controls.Add(this.groupBox1);
@@ -355,8 +356,6 @@
             this.Load += new System.EventHandler(this.SunfrogUploader_Load);
             this.groupBox2.ResumeLayout(false);
             this.groupBox2.PerformLayout();
-            this.groupBox4.ResumeLayout(false);
-            this.groupBox4.PerformLayout();
             this.groupBox1.ResumeLayout(false);
             this.groupBox1.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.numEnd)).EndInit();
@@ -369,8 +368,6 @@
 
         private MetroFramework.Controls.MetroButton btnStart;
         private System.Windows.Forms.GroupBox groupBox2;
-        private System.Windows.Forms.GroupBox groupBox4;
-        private System.Windows.Forms.CheckBox chbShutdown;
         private MetroFramework.Controls.MetroLabel lblNameIndex;
         private MetroFramework.Controls.MetroProgressBar progCurrentName;
         private MetroFramework.Controls.MetroLabel lblTotalNames;
@@ -395,6 +392,8 @@
         private System.Windows.Forms.TextBox tbNameList;
         private MetroFramework.Controls.MetroLabel metroLabel8;
         private System.Windows.Forms.OpenFileDialog openFileDialog1;
+        private System.Windows.Forms.RichTextBox lbError;
+        private System.Windows.Forms.CheckBox chbAutologo;
     }
 }
 

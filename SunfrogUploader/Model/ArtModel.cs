@@ -8,6 +8,7 @@ using System.Threading.Tasks;
 
 namespace SunfrogUploader.Model
 {
+    [CollectionName("NOICOM_ArtModel")]
     public class ArtModel: Entity
     {
         public string Name { get; set; }

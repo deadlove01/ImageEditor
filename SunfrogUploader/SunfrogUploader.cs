@@ -1,4 +1,5 @@
 ﻿using log4net;
+using log4net.Config;
 using MetroFramework.Forms;
 using SunfrogUploader.Controller;
 using SunfrogUploader.Model;
@@ -31,6 +32,7 @@ namespace SunfrogUploader
         public SunfrogUploader()
         {
             InitializeComponent();
+            XmlConfigurator.Configure();
         }
 
 
@@ -63,11 +65,12 @@ namespace SunfrogUploader
                 string rootPath = Directory.GetCurrentDirectory();
                 string logoConfigPath = rootPath + Settings.Default.LogoConfig;
                 string contentConfigPath = rootPath + Settings.Default.ContentConfig;
+               
                 BackendController.Instance.LogoConfig = SettingUtil.LoadSunfrogInfo<LogoConfig>(string.Format(logoConfigPath, sunfrogConfig.Logo));
                 BackendController.Instance.ContentConfig = SettingUtil.LoadSunfrogInfo<ContentConfig>(string.Format(contentConfigPath, sunfrogConfig.Content));
 
                 // load name list
-                BackendController.Instance.LoadNameList(tbNameList.Text.Trim());
+                BackendController.Instance.LoadNameList(tbNameList.Text.Trim(), chbAutologo.Checked);
 
                 // update ui
                 lblTotalNames.Invoke(new Action(() => lblTotalNames.Text = BackendController.Instance.NameCount + ""));
@@ -86,7 +89,7 @@ namespace SunfrogUploader
 
                 //step2: upload first logo
                 Thread.Sleep(1000);
-                BackendController.Instance.Step2(progCurrentName, lblCurName, lblNameIndex, false);
+                BackendController.Instance.Step2(lbError, progCurrentName, lblCurName, lblNameIndex, false, chbAutologo.Checked);
             }
             catch (Exception ex)
             {
@@ -156,7 +159,7 @@ namespace SunfrogUploader
         {
             if (tbNameList.Text.Trim().Length == 0)
             {
-                MessageBox.Show("Choose name list file!");
+                MessageBox.Show("Choose folder that contains logo!");
                 return;
             }
             btnStart.Enabled = false;
@@ -165,11 +168,25 @@ namespace SunfrogUploader
         }
         private void tbNameList_Click(object sender, EventArgs e)
         {
-            var result = openFileDialog1.ShowDialog();
-            if(result == DialogResult.OK)
+            if(chbAutologo.Checked)
             {
-                tbNameList.Text = openFileDialog1.FileName;
+                var fileDlg = new OpenFileDialog();
+                var result = fileDlg.ShowDialog();
+                if (result == DialogResult.OK)
+                {
+                    tbNameList.Text = fileDlg.FileName;
+                }
             }
+            else
+            {
+                var folderDlg = new FolderBrowserDialog();
+                var result = folderDlg.ShowDialog();
+                if (result == DialogResult.OK)
+                {
+                    tbNameList.Text = folderDlg.SelectedPath;
+                }
+            }
+           
         }
 
         #endregion

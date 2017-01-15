@@ -16,6 +16,14 @@ namespace SunfrogUploader.Model
         public double GuysPrice { get; set; }
         public double LadiesPrice { get; set; }
         public double HoodiesPrice { get; set; }
-       
+
+        public double YouthTeePrice { get; set; }
+
+
+        public double SweatShirtPrice { get; set; }
+        public double GuysVNeckPrice { get; set; }
+        public double LadiesVNeckPrice { get; set; }
+        public double UnisexTankTopPrice { get; set; }
+        public double UnisexLongSleeve { get; set; }
     }
 }

@@ -12,11 +12,13 @@ namespace SunfrogUploader.Controller
 {
     public class SunfrogController : Singleton<SunfrogController>
     {
-        private CustomWeb web;
+        public CustomWeb web;
         
         private static readonly ILog logger = LogManager.GetLogger(typeof(SunfrogController));
         public string GuysLink { get; set; }
         public string AM { get; set; }
+
+        public string SFAcc { get; set; }
 
         public SunfrogController()
         {
@@ -25,6 +27,7 @@ namespace SunfrogUploader.Controller
 
         public bool Login(string sfAcc, string sfPass)
         {
+            this.SFAcc = sfAcc;
             string url = "https://manager.sunfrogshirts.com/Login.cfm";
             NameValueCollection nvc = new NameValueCollection();
             nvc.Add("username", sfAcc);
@@ -77,7 +80,11 @@ namespace SunfrogUploader.Controller
             return web.HttpUploadFileByJson(uploadUrl, jsonData);
         }
 
-
+        public async Task<string> UpdateMockup(string jsonData)
+        {
+            string uploadUrl = "https://manager.sunfrogshirts.com/Designer/php/upload-handler.cfm";
+            return await web.UpdateMockupByJson(uploadUrl, jsonData);
+        }
 
     }
 }

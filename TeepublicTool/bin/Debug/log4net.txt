@@ -1,0 +1,150 @@
+2016-12-24 12:52:55,212 Login error:  The chromedriver.exe file does not exist in the current directory or in a directory on the PATH environment variable. The driver can be downloaded at http://chromedriver.storage.googleapis.com/index.html., stacktrace:    at OpenQA.Selenium.DriverService.FindDriverServiceExecutable(String executableName, Uri downloadUrl)
+   at OpenQA.Selenium.Chrome.ChromeDriverService.CreateDefaultService()
+   at OpenQA.Selenium.Chrome.ChromeDriver..ctor(ChromeOptions options)
+   at TeepublicTool.Controllers.RedBubbleUploader.Controllers.PhantomController.Init() in D:\Github\ImageEditor\ImageEditor\TeepublicTool\Controllers\PhantomController.cs:line 151
+   at TeepublicTool.Controllers.RedBubbleUploader.Controllers.PhantomController.Login() in D:\Github\ImageEditor\ImageEditor\TeepublicTool\Controllers\PhantomController.cs:line 45
+2016-12-24 12:54:27,189 Login error:  element not visible
+  (Session info: chrome=55.0.2883.87)
+  (Driver info: chromedriver=2.27.440174 (e97a722caafc2d3a8b807ee115bfb307f7d2cfd9),platform=Windows NT 10.0.14393 x86_64), stacktrace:    at OpenQA.Selenium.Remote.RemoteWebDriver.UnpackAndThrowOnError(Response errorResponse)
+   at OpenQA.Selenium.Remote.RemoteWebDriver.Execute(String driverCommandToExecute, Dictionary`2 parameters)
+   at OpenQA.Selenium.Remote.RemoteWebElement.Click()
+   at TeepublicTool.Controllers.RedBubbleUploader.Controllers.PhantomController.Login() in D:\Github\ImageEditor\ImageEditor\TeepublicTool\Controllers\PhantomController.cs:line 64
+2016-12-24 12:55:39,440 Login error:  element not visible
+  (Session info: chrome=55.0.2883.87)
+  (Driver info: chromedriver=2.27.440174 (e97a722caafc2d3a8b807ee115bfb307f7d2cfd9),platform=Windows NT 10.0.14393 x86_64), stacktrace:    at OpenQA.Selenium.Remote.RemoteWebDriver.UnpackAndThrowOnError(Response errorResponse)
+   at OpenQA.Selenium.Remote.RemoteWebDriver.Execute(String driverCommandToExecute, Dictionary`2 parameters)
+   at OpenQA.Selenium.Remote.RemoteWebElement.Click()
+   at TeepublicTool.Controllers.RedBubbleUploader.Controllers.PhantomController.Login() in D:\Github\ImageEditor\ImageEditor\TeepublicTool\Controllers\PhantomController.cs:line 64
+2016-12-24 12:58:11,242 Login error:  element not visible
+  (Session info: chrome=55.0.2883.87)
+  (Driver info: chromedriver=2.27.440174 (e97a722caafc2d3a8b807ee115bfb307f7d2cfd9),platform=Windows NT 10.0.14393 x86_64), stacktrace:    at OpenQA.Selenium.Remote.RemoteWebDriver.UnpackAndThrowOnError(Response errorResponse)
+   at OpenQA.Selenium.Remote.RemoteWebDriver.Execute(String driverCommandToExecute, Dictionary`2 parameters)
+   at OpenQA.Selenium.Remote.RemoteWebElement.Click()
+   at TeepublicTool.Controllers.RedBubbleUploader.Controllers.PhantomController.Login() in D:\Github\ImageEditor\ImageEditor\TeepublicTool\Controllers\PhantomController.cs:line 64
+2016-12-25 00:18:12,561 Login error:  unknown error: Element is not clickable at point (889, 615)
+  (Session info: chrome=55.0.2883.87)
+  (Driver info: chromedriver=2.27.440174 (e97a722caafc2d3a8b807ee115bfb307f7d2cfd9),platform=Windows NT 10.0.14393 x86_64), stacktrace:    at OpenQA.Selenium.Remote.RemoteWebDriver.UnpackAndThrowOnError(Response errorResponse)
+   at OpenQA.Selenium.Remote.RemoteWebDriver.Execute(String driverCommandToExecute, Dictionary`2 parameters)
+   at OpenQA.Selenium.Remote.RemoteWebElement.Click()
+   at TeepublicTool.Controllers.RedBubbleUploader.Controllers.PhantomController.SelectOption(String id, String colorName) in D:\Github\ImageEditor\ImageEditor\TeepublicTool\Controllers\PhantomController.cs:line 160
+   at TeepublicTool.Controllers.RedBubbleUploader.Controllers.PhantomController.UploadDesign(ProductTemplate template) in D:\Github\ImageEditor\ImageEditor\TeepublicTool\Controllers\PhantomController.cs:line 131
+2016-12-25 00:21:39,710 Login error:  element not visible
+  (Session info: chrome=55.0.2883.87)
+  (Driver info: chromedriver=2.27.440174 (e97a722caafc2d3a8b807ee115bfb307f7d2cfd9),platform=Windows NT 10.0.14393 x86_64), stacktrace:    at OpenQA.Selenium.Remote.RemoteWebDriver.UnpackAndThrowOnError(Response errorResponse)
+   at OpenQA.Selenium.Remote.RemoteWebDriver.Execute(String driverCommandToExecute, Dictionary`2 parameters)
+   at OpenQA.Selenium.Remote.RemoteWebElement.Click()
+   at TeepublicTool.Controllers.RedBubbleUploader.Controllers.PhantomController.SelectOption(String id, String colorName) in D:\Github\ImageEditor\ImageEditor\TeepublicTool\Controllers\PhantomController.cs:line 167
+   at TeepublicTool.Controllers.RedBubbleUploader.Controllers.PhantomController.UploadDesign(ProductTemplate template) in D:\Github\ImageEditor\ImageEditor\TeepublicTool\Controllers\PhantomController.cs:line 132
+2016-12-25 00:34:48,756 Login error:  element not visible
+  (Session info: chrome=55.0.2883.87)
+  (Driver info: chromedriver=2.27.440174 (e97a722caafc2d3a8b807ee115bfb307f7d2cfd9),platform=Windows NT 10.0.14393 x86_64), stacktrace:    at OpenQA.Selenium.Remote.RemoteWebDriver.UnpackAndThrowOnError(Response errorResponse)
+   at OpenQA.Selenium.Remote.RemoteWebDriver.Execute(String driverCommandToExecute, Dictionary`2 parameters)
+   at OpenQA.Selenium.Remote.RemoteWebElement.Click()
+   at TeepublicTool.Controllers.RedBubbleUploader.Controllers.PhantomController.SelectOption(String id, String colorName) in D:\Github\ImageEditor\ImageEditor\TeepublicTool\Controllers\PhantomController.cs:line 167
+   at TeepublicTool.Controllers.RedBubbleUploader.Controllers.PhantomController.UploadDesign(ProductTemplate template) in D:\Github\ImageEditor\ImageEditor\TeepublicTool\Controllers\PhantomController.cs:line 132
+2017-01-08 19:43:53,225 The HTTP request to the remote WebDriver server for URL http://localhost:61390/session/576eba0574c584bb5148cb088ccce287/click timed out after 60 seconds.
+2017-01-08 19:43:53,418    at OpenQA.Selenium.Remote.HttpCommandExecutor.CreateResponse(WebRequest request)
+   at OpenQA.Selenium.Remote.HttpCommandExecutor.Execute(Command commandToExecute)
+   at OpenQA.Selenium.Remote.DriverServiceCommandExecutor.Execute(Command commandToExecute)
+   at OpenQA.Selenium.Remote.RemoteWebDriver.Execute(String driverCommandToExecute, Dictionary`2 parameters)
+   at OpenQA.Selenium.Remote.RemoteMouse.Click(ICoordinates where)
+   at OpenQA.Selenium.Interactions.ClickAction.Perform()
+   at OpenQA.Selenium.Interactions.CompositeAction.Perform()
+   at TeepublicTool.Controllers.RedBubbleUploader.Controllers.PhantomController.DivClick(IWebDriver driver, IWebElement div, Int32 sleep) in D:\Github\ImageEditor\ImageEditor\TeepublicTool\Controllers\PhantomController.cs:line 330
+2017-01-08 19:50:04,675 Error: element not visible
+  (Session info: chrome=55.0.2883.87)
+  (Driver info: chromedriver=2.27.440174 (e97a722caafc2d3a8b807ee115bfb307f7d2cfd9),platform=Windows NT 10.0.14393 x86_64), stacktrace:    at OpenQA.Selenium.Remote.RemoteWebDriver.UnpackAndThrowOnError(Response errorResponse)
+   at OpenQA.Selenium.Remote.RemoteWebDriver.Execute(String driverCommandToExecute, Dictionary`2 parameters)
+   at OpenQA.Selenium.Remote.RemoteWebElement.Click()
+   at TeepublicTool.Controllers.RedBubbleUploader.Controllers.PhantomController.SelectOption(String id, String colorName) in D:\Github\ImageEditor\ImageEditor\TeepublicTool\Controllers\PhantomController.cs:line 288
+   at TeepublicTool.Controllers.RedBubbleUploader.Controllers.PhantomController.UploadDesign(ProductTemplate template) in D:\Github\ImageEditor\ImageEditor\TeepublicTool\Controllers\PhantomController.cs:line 144
+   at TeepublicTool.MainForm.bgWorker_DoWork(Object sender, DoWorkEventArgs e) in D:\Github\ImageEditor\ImageEditor\TeepublicTool\MainForm.cs:line 177
+2017-01-08 19:50:30,642 Error: element not visible
+  (Session info: chrome=55.0.2883.87)
+  (Driver info: chromedriver=2.27.440174 (e97a722caafc2d3a8b807ee115bfb307f7d2cfd9),platform=Windows NT 10.0.14393 x86_64), stacktrace:    at OpenQA.Selenium.Remote.RemoteWebDriver.UnpackAndThrowOnError(Response errorResponse)
+   at OpenQA.Selenium.Remote.RemoteWebDriver.Execute(String driverCommandToExecute, Dictionary`2 parameters)
+   at OpenQA.Selenium.Remote.RemoteWebElement.Click()
+   at TeepublicTool.Controllers.RedBubbleUploader.Controllers.PhantomController.SelectOption(String id, String colorName) in D:\Github\ImageEditor\ImageEditor\TeepublicTool\Controllers\PhantomController.cs:line 288
+   at TeepublicTool.Controllers.RedBubbleUploader.Controllers.PhantomController.UploadDesign(ProductTemplate template) in D:\Github\ImageEditor\ImageEditor\TeepublicTool\Controllers\PhantomController.cs:line 144
+   at TeepublicTool.MainForm.bgWorker_DoWork(Object sender, DoWorkEventArgs e) in D:\Github\ImageEditor\ImageEditor\TeepublicTool\MainForm.cs:line 177
+2017-01-08 19:52:26,059 The HTTP request to the remote WebDriver server for URL http://localhost:50392/session/a87a45cad6b9e0c09bc9b1bdfdacb0a6/click timed out after 60 seconds.
+2017-01-08 19:52:26,074    at OpenQA.Selenium.Remote.HttpCommandExecutor.CreateResponse(WebRequest request)
+   at OpenQA.Selenium.Remote.HttpCommandExecutor.Execute(Command commandToExecute)
+   at OpenQA.Selenium.Remote.DriverServiceCommandExecutor.Execute(Command commandToExecute)
+   at OpenQA.Selenium.Remote.RemoteWebDriver.Execute(String driverCommandToExecute, Dictionary`2 parameters)
+   at OpenQA.Selenium.Remote.RemoteMouse.Click(ICoordinates where)
+   at OpenQA.Selenium.Interactions.ClickAction.Perform()
+   at OpenQA.Selenium.Interactions.CompositeAction.Perform()
+   at TeepublicTool.Controllers.RedBubbleUploader.Controllers.PhantomController.DivClick(IWebDriver driver, IWebElement div, Int32 sleep) in D:\Github\ImageEditor\ImageEditor\TeepublicTool\Controllers\PhantomController.cs:line 331
+2017-01-08 20:12:05,551 Error: element not visible
+  (Session info: chrome=55.0.2883.87)
+  (Driver info: chromedriver=2.27.440174 (e97a722caafc2d3a8b807ee115bfb307f7d2cfd9),platform=Windows NT 10.0.14393 x86_64), stacktrace:    at OpenQA.Selenium.Remote.RemoteWebDriver.UnpackAndThrowOnError(Response errorResponse)
+   at OpenQA.Selenium.Remote.RemoteWebDriver.Execute(String driverCommandToExecute, Dictionary`2 parameters)
+   at OpenQA.Selenium.Remote.RemoteWebElement.Click()
+   at TeepublicTool.Controllers.RedBubbleUploader.Controllers.PhantomController.SelectOption(String id, String colorName) in D:\Github\ImageEditor\ImageEditor\TeepublicTool\Controllers\PhantomController.cs:line 298
+   at TeepublicTool.Controllers.RedBubbleUploader.Controllers.PhantomController.UploadDesign(ProductTemplate template) in D:\Github\ImageEditor\ImageEditor\TeepublicTool\Controllers\PhantomController.cs:line 154
+   at TeepublicTool.MainForm.bgWorker_DoWork(Object sender, DoWorkEventArgs e) in D:\Github\ImageEditor\ImageEditor\TeepublicTool\MainForm.cs:line 177
+2017-01-08 20:12:31,944 Error: element not visible
+  (Session info: chrome=55.0.2883.87)
+  (Driver info: chromedriver=2.27.440174 (e97a722caafc2d3a8b807ee115bfb307f7d2cfd9),platform=Windows NT 10.0.14393 x86_64), stacktrace:    at OpenQA.Selenium.Remote.RemoteWebDriver.UnpackAndThrowOnError(Response errorResponse)
+   at OpenQA.Selenium.Remote.RemoteWebDriver.Execute(String driverCommandToExecute, Dictionary`2 parameters)
+   at OpenQA.Selenium.Remote.RemoteWebElement.Click()
+   at TeepublicTool.Controllers.RedBubbleUploader.Controllers.PhantomController.SelectOption(String id, String colorName) in D:\Github\ImageEditor\ImageEditor\TeepublicTool\Controllers\PhantomController.cs:line 298
+   at TeepublicTool.Controllers.RedBubbleUploader.Controllers.PhantomController.UploadDesign(ProductTemplate template) in D:\Github\ImageEditor\ImageEditor\TeepublicTool\Controllers\PhantomController.cs:line 154
+   at TeepublicTool.MainForm.bgWorker_DoWork(Object sender, DoWorkEventArgs e) in D:\Github\ImageEditor\ImageEditor\TeepublicTool\MainForm.cs:line 177
+2017-01-08 20:18:00,469 Error: element not visible
+  (Session info: chrome=55.0.2883.87)
+  (Driver info: chromedriver=2.27.440174 (e97a722caafc2d3a8b807ee115bfb307f7d2cfd9),platform=Windows NT 10.0.14393 x86_64), stacktrace:    at OpenQA.Selenium.Remote.RemoteWebDriver.UnpackAndThrowOnError(Response errorResponse)
+   at OpenQA.Selenium.Remote.RemoteWebDriver.Execute(String driverCommandToExecute, Dictionary`2 parameters)
+   at OpenQA.Selenium.Remote.RemoteWebElement.Click()
+   at TeepublicTool.Controllers.RedBubbleUploader.Controllers.PhantomController.SelectOption(String id, String colorName) in D:\Github\ImageEditor\ImageEditor\TeepublicTool\Controllers\PhantomController.cs:line 303
+   at TeepublicTool.Controllers.RedBubbleUploader.Controllers.PhantomController.UploadDesign(ProductTemplate template) in D:\Github\ImageEditor\ImageEditor\TeepublicTool\Controllers\PhantomController.cs:line 159
+   at TeepublicTool.MainForm.bgWorker_DoWork(Object sender, DoWorkEventArgs e) in D:\Github\ImageEditor\ImageEditor\TeepublicTool\MainForm.cs:line 177
+2017-01-08 20:19:44,192 Error: element not visible
+  (Session info: chrome=55.0.2883.87)
+  (Driver info: chromedriver=2.27.440174 (e97a722caafc2d3a8b807ee115bfb307f7d2cfd9),platform=Windows NT 10.0.14393 x86_64), stacktrace:    at OpenQA.Selenium.Remote.RemoteWebDriver.UnpackAndThrowOnError(Response errorResponse)
+   at OpenQA.Selenium.Remote.RemoteWebDriver.Execute(String driverCommandToExecute, Dictionary`2 parameters)
+   at OpenQA.Selenium.Remote.RemoteWebElement.Click()
+   at TeepublicTool.Controllers.RedBubbleUploader.Controllers.PhantomController.SelectOption(String id, String colorName) in D:\Github\ImageEditor\ImageEditor\TeepublicTool\Controllers\PhantomController.cs:line 303
+   at TeepublicTool.Controllers.RedBubbleUploader.Controllers.PhantomController.UploadDesign(ProductTemplate template) in D:\Github\ImageEditor\ImageEditor\TeepublicTool\Controllers\PhantomController.cs:line 159
+   at TeepublicTool.MainForm.bgWorker_DoWork(Object sender, DoWorkEventArgs e) in D:\Github\ImageEditor\ImageEditor\TeepublicTool\MainForm.cs:line 177
+2017-01-08 20:35:53,372 Error: no such element: Unable to locate element: {"method":"xpath","selector":"//div[@data-canvas-name='Apparel']"}
+  (Session info: chrome=55.0.2883.87)
+  (Driver info: chromedriver=2.27.440174 (e97a722caafc2d3a8b807ee115bfb307f7d2cfd9),platform=Windows NT 10.0.14393 x86_64), stacktrace:    at OpenQA.Selenium.Remote.RemoteWebDriver.UnpackAndThrowOnError(Response errorResponse)
+   at OpenQA.Selenium.Remote.RemoteWebDriver.Execute(String driverCommandToExecute, Dictionary`2 parameters)
+   at OpenQA.Selenium.Remote.RemoteWebDriver.FindElement(String mechanism, String value)
+   at OpenQA.Selenium.Remote.RemoteWebDriver.FindElementByXPath(String xpath)
+   at OpenQA.Selenium.By.<>c__DisplayClasse.<XPath>b__c(ISearchContext context)
+   at OpenQA.Selenium.By.FindElement(ISearchContext context)
+   at OpenQA.Selenium.Remote.RemoteWebDriver.FindElement(By by)
+   at TeepublicTool.Controllers.RedBubbleUploader.Controllers.PhantomController.ClickPanel(String controlName) in D:\Github\ImageEditor\ImageEditor\TeepublicTool\Controllers\PhantomController.cs:line 287
+   at TeepublicTool.Controllers.RedBubbleUploader.Controllers.PhantomController.UploadDesign(ProductTemplate template) in D:\Github\ImageEditor\ImageEditor\TeepublicTool\Controllers\PhantomController.cs:line 155
+   at TeepublicTool.MainForm.bgWorker_DoWork(Object sender, DoWorkEventArgs e) in D:\Github\ImageEditor\ImageEditor\TeepublicTool\MainForm.cs:line 177
+2017-01-08 20:36:14,026 Error: no such element: Unable to locate element: {"method":"xpath","selector":"//div[@data-canvas-name='Apparel']"}
+  (Session info: chrome=55.0.2883.87)
+  (Driver info: chromedriver=2.27.440174 (e97a722caafc2d3a8b807ee115bfb307f7d2cfd9),platform=Windows NT 10.0.14393 x86_64), stacktrace:    at OpenQA.Selenium.Remote.RemoteWebDriver.UnpackAndThrowOnError(Response errorResponse)
+   at OpenQA.Selenium.Remote.RemoteWebDriver.Execute(String driverCommandToExecute, Dictionary`2 parameters)
+   at OpenQA.Selenium.Remote.RemoteWebDriver.FindElement(String mechanism, String value)
+   at OpenQA.Selenium.Remote.RemoteWebDriver.FindElementByXPath(String xpath)
+   at OpenQA.Selenium.By.<>c__DisplayClasse.<XPath>b__c(ISearchContext context)
+   at OpenQA.Selenium.By.FindElement(ISearchContext context)
+   at OpenQA.Selenium.Remote.RemoteWebDriver.FindElement(By by)
+   at TeepublicTool.Controllers.RedBubbleUploader.Controllers.PhantomController.ClickPanel(String controlName) in D:\Github\ImageEditor\ImageEditor\TeepublicTool\Controllers\PhantomController.cs:line 287
+   at TeepublicTool.Controllers.RedBubbleUploader.Controllers.PhantomController.UploadDesign(ProductTemplate template) in D:\Github\ImageEditor\ImageEditor\TeepublicTool\Controllers\PhantomController.cs:line 155
+   at TeepublicTool.MainForm.bgWorker_DoWork(Object sender, DoWorkEventArgs e) in D:\Github\ImageEditor\ImageEditor\TeepublicTool\MainForm.cs:line 177
+2017-01-08 20:38:18,746 invalid element state: Element is not currently interactable and may not be manipulated
+  (Session info: chrome=55.0.2883.87)
+  (Driver info: chromedriver=2.27.440174 (e97a722caafc2d3a8b807ee115bfb307f7d2cfd9),platform=Windows NT 10.0.14393 x86_64)
+2017-01-08 20:38:18,757    at OpenQA.Selenium.Remote.RemoteWebDriver.UnpackAndThrowOnError(Response errorResponse)
+   at OpenQA.Selenium.Remote.RemoteWebDriver.Execute(String driverCommandToExecute, Dictionary`2 parameters)
+   at OpenQA.Selenium.Remote.RemoteWebElement.Clear()
+   at TeepublicTool.Controllers.RedBubbleUploader.Controllers.PhantomController.ChangeToInputAndSetText(IWebDriver driver, IWebElement input, String text, Int32 sleep) in D:\Github\ImageEditor\ImageEditor\TeepublicTool\Controllers\PhantomController.cs:line 402
+2017-01-08 20:48:35,334 The HTTP request to the remote WebDriver server for URL http://localhost:55939/session/d8d29b6c3e010102c5590e702d819e3b/click timed out after 60 seconds.
+2017-01-08 20:48:35,349    at OpenQA.Selenium.Remote.HttpCommandExecutor.CreateResponse(WebRequest request)
+   at OpenQA.Selenium.Remote.HttpCommandExecutor.Execute(Command commandToExecute)
+   at OpenQA.Selenium.Remote.DriverServiceCommandExecutor.Execute(Command commandToExecute)
+   at OpenQA.Selenium.Remote.RemoteWebDriver.Execute(String driverCommandToExecute, Dictionary`2 parameters)
+   at OpenQA.Selenium.Remote.RemoteMouse.Click(ICoordinates where)
+   at OpenQA.Selenium.Interactions.ClickAction.Perform()
+   at OpenQA.Selenium.Interactions.CompositeAction.Perform()
+   at TeepublicTool.Controllers.RedBubbleUploader.Controllers.PhantomController.DivClick(IWebDriver driver, IWebElement div, Int32 sleep) in D:\Github\ImageEditor\ImageEditor\TeepublicTool\Controllers\PhantomController.cs:line 357

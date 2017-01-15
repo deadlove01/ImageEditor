@@ -33,6 +33,7 @@ namespace SunfrogUploader.Util
             try
             {
                 string json = File.ReadAllText(path);
+                json = json.Replace("\r\n", "");
                 return JsonConvert.DeserializeObject<T>(json);
             }
             catch (Exception ex)

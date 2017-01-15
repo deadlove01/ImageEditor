@@ -20,8 +20,18 @@ namespace SunfrogUploader.Model
         public string GuysColor { get; set; }
         public string LadiesColor { get; set; }
         public string HoodieColor { get; set; }
+        public string YouthTeeColor { get; set; }
         public string MockupPosition { get; set; }
         public string MockupScale { get; set; }
+        
+
+        public string SweatShirtColor { get; set; }
+        public string GuysVNeck { get; set; }
+        public string LadiesVNeck { get; set; }
+        public string UnisexTankTop { get; set; }
+        public string UnisexLongSleeve { get; set; }
+
+        
 
         public LogoConfig()
         {

@@ -32,7 +32,18 @@
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
+  <PropertyGroup>
+    <ApplicationIcon>sunfrog.ico</ApplicationIcon>
+  </PropertyGroup>
   <ItemGroup>
+    <Reference Include="Common.Logging, Version=3.3.1.0, Culture=neutral, PublicKeyToken=af08829b84f0328e, processorArchitecture=MSIL">
+      <HintPath>..\packages\Common.Logging.3.3.1\lib\net40\Common.Logging.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Common.Logging.Core, Version=3.3.1.0, Culture=neutral, PublicKeyToken=af08829b84f0328e, processorArchitecture=MSIL">
+      <HintPath>..\packages\Common.Logging.Core.3.3.1\lib\net40\Common.Logging.Core.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
     <Reference Include="HtmlAgilityPack, Version=1.4.9.0, Culture=neutral, PublicKeyToken=bd319b19eaf3b43a, processorArchitecture=MSIL">
       <HintPath>..\packages\HtmlAgilityPack.1.4.9\lib\Net45\HtmlAgilityPack.dll</HintPath>
       <Private>True</Private>
@@ -74,6 +85,10 @@
       <HintPath>..\packages\Newtonsoft.Json.8.0.3\lib\net45\Newtonsoft.Json.dll</HintPath>
       <Private>True</Private>
     </Reference>
+    <Reference Include="Quartz, Version=2.4.1.0, Culture=neutral, PublicKeyToken=f6b8c98a402cc8a4, processorArchitecture=MSIL">
+      <HintPath>..\packages\Quartz.2.4.1\lib\net40\Quartz.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
     <Reference Include="System.Xml.Linq" />
@@ -89,15 +104,18 @@
   <ItemGroup>
     <Compile Include="Controller\BackendController.cs" />
     <Compile Include="Controller\MongoController.cs" />
+    <Compile Include="Controller\SchedulerController.cs" />
     <Compile Include="Controller\SunfrogController.cs" />
     <Compile Include="Model\ArtModel.cs" />
     <Compile Include="Model\ContentConfig.cs" />
     <Compile Include="Model\CustomWeb.cs">
       <SubType>Component</SubType>
     </Compile>
+    <Compile Include="Model\Job.cs" />
     <Compile Include="Model\LogoConfig.cs" />
     <Compile Include="Model\NewMockupResult.cs" />
     <Compile Include="Model\SunfrogConfig.cs" />
+    <Compile Include="Model\UpdateMockupModel.cs" />
     <Compile Include="Model\UploadModel.cs" />
     <Compile Include="SunfrogUploader.cs">
       <SubType>Form</SubType>
@@ -110,6 +128,7 @@
     <Compile Include="Util\FileUtil.cs" />
     <Compile Include="Util\LogoUtil.cs" />
     <Compile Include="Util\SettingUtil.cs" />
+    <Compile Include="Util\SunfrogUtil.cs" />
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
@@ -124,6 +143,9 @@
     </EmbeddedResource>
     <None Include="..\packages\MongoRepository.1.6.11\MongoRepository.chm">
       <Link>Documentation\MongoRepository.chm</Link>
+    </None>
+    <None Include="job_scheduling_data_2_0.xsd">
+      <SubType>Designer</SubType>
     </None>
     <None Include="packages.config" />
     <None Include="Properties\Settings.settings">
@@ -143,6 +165,7 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="MetroFramework.txt" />
+    <Content Include="sunfrog.ico" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\AutoArtist\AutoArtist.csproj">
