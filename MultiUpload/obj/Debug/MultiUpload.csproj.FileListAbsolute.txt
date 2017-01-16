@@ -12,3 +12,17 @@ D:\Github\ImageEditor\ImageEditor\MultiUpload\obj\Debug\MultiUpload.Properties.R
 D:\Github\ImageEditor\ImageEditor\MultiUpload\obj\Debug\MultiUpload.csproj.GenerateResource.Cache
 D:\Github\ImageEditor\ImageEditor\MultiUpload\obj\Debug\MultiUpload.exe
 D:\Github\ImageEditor\ImageEditor\MultiUpload\obj\Debug\MultiUpload.pdb
+D:\Git\ImageEditor\ImageEditor\MultiUpload\bin\Debug\MultiUpload.exe.config
+D:\Git\ImageEditor\ImageEditor\MultiUpload\bin\Debug\MultiUpload.exe
+D:\Git\ImageEditor\ImageEditor\MultiUpload\bin\Debug\MultiUpload.pdb
+D:\Git\ImageEditor\ImageEditor\MultiUpload\obj\Debug\MultiUpload.csprojResolveAssemblyReference.cache
+D:\Git\ImageEditor\ImageEditor\MultiUpload\obj\Debug\MainWindow.g.cs
+D:\Git\ImageEditor\ImageEditor\MultiUpload\obj\Debug\App.g.cs
+D:\Git\ImageEditor\ImageEditor\MultiUpload\obj\Debug\MultiUpload_MarkupCompile.cache
+D:\Git\ImageEditor\ImageEditor\MultiUpload\obj\Debug\MultiUpload_MarkupCompile.lref
+D:\Git\ImageEditor\ImageEditor\MultiUpload\obj\Debug\MainWindow.baml
+D:\Git\ImageEditor\ImageEditor\MultiUpload\obj\Debug\MultiUpload.g.resources
+D:\Git\ImageEditor\ImageEditor\MultiUpload\obj\Debug\MultiUpload.Properties.Resources.resources
+D:\Git\ImageEditor\ImageEditor\MultiUpload\obj\Debug\MultiUpload.csproj.GenerateResource.Cache
+D:\Git\ImageEditor\ImageEditor\MultiUpload\obj\Debug\MultiUpload.exe
+D:\Git\ImageEditor\ImageEditor\MultiUpload\obj\Debug\MultiUpload.pdb

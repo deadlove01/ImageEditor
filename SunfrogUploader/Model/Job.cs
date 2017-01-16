@@ -40,7 +40,11 @@ namespace SunfrogUploader.Model
                             BackendController.IsMaintain = true;
                         }
                         else
+                        {
+                            SunfrogController.Instance.web = web;
                             BackendController.IsMaintain = false;
+                        }
+                            
                     }
                 }
 

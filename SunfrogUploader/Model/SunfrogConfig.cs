@@ -14,9 +14,11 @@ namespace SunfrogUploader.Model
         public int EndRange { get; set; }
         public string Logo { get; set; }
         public string Content { get; set; }
+        public bool IsAutoLogo { get; set; }
+        public bool IsSaveDB { get; set; }
 
         public SunfrogConfig() { }
-        public SunfrogConfig(string acc, string pass, int start, int end, string logo, string content)
+        public SunfrogConfig(string acc, string pass, int start, int end, string logo, string content, bool autoLogo, bool saveDB)
         {
             this.SFAcc = acc;
             this.SFPass = pass;
@@ -24,6 +26,8 @@ namespace SunfrogUploader.Model
             this.EndRange = end;
             this.Logo = logo;
             this.Content = content;
+            this.IsAutoLogo = autoLogo;
+            this.IsSaveDB = saveDB;
         }
     }
 }

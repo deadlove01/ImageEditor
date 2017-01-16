@@ -39,6 +39,7 @@
             this.lblLogin = new MetroFramework.Controls.MetroLabel();
             this.metroLabel8 = new MetroFramework.Controls.MetroLabel();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
+            this.chbAutologo = new System.Windows.Forms.CheckBox();
             this.numEnd = new System.Windows.Forms.NumericUpDown();
             this.numStart = new System.Windows.Forms.NumericUpDown();
             this.btnSaveAcc = new MetroFramework.Controls.MetroButton();
@@ -55,7 +56,7 @@
             this.bgWoker = new System.ComponentModel.BackgroundWorker();
             this.openFileDialog1 = new System.Windows.Forms.OpenFileDialog();
             this.lbError = new System.Windows.Forms.RichTextBox();
-            this.chbAutologo = new System.Windows.Forms.CheckBox();
+            this.chbSaveDb = new System.Windows.Forms.CheckBox();
             this.groupBox2.SuspendLayout();
             this.groupBox1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.numEnd)).BeginInit();
@@ -171,6 +172,7 @@
             // groupBox1
             // 
             this.groupBox1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(255)))), ((int)(((byte)(255)))));
+            this.groupBox1.Controls.Add(this.chbSaveDb);
             this.groupBox1.Controls.Add(this.chbAutologo);
             this.groupBox1.Controls.Add(this.numEnd);
             this.groupBox1.Controls.Add(this.numStart);
@@ -191,6 +193,18 @@
             this.groupBox1.TabIndex = 4;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Vps Info";
+            // 
+            // chbAutologo
+            // 
+            this.chbAutologo.AutoSize = true;
+            this.chbAutologo.Checked = true;
+            this.chbAutologo.CheckState = System.Windows.Forms.CheckState.Checked;
+            this.chbAutologo.Location = new System.Drawing.Point(9, 104);
+            this.chbAutologo.Name = "chbAutologo";
+            this.chbAutologo.Size = new System.Drawing.Size(71, 17);
+            this.chbAutologo.TabIndex = 7;
+            this.chbAutologo.Text = "Auto logo";
+            this.chbAutologo.UseVisualStyleBackColor = true;
             // 
             // numEnd
             // 
@@ -329,17 +343,17 @@
             this.lbError.TabIndex = 7;
             this.lbError.Text = "";
             // 
-            // chbAutologo
+            // chbSaveDb
             // 
-            this.chbAutologo.AutoSize = true;
-            this.chbAutologo.Checked = true;
-            this.chbAutologo.CheckState = System.Windows.Forms.CheckState.Checked;
-            this.chbAutologo.Location = new System.Drawing.Point(91, 104);
-            this.chbAutologo.Name = "chbAutologo";
-            this.chbAutologo.Size = new System.Drawing.Size(71, 17);
-            this.chbAutologo.TabIndex = 7;
-            this.chbAutologo.Text = "Auto logo";
-            this.chbAutologo.UseVisualStyleBackColor = true;
+            this.chbSaveDb.AutoSize = true;
+            this.chbSaveDb.Checked = true;
+            this.chbSaveDb.CheckState = System.Windows.Forms.CheckState.Checked;
+            this.chbSaveDb.Location = new System.Drawing.Point(91, 104);
+            this.chbSaveDb.Name = "chbSaveDb";
+            this.chbSaveDb.Size = new System.Drawing.Size(97, 17);
+            this.chbSaveDb.TabIndex = 7;
+            this.chbSaveDb.Text = "Save to Server";
+            this.chbSaveDb.UseVisualStyleBackColor = true;
             // 
             // SunfrogUploader
             // 
@@ -394,6 +408,7 @@
         private System.Windows.Forms.OpenFileDialog openFileDialog1;
         private System.Windows.Forms.RichTextBox lbError;
         private System.Windows.Forms.CheckBox chbAutologo;
+        private System.Windows.Forms.CheckBox chbSaveDb;
     }
 }
 

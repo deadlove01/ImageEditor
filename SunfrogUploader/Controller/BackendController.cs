@@ -414,7 +414,7 @@ namespace SunfrogUploader.Controller
         }
 
         public bool Step2(System.Windows.Forms.RichTextBox lbError, System.Windows.Forms.ProgressBar progCurrentName, System.Windows.Forms.Label lblCurName,
-                System.Windows.Forms.Label lblNameIndex, bool isScaleAll, bool isAutoLogo = true)
+                System.Windows.Forms.Label lblNameIndex, bool isScaleAll, bool isAutoLogo = true, bool isSaveDb = true)
         {
             try
             {
@@ -446,16 +446,18 @@ namespace SunfrogUploader.Controller
 
                 }
 
-                if (File.Exists(folderPath + Settings.Default.ListNameSuccess))
+                if(!isSaveDb)
                 {
-                    var existedList = File.ReadLines(folderPath + Settings.Default.ListNameSuccess).ToList();
-                    for (int i = 0; i < existedList.Count; i++)
+                    if (File.Exists(folderPath + Settings.Default.ListNameSuccess))
                     {
-                        nameList.Remove(existedList[i]);
+                        var existedList = File.ReadLines(folderPath + Settings.Default.ListNameSuccess).ToList();
+                        for (int i = 0; i < existedList.Count; i++)
+                        {
+                            nameList.Remove(existedList[i]);
+                        }
                     }
                 }
               
-
                 if (nameList.Count > 0)
                 {
                     progCurrentName.Invoke(new Action(() => progCurrentName.Value = progCurrentName.Minimum));
@@ -482,8 +484,12 @@ namespace SunfrogUploader.Controller
 
                             //string realName = name.Replace(Settings.Default.SplitString, Settings.Default.ExportSplitString);
                             lblCurName.Invoke(new Action(() => lblCurName.Text = realName));
-                            //ArtModel model = MongoController.Instance.FindModel(name, logoName);
-                           // if (model == null)
+                            ArtModel model = null;
+                            if(isSaveDb)
+                            {
+                                model = MongoController.Instance.FindModel(name, logoName);
+                            }
+                            if (model == null)
                             {
                                
                                 if(isAutoLogo)
@@ -498,7 +504,8 @@ namespace SunfrogUploader.Controller
                                 SunfrogController.Instance.web.SendRequest("https://manager.sunfrogshirts.com/Designer/", "GET", null);
 
                                 string result = SunfrogController.Instance.UplodNewMockup(jsonData);
-                                if (result.Contains("Temporarily Unavailable"))
+                                if (result.Contains("Temporarily Unavailable")
+                                    || result.Contains("Sorry, this service is currently unavailable"))
                                 {
                                     lbError.Invoke(new Action(() => lbError.Text += "\nSunfrog bảo trì rồi"));
                                     BackendController.IsMaintain = true;
@@ -534,9 +541,10 @@ namespace SunfrogUploader.Controller
                                 Task.WhenAll(task);
                                 Console.WriteLine("test");
 
-
-                                SaveNewToDB(name, modelResult, groupID, title, lbError);
-
+                                if(isSaveDb)
+                                {
+                                    SaveNewToDB(name, modelResult, groupID, title, lbError);
+                                }
 
                                 lbError.Invoke(new Action(() => {
                                     if (lbError.TextLength >= 500)

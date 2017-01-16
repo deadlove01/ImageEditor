@@ -89,7 +89,7 @@ namespace SunfrogUploader
 
                 //step2: upload first logo
                 Thread.Sleep(1000);
-                BackendController.Instance.Step2(lbError, progCurrentName, lblCurName, lblNameIndex, false, chbAutologo.Checked);
+                BackendController.Instance.Step2(lbError, progCurrentName, lblCurName, lblNameIndex, false, chbAutologo.Checked, chbSaveDb.Checked);
             }
             catch (Exception ex)
             {
@@ -141,7 +141,7 @@ namespace SunfrogUploader
 
                 SunfrogConfig config = new SunfrogConfig(tbVpsName.Text.Trim(),
                     FileUtil.Encrypt(tbPass.Text.Trim()), (int)numStart.Value, (int)numEnd.Value, tbLogo.Text.Trim(),
-                    tbContent.Text.Trim());
+                    tbContent.Text.Trim(), chbAutologo.Checked, chbSaveDb.Checked);
                 SettingUtil.SaveSunfrogInfo(filePath, config);
                 sunfrogConfig = config;
                 MessageBox.Show("Saved!");
