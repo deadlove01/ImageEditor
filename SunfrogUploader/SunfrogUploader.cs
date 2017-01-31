@@ -89,7 +89,7 @@ namespace SunfrogUploader
 
                 //step2: upload first logo
                 Thread.Sleep(1000);
-                BackendController.Instance.Step2(lbError, progCurrentName, lblCurName, lblNameIndex, false, chbAutologo.Checked, chbSaveDb.Checked);
+                BackendController.Instance.Step2(lbError, progCurrentName, lblCurName, lblNameIndex, false, chbAutologo.Checked, chbSaveDb.Checked, chbFastUpload.Checked);
             }
             catch (Exception ex)
             {

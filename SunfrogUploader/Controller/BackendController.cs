@@ -45,7 +45,7 @@ namespace SunfrogUploader.Controller
             nameList = new List<string>();
         }
 
-        private string CreateNewSunfrogData(string names, string logoPath, ref string refTitle)
+        private string CreateNewSunfrogData(string names, string logoPath, ref string refTitle, bool isFast)
         {
             string exportName = names.Replace(Settings.Default.SplitString, Settings.Default.ExportSplitString);
             //string[] temp = name.Split(new string[] { Settings.Default.SplitString }, StringSplitOptions.None);
@@ -187,12 +187,17 @@ namespace SunfrogUploader.Controller
                 model.types.Add(hoodie);
                 model.types.Add(guys);
                 model.types.Add(ladies);
-                model.types.Add(guysVNeck);
-                model.types.Add(ladiesVNeck);
-                model.types.Add(unisexLongSleeve);
-                model.types.Add(unisexTankTop);
-                model.types.Add(sweatShirt);
-                model.types.Add(youthTee);
+                if (!isFast)
+                {
+
+                    model.types.Add(guysVNeck);
+                    model.types.Add(ladiesVNeck);
+                    model.types.Add(unisexLongSleeve);
+                    model.types.Add(unisexTankTop);
+                    model.types.Add(sweatShirt);
+                    model.types.Add(youthTee);
+                }
+
             }
             else if (LogoConfig.PrimaryMockupName.ToLower().StartsWith("guys"))
             {
@@ -200,12 +205,17 @@ namespace SunfrogUploader.Controller
                 model.types.Add(guys);
                 model.types.Add(ladies);
                 model.types.Add(hoodie);
-                model.types.Add(guysVNeck);
-                model.types.Add(ladiesVNeck);
-                model.types.Add(unisexLongSleeve);
-                model.types.Add(unisexTankTop);
-                model.types.Add(sweatShirt);
-                model.types.Add(youthTee);
+                if (!isFast)
+                {
+
+                    model.types.Add(guysVNeck);
+                    model.types.Add(ladiesVNeck);
+                    model.types.Add(unisexLongSleeve);
+                    model.types.Add(unisexTankTop);
+                    model.types.Add(sweatShirt);
+                    model.types.Add(youthTee);
+                }
+
             }
             else if (LogoConfig.PrimaryMockupName.ToLower().StartsWith("ladies"))
             {
@@ -213,12 +223,17 @@ namespace SunfrogUploader.Controller
                 model.types.Add(ladies);
                 model.types.Add(guys);
                 model.types.Add(hoodie);
-                model.types.Add(guysVNeck);
-                model.types.Add(ladiesVNeck);
-                model.types.Add(unisexLongSleeve);
-                model.types.Add(unisexTankTop);
-                model.types.Add(sweatShirt);
-                model.types.Add(youthTee);
+                if (!isFast)
+                {
+
+                    model.types.Add(guysVNeck);
+                    model.types.Add(ladiesVNeck);
+                    model.types.Add(unisexLongSleeve);
+                    model.types.Add(unisexTankTop);
+                    model.types.Add(sweatShirt);
+                    model.types.Add(youthTee);
+                }
+
             }
 
 
@@ -414,7 +429,8 @@ namespace SunfrogUploader.Controller
         }
 
         public bool Step2(System.Windows.Forms.RichTextBox lbError, System.Windows.Forms.ProgressBar progCurrentName, System.Windows.Forms.Label lblCurName,
-                System.Windows.Forms.Label lblNameIndex, bool isScaleAll, bool isAutoLogo = true, bool isSaveDb = true)
+                System.Windows.Forms.Label lblNameIndex, bool isScaleAll, bool isAutoLogo = true, bool isSaveDb = true,
+                bool isFast = true)
         {
             try
             {
@@ -499,7 +515,7 @@ namespace SunfrogUploader.Controller
                                 }
 
                                 string title = string.Empty;
-                                string jsonData = CreateNewSunfrogData(name, logoPath, ref title);
+                                string jsonData = CreateNewSunfrogData(name, logoPath, ref title, isFast);
 
                                 SunfrogController.Instance.web.SendRequest("https://manager.sunfrogshirts.com/Designer/", "GET", null);
 
@@ -508,10 +524,11 @@ namespace SunfrogUploader.Controller
                                     || result.Contains("Sorry, this service is currently unavailable"))
                                 {
                                     lbError.Invoke(new Action(() => lbError.Text += "\nSunfrog bảo trì rồi"));
+                                   // System.Windows.Forms.MessageBox.Show("Sunfrog bao tri!");
                                     BackendController.IsMaintain = true;
                                     i--;
                                     SchedulerController.Instance.Start();
-                                    while (BackendController.IsMaintain)
+                                    while (!BackendController.IsMaintain)
                                     {
                                         Thread.Sleep(1000 * 60 * 5);
                                     }
@@ -527,16 +544,17 @@ namespace SunfrogUploader.Controller
                                         logger.Error("upload error: " + description);
                                         break;
                                     }
-                                    else if (description.Contains("please refresh this page to login"))
+                                    else if (description.Contains("Please refresh this page to login"))
                                     {
                                         SunfrogController.Instance.Login(SunfrogConfig.SFAcc, SunfrogConfig.SFPass);
+                                        Thread.Sleep(1000 * 60 * 3);
                                         i--;
                                         continue;
                                     }
                                 }
                                 string rawLink = modelResult.products[0].pageName;
                                 string groupID = ExtractGroupID(rawLink);
-                                string jsonUpdateData = CreateUpdatingMockupJson(groupID, SunfrogController.Instance.AM);
+                                string jsonUpdateData = CreateUpdatingMockupJson(groupID, SunfrogController.Instance.AM, isFast);
                                 Task task = SunfrogController.Instance.UpdateMockup(jsonUpdateData);
                                 Task.WhenAll(task);
                                 Console.WriteLine("test");
@@ -565,8 +583,9 @@ namespace SunfrogUploader.Controller
                             }
 
                         }
-                        catch (Exception)
+                        catch (Exception ex)
                         {
+                            logger.WarnFormat("Error Message: {0}\nStacktrace: {1}", ex.Message, ex.StackTrace);
                             File.AppendAllLines(folderPath + Settings.Default.ErrorNameList, new String[] { name });
                         }
                         progCurrentName.Invoke(new Action(() => progCurrentName.Value = (i + 1) * 100 / nameList.Count));
@@ -597,7 +616,7 @@ namespace SunfrogUploader.Controller
                 return null;
         }
 
-        private string CreateUpdatingMockupJson(string groupID, string am)
+        private string CreateUpdatingMockupJson(string groupID, string am, bool isFast)
         {
             UpdateMockupModel model = new UpdateMockupModel();
             model.ArtOwnerID = am;
@@ -670,15 +689,81 @@ namespace SunfrogUploader.Controller
             youthTee.price = youthTee.price.Replace(',', '.');
             youthTee.colors.AddRange(LogoConfig.YouthTeeColor.Split(','));
 
-            youthTee.colors.RemoveAt(0);
-            hoodie.colors.RemoveAt(0);
-            guys.colors.RemoveAt(0);
-            ladies.colors.RemoveAt(0);
-            guysVNeck.colors.RemoveAt(0);
-            ladiesVNeck.colors.RemoveAt(0);
-            unisexLongSleeve.colors.RemoveAt(0);
-            unisexTankTop.colors.RemoveAt(0);
-            sweatShirt.colors.RemoveAt(0);
+
+            //if(isFast)
+            //{
+            //    if (LogoConfig.PrimaryMockupName.ToLower().StartsWith("hoodie"))
+            //    {
+            //        hoodie.colors.RemoveAt(0);
+            //    }
+            //    else if (LogoConfig.PrimaryMockupName.ToLower().StartsWith("guys"))
+            //    {
+            //        guys.colors.RemoveAt(0);
+            //    }
+            //    else if (LogoConfig.PrimaryMockupName.ToLower().StartsWith("ladies"))
+            //    {
+
+            //        ladies.colors.RemoveAt(0);
+            //    }
+            //}else
+            {
+                ladies.colors.RemoveAt(0);
+                guys.colors.RemoveAt(0);
+                hoodie.colors.RemoveAt(0);
+                //youthTee.colors.RemoveAt(0);
+                //guysVNeck.colors.RemoveAt(0);
+                //ladiesVNeck.colors.RemoveAt(0);
+                //unisexLongSleeve.colors.RemoveAt(0);
+                //unisexTankTop.colors.RemoveAt(0);
+                //sweatShirt.colors.RemoveAt(0);
+            }
+
+            if (LogoConfig.PrimaryMockupName.ToLower().StartsWith("hoodie"))
+            {
+                //hoodie.colors.RemoveAt(0);
+                if (!isFast)
+                {
+                    youthTee.colors.RemoveAt(0);
+                    guys.colors.RemoveAt(0);
+                    ladies.colors.RemoveAt(0);
+                    guysVNeck.colors.RemoveAt(0);
+                    ladiesVNeck.colors.RemoveAt(0);
+                    unisexLongSleeve.colors.RemoveAt(0);
+                    unisexTankTop.colors.RemoveAt(0);
+                    sweatShirt.colors.RemoveAt(0);
+                }
+            }
+            else if (LogoConfig.PrimaryMockupName.ToLower().StartsWith("guys"))
+            {
+                // guys.colors.RemoveAt(0);
+                if (!isFast)
+                {
+                    youthTee.colors.RemoveAt(0);
+                    hoodie.colors.RemoveAt(0);
+                    ladies.colors.RemoveAt(0);
+                    guysVNeck.colors.RemoveAt(0);
+                    ladiesVNeck.colors.RemoveAt(0);
+                    unisexLongSleeve.colors.RemoveAt(0);
+                    unisexTankTop.colors.RemoveAt(0);
+                    sweatShirt.colors.RemoveAt(0);
+                }
+            }
+            else if (LogoConfig.PrimaryMockupName.ToLower().StartsWith("ladies"))
+            {
+                // ladies.colors.RemoveAt(0);
+                if (!isFast)
+                {
+                    youthTee.colors.RemoveAt(0);
+                    hoodie.colors.RemoveAt(0);
+                    ladies.colors.RemoveAt(0);
+                    guysVNeck.colors.RemoveAt(0);
+                    ladiesVNeck.colors.RemoveAt(0);
+                    unisexLongSleeve.colors.RemoveAt(0);
+                    unisexTankTop.colors.RemoveAt(0);
+                    sweatShirt.colors.RemoveAt(0);
+                }
+            }
+
 
             if (LogoConfig.PrimaryMockupName.ToLower().StartsWith("hoodie"))
             {

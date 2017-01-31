@@ -39,6 +39,8 @@
             this.lblLogin = new MetroFramework.Controls.MetroLabel();
             this.metroLabel8 = new MetroFramework.Controls.MetroLabel();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
+            this.chbFastUpload = new System.Windows.Forms.CheckBox();
+            this.chbSaveDb = new System.Windows.Forms.CheckBox();
             this.chbAutologo = new System.Windows.Forms.CheckBox();
             this.numEnd = new System.Windows.Forms.NumericUpDown();
             this.numStart = new System.Windows.Forms.NumericUpDown();
@@ -56,7 +58,6 @@
             this.bgWoker = new System.ComponentModel.BackgroundWorker();
             this.openFileDialog1 = new System.Windows.Forms.OpenFileDialog();
             this.lbError = new System.Windows.Forms.RichTextBox();
-            this.chbSaveDb = new System.Windows.Forms.CheckBox();
             this.groupBox2.SuspendLayout();
             this.groupBox1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.numEnd)).BeginInit();
@@ -172,6 +173,7 @@
             // groupBox1
             // 
             this.groupBox1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(255)))), ((int)(((byte)(255)))));
+            this.groupBox1.Controls.Add(this.chbFastUpload);
             this.groupBox1.Controls.Add(this.chbSaveDb);
             this.groupBox1.Controls.Add(this.chbAutologo);
             this.groupBox1.Controls.Add(this.numEnd);
@@ -193,6 +195,30 @@
             this.groupBox1.TabIndex = 4;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Vps Info";
+            // 
+            // chbFastUpload
+            // 
+            this.chbFastUpload.AutoSize = true;
+            this.chbFastUpload.Checked = true;
+            this.chbFastUpload.CheckState = System.Windows.Forms.CheckState.Checked;
+            this.chbFastUpload.Location = new System.Drawing.Point(197, 104);
+            this.chbFastUpload.Name = "chbFastUpload";
+            this.chbFastUpload.Size = new System.Drawing.Size(83, 17);
+            this.chbFastUpload.TabIndex = 7;
+            this.chbFastUpload.Text = "Fast Upload";
+            this.chbFastUpload.UseVisualStyleBackColor = true;
+            // 
+            // chbSaveDb
+            // 
+            this.chbSaveDb.AutoSize = true;
+            this.chbSaveDb.Checked = true;
+            this.chbSaveDb.CheckState = System.Windows.Forms.CheckState.Checked;
+            this.chbSaveDb.Location = new System.Drawing.Point(91, 104);
+            this.chbSaveDb.Name = "chbSaveDb";
+            this.chbSaveDb.Size = new System.Drawing.Size(97, 17);
+            this.chbSaveDb.TabIndex = 7;
+            this.chbSaveDb.Text = "Save to Server";
+            this.chbSaveDb.UseVisualStyleBackColor = true;
             // 
             // chbAutologo
             // 
@@ -222,7 +248,7 @@
             // 
             this.numStart.Location = new System.Drawing.Point(91, 61);
             this.numStart.Maximum = new decimal(new int[] {
-            32767,
+            100000,
             0,
             0,
             0});
@@ -232,7 +258,7 @@
             // 
             // btnSaveAcc
             // 
-            this.btnSaveAcc.Location = new System.Drawing.Point(249, 104);
+            this.btnSaveAcc.Location = new System.Drawing.Point(315, 104);
             this.btnSaveAcc.Name = "btnSaveAcc";
             this.btnSaveAcc.Size = new System.Drawing.Size(75, 34);
             this.btnSaveAcc.TabIndex = 5;
@@ -343,18 +369,6 @@
             this.lbError.TabIndex = 7;
             this.lbError.Text = "";
             // 
-            // chbSaveDb
-            // 
-            this.chbSaveDb.AutoSize = true;
-            this.chbSaveDb.Checked = true;
-            this.chbSaveDb.CheckState = System.Windows.Forms.CheckState.Checked;
-            this.chbSaveDb.Location = new System.Drawing.Point(91, 104);
-            this.chbSaveDb.Name = "chbSaveDb";
-            this.chbSaveDb.Size = new System.Drawing.Size(97, 17);
-            this.chbSaveDb.TabIndex = 7;
-            this.chbSaveDb.Text = "Save to Server";
-            this.chbSaveDb.UseVisualStyleBackColor = true;
-            // 
             // SunfrogUploader
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -409,6 +423,7 @@
         private System.Windows.Forms.RichTextBox lbError;
         private System.Windows.Forms.CheckBox chbAutologo;
         private System.Windows.Forms.CheckBox chbSaveDb;
+        private System.Windows.Forms.CheckBox chbFastUpload;
     }
 }
 

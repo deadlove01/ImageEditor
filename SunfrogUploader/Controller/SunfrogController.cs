@@ -27,6 +27,7 @@ namespace SunfrogUploader.Controller
 
         public bool Login(string sfAcc, string sfPass)
         {
+            web = new CustomWeb();
             this.SFAcc = sfAcc;
             string url = "https://manager.sunfrogshirts.com/Login.cfm";
             NameValueCollection nvc = new NameValueCollection();
